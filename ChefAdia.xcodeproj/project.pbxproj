@@ -10,6 +10,7 @@
 		24000B1B1DD2EAF000F7FA59 /* CAMeHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24000B1A1DD2EAF000F7FA59 /* CAMeHistoryTableViewController.m */; };
 		24000B1F1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24000B1D1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.m */; };
 		24000B201DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24000B1E1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.xib */; };
+		2417DC0E1DD7731700086055 /* CAUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2417DC0D1DD7731700086055 /* CAUserInfoManager.m */; };
 		24218B521DCDB3220017B0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24218B511DCDB3220017B0DC /* Assets.xcassets */; };
 		24218B581DCE11200017B0DC /* CAMeLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24218B571DCE11200017B0DC /* CAMeLoginTableViewController.m */; };
 		24630F1D1DCF260500835521 /* CAMeNotLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24630F1C1DCF260500835521 /* CAMeNotLoginViewController.m */; };
@@ -54,6 +55,8 @@
 		24000B1C1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMeHistoryTableViewCell.h; sourceTree = "<group>"; };
 		24000B1D1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMeHistoryTableViewCell.m; sourceTree = "<group>"; };
 		24000B1E1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAMeHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		2417DC0C1DD7731700086055 /* CAUserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAUserInfoManager.h; sourceTree = "<group>"; };
+		2417DC0D1DD7731700086055 /* CAUserInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAUserInfoManager.m; sourceTree = "<group>"; };
 		24218B511DCDB3220017B0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24218B561DCE11200017B0DC /* CAMeLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMeLoginTableViewController.h; sourceTree = "<group>"; };
 		24218B571DCE11200017B0DC /* CAMeLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMeLoginTableViewController.m; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				249C0B4B1DCD8FCD008BE6F4 /* CALoginViewController.m */,
 				249C0B5A1DCD90A9008BE6F4 /* CASignUpViewController.h */,
 				249C0B5B1DCD90A9008BE6F4 /* CASignUpViewController.m */,
+				2417DC0C1DD7731700086055 /* CAUserInfoManager.h */,
+				2417DC0D1DD7731700086055 /* CAUserInfoManager.m */,
 			);
 			name = UserUtility;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 				24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */,
 				247CEBD11DCF7C6D007938B6 /* CardsView.m in Sources */,
 				246449FA1DD0E7D2009806FE /* CALoginManager.m in Sources */,
+				2417DC0E1DD7731700086055 /* CAUserInfoManager.m in Sources */,
 				249491F61DD1B8C400B99320 /* CAFoodMenu.m in Sources */,
 				24C0834E1DCE1DD100E1214E /* CAFindTableViewController.m in Sources */,
 				24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */,

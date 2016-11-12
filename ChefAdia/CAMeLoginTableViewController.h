@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CAMeLoginTableViewController : UITableViewController
+@interface CAMeLoginTableViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonnull, nonatomic) UIImagePickerController* picker_library_;
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *avatarView;
 @property (nonnull, nonatomic) IBOutlet UILabel *userNameLabel;
