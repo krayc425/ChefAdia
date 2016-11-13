@@ -92,9 +92,9 @@
     // 是否允许编辑（默认为NO）
     imagePickerController.allowsEditing = YES;
     // 创建一个警告控制器
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PICK A PHOTO" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pick a Photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     // 设置警告响应事件
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"CAMERA"
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                             // 设置照片来源为相机
@@ -105,14 +105,14 @@
                                                             [self presentViewController:imagePickerController animated:YES completion:nil];
     }];
     
-    UIAlertAction *photosAction = [UIAlertAction actionWithTitle:@"CHOOSE FROM PHOTO LIBRARY"
+    UIAlertAction *photosAction = [UIAlertAction actionWithTitle:@"Choose from Photo Library"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                             imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                                                             [self presentViewController:imagePickerController animated:YES completion:nil];
     }];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"CANCEL"
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
     

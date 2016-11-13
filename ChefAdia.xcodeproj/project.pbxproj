@@ -43,6 +43,8 @@
 		24C7C7C71DD2BFAB008D89F5 /* CAFoodPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7C7C61DD2BFAB008D89F5 /* CAFoodPayViewController.m */; };
 		24C7C7CB1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7C7C91DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m */; };
 		24C7C7CC1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */; };
+		24EC03E11DD8AE58000588EB /* CAFindMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EC03E01DD8AE58000588EB /* CAFindMenuViewController.m */; };
+		24EC03E41DD8B657000588EB /* CAFindTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EC03E31DD8B657000588EB /* CAFindTicketViewController.m */; };
 		24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6A1DD1F34400EDB919 /* CAFoodDetailTableViewController.m */; };
 		24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6D1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m */; };
 		24EF4F701DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24EF4F6E1DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib */; };
@@ -112,6 +114,10 @@
 		24C7C7C81DD2C0AF008D89F5 /* CAFoodPayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodPayTableViewCell.h; sourceTree = "<group>"; };
 		24C7C7C91DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodPayTableViewCell.m; sourceTree = "<group>"; };
 		24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFoodPayTableViewCell.xib; sourceTree = "<group>"; };
+		24EC03DF1DD8AE58000588EB /* CAFindMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindMenuViewController.h; sourceTree = "<group>"; };
+		24EC03E01DD8AE58000588EB /* CAFindMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindMenuViewController.m; sourceTree = "<group>"; };
+		24EC03E21DD8B657000588EB /* CAFindTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindTicketViewController.h; sourceTree = "<group>"; };
+		24EC03E31DD8B657000588EB /* CAFindTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindTicketViewController.m; sourceTree = "<group>"; };
 		24EF4F691DD1F34400EDB919 /* CAFoodDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailTableViewController.h; sourceTree = "<group>"; };
 		24EF4F6A1DD1F34400EDB919 /* CAFoodDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodDetailTableViewController.m; sourceTree = "<group>"; };
 		24EF4F6C1DD1F35400EDB919 /* CAFoodDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -279,6 +285,10 @@
 				24C083501DCE1E3D00E1214E /* CAFindItemTableViewCell.h */,
 				24C083511DCE1E3D00E1214E /* CAFindItemTableViewCell.m */,
 				24C083521DCE1E3D00E1214E /* CAFindItemTableViewCell.xib */,
+				24EC03DF1DD8AE58000588EB /* CAFindMenuViewController.h */,
+				24EC03E01DD8AE58000588EB /* CAFindMenuViewController.m */,
+				24EC03E21DD8B657000588EB /* CAFindTicketViewController.h */,
+				24EC03E31DD8B657000588EB /* CAFindTicketViewController.m */,
 			);
 			name = Find;
 			sourceTree = "<group>";
@@ -413,6 +423,7 @@
 				24630F1D1DCF260500835521 /* CAMeNotLoginViewController.m in Sources */,
 				24000B1B1DD2EAF000F7FA59 /* CAMeHistoryTableViewController.m in Sources */,
 				24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */,
+				24EC03E41DD8B657000588EB /* CAFindTicketViewController.m in Sources */,
 				247CEBD11DCF7C6D007938B6 /* CardsView.m in Sources */,
 				246449FA1DD0E7D2009806FE /* CALoginManager.m in Sources */,
 				2417DC0E1DD7731700086055 /* CAUserInfoManager.m in Sources */,
@@ -423,6 +434,7 @@
 				246BE4301DCB4CC90055FB97 /* main.m in Sources */,
 				24A4B9D31DCC75240021053D /* CATabBarController.m in Sources */,
 				24A4B9D61DCC75C80021053D /* Utilities.m in Sources */,
+				24EC03E11DD8AE58000588EB /* CAFindMenuViewController.m in Sources */,
 				24C083531DCE1E3D00E1214E /* CAFindItemTableViewCell.m in Sources */,
 				24C7C7CB1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m in Sources */,
 				249491EF1DD1AF0C00B99320 /* CAFoodTableViewCell.m in Sources */,

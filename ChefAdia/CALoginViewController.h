@@ -10,8 +10,6 @@
 
 @interface CALoginViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonnull, nonatomic) IBOutlet UINavigationItem *naviItem;
-
 @property (nonatomic, nonnull) IBOutlet UIImageView *backgroundView;
 
 @property (nonatomic, nonnull) IBOutlet UITextField *userNameText;

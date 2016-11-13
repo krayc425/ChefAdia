@@ -45,13 +45,13 @@
     switch (indexPath.row) {
         case 0:
             img = [UIImage imageNamed:@"FIND_1"];
-            mainText = @"I WANT TO ADD MENU";
-            subText = @"WE RECOMMEND ANY GREAT IDEA COMING FROM YOU!";
+            mainText = @"ADD A NEW DISH";
+            subText = @"WE EXPECT YOUR GREAT NEW IDEAS!";
             break;
         case 1:
             img = [UIImage imageNamed:@"FIND_2"];
-            mainText = @"I HAVE ADVICE";
-            subText = @"WE ARE GLAD TO HEAR YOUR ADVICE AND ACCEPT IT AS SOON AS POSSIBLE.";
+            mainText = @"MEAL TICKET";
+            subText = @"BUY SOME VALUABLE MEAL TICKETS.";
             break;
         default:
             break;
@@ -60,6 +60,19 @@
     [cell.mainLabel setText:mainText];
     [cell.subLabel setText:subText];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+            [self performSegueWithIdentifier:@"addMenuSegue" sender:nil];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"mealTicketSegue" sender:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

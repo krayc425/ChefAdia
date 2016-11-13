@@ -23,8 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.naviItem setTitle:@"LOGIN"];
-    
     fontName = [Utilities getFont];
     color = [Utilities getColor];
     

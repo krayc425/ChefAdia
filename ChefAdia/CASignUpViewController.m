@@ -45,6 +45,10 @@
     _signUpButton.backgroundColor = [UIColor clearColor];
     [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
+    //添加手势，点击屏幕其他区域关闭键盘的操作
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    gesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:gesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,6 +57,26 @@
 
 - (IBAction)signUpAction:(id)sender{
     
+}
+
+- (void)hideKeyboard{
+    [_userNameText resignFirstResponder];
+    [_passwordText resignFirstResponder];
+    [_phoneNumText resignFirstResponder];
+    [self resumeView];
+}
+
+- (void)resumeView{
+    NSTimeInterval animationDuration=0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    //如果当前View是父视图，则Y为20个像素高度，如果当前View为其他View的子视图，则动态调节Y的高度
+    float Y = 44.0f + 20.0f;
+    CGRect rect=CGRectMake(0.0f,Y,width,height);
+    self.view.frame=rect;
+    [UIView commitAnimations];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -68,6 +92,24 @@
         flag = YES;
     }
     return flag;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    NSTimeInterval animationDuration=0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    //上移70个单位
+    CGRect rect=CGRectMake(0.0f,-70,width,height);
+    self.view.frame=rect;
+    [UIView commitAnimations];
+    return YES;
+}
+
+- (IBAction)textFieldDoneEditing:(id)sender {
+    [sender resignFirstResponder];
+    [self resumeView];
 }
 
 @end

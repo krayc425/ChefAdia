@@ -163,10 +163,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"paySegue"]){
-        CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
-        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f",[_foodCart getTotalPrice]]];
-        [caFoodPayViewController setTotalNum:[_foodCart getTotalNum]];
-        [caFoodPayViewController setPayFoodArr:(NSMutableArray *)[[CAFoodCart shareInstance] getFoodInCart]];
+        if([_foodCart getTotalNum] == 0){
+            NSLog(@"NO FOOD IN CART");
+        }else{
+            CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
+            [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f",[_foodCart getTotalPrice]]];
+            [caFoodPayViewController setTotalNum:[_foodCart getTotalNum]];
+            [caFoodPayViewController setPayFoodArr:(NSMutableArray *)[[CAFoodCart shareInstance] getFoodInCart]];
+        }
     }
 }
 
