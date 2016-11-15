@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CAFoodTableViewController : UITableViewController
+@interface CAFoodTableViewController : UITableViewController <NSURLSessionDelegate>
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *backgroundView;
 @property (nonnull, nonatomic) IBOutlet UILabel *name1Label;
