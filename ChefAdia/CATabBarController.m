@@ -9,6 +9,7 @@
 #import "CATabBarController.h"
 #import "Utilities.h"
 #import "CALoginManager.h"
+#import "CANetworkManager.h"
 
 @interface CATabBarController (){
     NSString *fontName;
@@ -53,6 +54,10 @@
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:fontName size:11.0f],NSFontAttributeName,nil] forState:UIControlStateSelected];
     //更改导航栏字体
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIColor lightGrayColor], NSShadowAttributeName,[NSValue valueWithUIOffset:UIOffsetMake(0, 0)], NSShadowAttributeName, fontName, NSFontAttributeName,nil]];
+    
+    //检查网络是否畅通
+    [[CANetworkManager shareInstance] checkNetwork];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

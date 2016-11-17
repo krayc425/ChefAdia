@@ -13,6 +13,7 @@
 		2417DC0E1DD7731700086055 /* CAUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2417DC0D1DD7731700086055 /* CAUserInfoManager.m */; };
 		24218B521DCDB3220017B0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24218B511DCDB3220017B0DC /* Assets.xcassets */; };
 		24218B581DCE11200017B0DC /* CAMeLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24218B571DCE11200017B0DC /* CAMeLoginTableViewController.m */; };
+		2450040B1DDD93A200FEB517 /* CANetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2450040A1DDD93A200FEB517 /* CANetworkManager.m */; };
 		24630F1D1DCF260500835521 /* CAMeNotLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24630F1C1DCF260500835521 /* CAMeNotLoginViewController.m */; };
 		24630F1F1DCF2BBE00835521 /* century-gothic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24630F1E1DCF2BBE00835521 /* century-gothic-bold.ttf */; };
 		24630F221DCF319F00835521 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24630F211DCF319F00835521 /* QuartzCore.framework */; };
@@ -49,7 +50,7 @@
 		24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6D1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m */; };
 		24EF4F701DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24EF4F6E1DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib */; };
 		24EF4F741DD20E9E00EDB919 /* CAFoodDetailInCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F731DD20E9E00EDB919 /* CAFoodDetailInCart.m */; };
-		F6026ADC2D157FF45360F8C9 /* libPods-ChefAdia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F977EB77465429608D9EC997 /* libPods-ChefAdia.a */; };
+		CB5CC304AA54F66B647DB4B5 /* libPods-ChefAdia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5B8500B3F940C49CF2FF87 /* libPods-ChefAdia.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		24218B511DCDB3220017B0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24218B561DCE11200017B0DC /* CAMeLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMeLoginTableViewController.h; sourceTree = "<group>"; };
 		24218B571DCE11200017B0DC /* CAMeLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMeLoginTableViewController.m; sourceTree = "<group>"; };
+		245004091DDD93A200FEB517 /* CANetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CANetworkManager.h; sourceTree = "<group>"; };
+		2450040A1DDD93A200FEB517 /* CANetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CANetworkManager.m; sourceTree = "<group>"; };
 		24630F1B1DCF260500835521 /* CAMeNotLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMeNotLoginViewController.h; sourceTree = "<group>"; };
 		24630F1C1DCF260500835521 /* CAMeNotLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMeNotLoginViewController.m; sourceTree = "<group>"; };
 		24630F1E1DCF2BBE00835521 /* century-gothic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "century-gothic-bold.ttf"; sourceTree = "<group>"; };
@@ -126,9 +129,9 @@
 		24EF4F6E1DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFoodDetailTableViewCell.xib; sourceTree = "<group>"; };
 		24EF4F721DD20E9E00EDB919 /* CAFoodDetailInCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailInCart.h; sourceTree = "<group>"; };
 		24EF4F731DD20E9E00EDB919 /* CAFoodDetailInCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodDetailInCart.m; sourceTree = "<group>"; };
-		DF78A3622FF6BE0A8E060C0D /* Pods-ChefAdia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefAdia.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia.release.xcconfig"; sourceTree = "<group>"; };
-		F5837BAFB270B17B645AC10E /* Pods-ChefAdia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefAdia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia.debug.xcconfig"; sourceTree = "<group>"; };
-		F977EB77465429608D9EC997 /* libPods-ChefAdia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChefAdia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F5B8500B3F940C49CF2FF87 /* libPods-ChefAdia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChefAdia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4447589082D33D63D2DE11F3 /* Pods-ChefAdia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefAdia.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia.release.xcconfig"; sourceTree = "<group>"; };
+		C2BACF672A8084E5C709D13D /* Pods-ChefAdia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefAdia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24630F221DCF319F00835521 /* QuartzCore.framework in Frameworks */,
-				F6026ADC2D157FF45360F8C9 /* libPods-ChefAdia.a in Frameworks */,
+				CB5CC304AA54F66B647DB4B5 /* libPods-ChefAdia.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				24630F211DCF319F00835521 /* QuartzCore.framework */,
-				F977EB77465429608D9EC997 /* libPods-ChefAdia.a */,
+				3F5B8500B3F940C49CF2FF87 /* libPods-ChefAdia.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -196,7 +199,7 @@
 				246BE42D1DCB4CC90055FB97 /* ChefAdia */,
 				246BE42C1DCB4CC90055FB97 /* Products */,
 				24630F201DCF319F00835521 /* Frameworks */,
-				A915D85CE4EF5AEB0BCB7218 /* Pods */,
+				54FBB9CCE5344EA4ABB5B9F8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,8 +218,8 @@
 				246BE4321DCB4CC90055FB97 /* AppDelegate.m */,
 				24A4B9D41DCC75C80021053D /* Utilities.h */,
 				24A4B9D51DCC75C80021053D /* Utilities.m */,
-				247CEBCF1DCF7C6D007938B6 /* CardsView.h */,
-				247CEBD01DCF7C6D007938B6 /* CardsView.m */,
+				245004091DDD93A200FEB517 /* CANetworkManager.h */,
+				2450040A1DDD93A200FEB517 /* CANetworkManager.m */,
 				24A4B9D11DCC75240021053D /* CATabBarController.h */,
 				24A4B9D21DCC75240021053D /* CATabBarController.m */,
 				246449FE1DD0EB7A009806FE /* Food */,
@@ -235,6 +238,8 @@
 		246BE42E1DCB4CC90055FB97 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				247CEBCF1DCF7C6D007938B6 /* CardsView.h */,
+				247CEBD01DCF7C6D007938B6 /* CardsView.m */,
 				24630F1E1DCF2BBE00835521 /* century-gothic-bold.ttf */,
 				249C0B481DCD8E82008BE6F4 /* century-gothic.ttf */,
 				246BE42F1DCB4CC90055FB97 /* main.m */,
@@ -337,11 +342,11 @@
 			name = Me;
 			sourceTree = "<group>";
 		};
-		A915D85CE4EF5AEB0BCB7218 /* Pods */ = {
+		54FBB9CCE5344EA4ABB5B9F8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F5837BAFB270B17B645AC10E /* Pods-ChefAdia.debug.xcconfig */,
-				DF78A3622FF6BE0A8E060C0D /* Pods-ChefAdia.release.xcconfig */,
+				C2BACF672A8084E5C709D13D /* Pods-ChefAdia.debug.xcconfig */,
+				4447589082D33D63D2DE11F3 /* Pods-ChefAdia.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -353,12 +358,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 246BE4451DCB4CC90055FB97 /* Build configuration list for PBXNativeTarget "ChefAdia" */;
 			buildPhases = (
-				6E9364EA0720A53D0F799127 /* [CP] Check Pods Manifest.lock */,
+				70B58AE6F6A160247201CF91 /* [CP] Check Pods Manifest.lock */,
 				246BE4271DCB4CC80055FB97 /* Sources */,
 				246BE4281DCB4CC80055FB97 /* Frameworks */,
 				246BE4291DCB4CC80055FB97 /* Resources */,
-				D346E30F1A9063B96D695CC8 /* [CP] Embed Pods Frameworks */,
-				3DC881D550185ADE6131EEAB /* [CP] Copy Pods Resources */,
+				3D8F1D7F5AA09F0AA652D2B5 /* [CP] Embed Pods Frameworks */,
+				ADA9A92BDECCFCA3E3A2F69D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -424,37 +429,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3DC881D550185ADE6131EEAB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6E9364EA0720A53D0F799127 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D346E30F1A9063B96D695CC8 /* [CP] Embed Pods Frameworks */ = {
+		3D8F1D7F5AA09F0AA652D2B5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,6 +442,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70B58AE6F6A160247201CF91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ADA9A92BDECCFCA3E3A2F69D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChefAdia/Pods-ChefAdia-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -498,6 +503,7 @@
 				24C0834E1DCE1DD100E1214E /* CAFindTableViewController.m in Sources */,
 				24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */,
 				249491F31DD1B74B00B99320 /* CAFoodManager.m in Sources */,
+				2450040B1DDD93A200FEB517 /* CANetworkManager.m in Sources */,
 				246BE4301DCB4CC90055FB97 /* main.m in Sources */,
 				24A4B9D31DCC75240021053D /* CATabBarController.m in Sources */,
 				24A4B9D61DCC75C80021053D /* Utilities.m in Sources */,
@@ -535,13 +541,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -582,13 +589,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -614,10 +622,11 @@
 		};
 		246BE4461DCB4CC90055FB97 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5837BAFB270B17B645AC10E /* Pods-ChefAdia.debug.xcconfig */;
+			baseConfigurationReference = C2BACF672A8084E5C709D13D /* Pods-ChefAdia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChefAdia/Info.plist;
@@ -631,10 +640,11 @@
 		};
 		246BE4471DCB4CC90055FB97 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF78A3622FF6BE0A8E060C0D /* Pods-ChefAdia.release.xcconfig */;
+			baseConfigurationReference = 4447589082D33D63D2DE11F3 /* Pods-ChefAdia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChefAdia/Info.plist;
