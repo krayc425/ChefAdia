@@ -14,4 +14,9 @@
 
 - (void)checkNetwork;
 
+#pragma mark - METHODS;
+
+- (void)getMenu;
+- (void)postMenu;
+
 @end

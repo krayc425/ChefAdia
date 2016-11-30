@@ -16,6 +16,8 @@
 
 static CANetworkManager* _instance = nil;
 
+#pragma mark - CONSTRUCTORS
+
 + (instancetype)shareInstance{
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
@@ -36,16 +38,18 @@ static CANetworkManager* _instance = nil;
     return self;
 }
 
+#pragma mark - NETWORK UTILITIES
+
 - (void)checkNetwork{
-    Reachability *reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/allDish.do"];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
     [reach startNotifier];
     
-    
-    [self test];
+//    [self postMenu];
+//    [self getMenu];
 }
 
 - (void)reachabilityChanged:(NSNotification *)notification {
@@ -66,68 +70,75 @@ static CANetworkManager* _instance = nil;
     }
 }
 
-- (void)test{
-    
+- (void)getFromHost:(NSString *)URL{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    [manager GET:@"http://120.27.117.222:8080/api/optionState" parameters:nil
-        progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-        }
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+//                                                         @"application/json",
+                                                         nil];
+    [manager GET:URL
+      parameters:nil
+        progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             NSLog(@"JSON: %@", responseObject);
+             NSLog(@"JSON GET CLASS: %@", [responseObject class]);
              [self tranformTest:responseObject];
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"%@",error);  //这里打印错误信息
+             NSLog(@"%@",error);
          }];
+
+}
+
+- (void)postToHost:(NSString *)URL withParams:(NSDictionary *)params{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"application/json",
+                                                         @"text/html",
+                                                         @"text/json",
+                                                         nil];
+    [manager POST:URL
+       parameters:params
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+              NSLog(@"SUCCESS");
+              NSLog(@"JSON POST: %@", responseObject);
+          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              NSLog(@"FAILED");
+              NSLog(@"Error: %@", error);
+          }];
 }
 
 - (void)tranformTest:(id)jsonObject{
+    NSArray *array = (NSArray *)jsonObject;
+    NSLog(@"%lu", [array count]);
     
-    //JSONKit
-    
-    NSString *strJson = (NSString *)[jsonObject description];
-    
-    NSLog(@"TRANFORM");
-    NSLog(@"%@", strJson);
-    
-    NSArray *arrlist = [strJson objectFromJSONString];
-    NSLog(@"%lu",(unsigned long)[arrlist count]);
-    for (int i=0; i<[arrlist count]; i++) {
-        NSDictionary *item=[arrlist objectAtIndex:i];
-        NSString *BrandName=[item objectForKey:@"condition"];
-        NSLog(@"%@",BrandName);
+    for(NSDictionary *dict in array){
+        for(NSString *key in dict){
+            NSLog(@"KEY : %@ VALUE : %@", key, dict[key]);
+        }
     }
-    
-    //NSJSONSerialization
-    
-    NSString *urlStr = @"http://120.27.117.222:8080/api/optionState";
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
-    NSError *error;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if (error) {
-        NSLog(@"解析失败--%@", error);
-        return;
-    }
-    NSLog(@"-json: %@",json);
-    
-    NSArray *array = [json objectForKey:@"condition"];
-    NSLog(@"--song 1: %@",array);
-    array = [json objectForKey:@"msg"];
-    NSLog(@"--song 2: %@",array);
-    array = [json objectForKey:@"data"];
-    NSLog(@"--song 3: %@",array);
-    
-    NSLog(@"%lu", (unsigned long)[array count]);
-    NSDictionary *jsonDict = [array objectAtIndex:0];
-    NSLog(@"-----song jsonDict: %@",jsonDict);
-    jsonDict = [array objectAtIndex:1];
-    NSLog(@"-----song jsonDict: %@",jsonDict);
-    jsonDict = [array objectAtIndex:2];
-    NSLog(@"-----song jsonDict: %@",jsonDict);
-    jsonDict = [array objectAtIndex:3];
-    NSLog(@"-----song jsonDict: %@",jsonDict);
+}
+
+#pragma mark - METHODS
+
+- (void)getMenu{
+    [self getFromHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/allDish.do"];
+}
+
+- (void)postMenu{
+    NSDictionary *parameters = @{
+                                 @"name": @"RICE",
+                                 @"type" : @"type1",
+                                 @"price" : @"1.99",
+                                 };
+    [self postToHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/addDish.do"
+            withParams:parameters];
 }
 
 @end
