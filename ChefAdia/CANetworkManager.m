@@ -49,7 +49,7 @@ static CANetworkManager* _instance = nil;
     [reach startNotifier];
     
 //    [self postMenu];
-//    [self getMenu];
+    [self getMenu];
 }
 
 - (void)reachabilityChanged:(NSNotification *)notification {
@@ -70,7 +70,7 @@ static CANetworkManager* _instance = nil;
     }
 }
 
-- (void)getFromHost:(NSString *)URL{
+- (void)getFromHost:(NSString *)URL withParams:(NSDictionary *)params{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
@@ -78,7 +78,7 @@ static CANetworkManager* _instance = nil;
 //                                                         @"application/json",
                                                          nil];
     [manager GET:URL
-      parameters:nil
+      parameters:params
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSLog(@"JSON GET CLASS: %@", [responseObject class]);
@@ -128,7 +128,7 @@ static CANetworkManager* _instance = nil;
 #pragma mark - METHODS
 
 - (void)getMenu{
-    [self getFromHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/allDish.do"];
+    [self getFromHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/allDish.do" withParams:nil];
 }
 
 - (void)postMenu{
@@ -139,6 +139,34 @@ static CANetworkManager* _instance = nil;
                                  };
     [self postToHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/addDish.do"
             withParams:parameters];
+}
+
+- (void)getList{
+    
+}
+
+- (void)getTickInfo{
+    
+}
+
+- (void)buyTicket{
+    
+}
+
+- (void)addOrder{
+    
+}
+
+- (void)getOrderList{
+
+}
+
+- (void)getOrder{
+    
+}
+
+- (void)comment{
+    
 }
 
 @end
