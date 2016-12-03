@@ -35,10 +35,6 @@
     [self.naviItem setTitle:[_foodType name]];
     _titleImgView.image = [UIImage imageNamed:@"FOOD_TITLE"];
     
-    //加载所有食物数组
-    _foodArr = [[NSMutableArray alloc] init];
-    [self loadFood];
-    
     [self.numberLabel setFont:[UIFont fontWithName:fontName size:20]];
     [self.billCountItem setTintColor:color];
     [self.buyItem setTintColor:color];
@@ -63,20 +59,26 @@
       parameters:tempDict
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             for(NSDictionary *dict in (NSArray *)responseObject){
-                 CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[dict valueForKey:@"name"]
-                                                                         andType:[dict valueForKey:@"type"]
-                                                                        andPrice:[[dict valueForKey:@"price"] doubleValue]
-                                                                          andPic:[dict valueForKey:@"pic"]
-                                                                        andLikes:[[dict valueForKey:@"like"] intValue]
-                                                                     andDislikes:[[dict valueForKey:@"dislike"] intValue]];
-                 [weakSelf.foodArr addObject:[caFoodDetail copy]];
+             NSDictionary *resultDict = (NSDictionary *)responseObject;
+             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
+                 for(NSDictionary *dict in resultArr){
+                     CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[dict valueForKey:@"name"]
+                                                                             andType:[dict valueForKey:@"type"]
+                                                                            andPrice:[[dict valueForKey:@"price"] doubleValue]
+                                                                              andPic:[dict valueForKey:@"pic"]
+                                                                            andLikes:[[dict valueForKey:@"like"] intValue]
+                                                                         andDislikes:[[dict valueForKey:@"dislike"] intValue]];
+                     [weakSelf.foodArr addObject:[caFoodDetail copy]];
+                 }
+                 weakSelf.foodNum = (int)[weakSelf.foodArr count];
+                 [weakSelf.numberLabel setText:[NSString stringWithFormat:@"%d SELECTION%s",
+                                                weakSelf.foodNum, weakSelf.foodNum <= 1 ? "" : "S"]];
+                 [weakSelf.tableView reloadData];
+             }else{
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
              }
              
-             weakSelf.foodNum = (int)[weakSelf.foodArr count];
-             [weakSelf.numberLabel setText:[NSString stringWithFormat:@"%d SELECTION%s",
-                                            weakSelf.foodNum, weakSelf.foodNum <= 1 ? "" : "S"]];
-             [weakSelf.tableView reloadData];
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"%@",error);
@@ -89,6 +91,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    //加载所有食物数组
+    _foodArr = [[NSMutableArray alloc] init];
+    [self loadFood];
+    
     [self.navigationController setToolbarHidden:NO];
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }

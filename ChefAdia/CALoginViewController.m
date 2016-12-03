@@ -30,11 +30,11 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsCompact];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
-    _userNameText.font = [UIFont fontWithName:fontName size:20];
+    _emailText.font = [UIFont fontWithName:fontName size:20];
     _passwordText.font = [UIFont fontWithName:fontName size:20];
-    _userNameText.delegate = self;
+    _emailText.delegate = self;
     _passwordText.delegate = self;
-    _userNameText.layer.cornerRadius = 20.0;
+    _emailText.layer.cornerRadius = 20.0;
     _passwordText.layer.cornerRadius = 20.0;
     
     _loginButton.titleLabel.font = [UIFont fontWithName:fontName size:20];
@@ -52,7 +52,7 @@
     NSLog(@"LOG IN");
     
     //输入正确性检查
-    if([_userNameText.text isEqualToString:@""] || [_passwordText.text isEqualToString:@""]){
+    if([_emailText.text isEqualToString:@""] || [_passwordText.text isEqualToString:@""]){
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info imcompleted!"
                                                                         message:@"Please fill all the info"
                                                                  preferredStyle:UIAlertControllerStyleAlert];
@@ -63,7 +63,7 @@
         [self presentViewController:alertC animated:YES completion:nil];
     }else{
     
-        if([CALoginManager loginWithUsername:[_userNameText text] andPassword:[_passwordText text]]){
+        if([CALoginManager loginWithUsername:[_emailText text] andPassword:[_passwordText text]]){
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
             
@@ -82,7 +82,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     BOOL flag = NO;
-    if(textField == _userNameText){
+    if(textField == _emailText){
         [_passwordText becomeFirstResponder];
     }else if(textField == _passwordText){
         [_passwordText resignFirstResponder];

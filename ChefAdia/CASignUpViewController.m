@@ -31,12 +31,15 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsCompact];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
+    _emailText.font = [UIFont fontWithName:fontName size:20];
     _userNameText.font = [UIFont fontWithName:fontName size:20];
     _passwordText.font = [UIFont fontWithName:fontName size:20];
     _phoneNumText.font = [UIFont fontWithName:fontName size:20];
+    _emailText.delegate = self;
     _userNameText.delegate = self;
     _passwordText.delegate = self;
     _phoneNumText.delegate = self;
+    _emailText.layer.cornerRadius = 20.0;
     _userNameText.layer.cornerRadius = 20.0;
     _passwordText.layer.cornerRadius = 20.0;
     _phoneNumText.layer.cornerRadius = 20.0;
@@ -60,6 +63,7 @@
 }
 
 - (void)hideKeyboard{
+    [_emailText resignFirstResponder];
     [_userNameText resignFirstResponder];
     [_passwordText resignFirstResponder];
     [_phoneNumText resignFirstResponder];
@@ -83,7 +87,9 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     BOOL flag = NO;
-    if(textField == _userNameText){
+    if(textField == _emailText){
+        [_userNameText becomeFirstResponder];
+    }else if(textField == _userNameText){
         [_passwordText becomeFirstResponder];
     }else if(textField == _passwordText){
         [_phoneNumText becomeFirstResponder];

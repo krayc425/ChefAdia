@@ -38,6 +38,8 @@
     _name2Label.font = [UIFont fontWithName:fontName size:20];
     _contactLabel.font = [UIFont fontWithName:fontName size:15];
     
+    [_easyOrderButton.titleLabel setFont: [UIFont fontWithName:[Utilities getBoldFont] size:15]];
+    
     _name1Label.text = @"KRAYC'S";
     _name2Label.text = @"CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
@@ -60,14 +62,20 @@
       parameters:nil
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             for(NSDictionary *dict in (NSArray *)responseObject){
-                 CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"id"] intValue]
-                                                               andPic:[dict valueForKey:@"picture"]
-                                                              andName:[dict valueForKey:@"name"]
-                                                               andNum:[[dict valueForKey:@"dishnum"] intValue]];
-                 [weakSelf.menuArr addObject:[tmpMenu copy]];
+             NSDictionary *resultDict = (NSDictionary *)responseObject;
+             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
+                 for(NSDictionary *dict in resultArr){
+                     CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"id"] intValue]
+                                                                   andPic:[dict valueForKey:@"picture"]
+                                                                  andName:[dict valueForKey:@"name"]
+                                                                   andNum:[[dict valueForKey:@"dishnum"] intValue]];
+                     [weakSelf.menuArr addObject:[tmpMenu copy]];
+                 }
+                 [weakSelf.tableView reloadData];
+             }else{
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
              }
-             [weakSelf.tableView reloadData];
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"%@",error);
@@ -85,7 +93,7 @@
         case 1:
             return [_menuArr count];
         default:
-            return 2;
+            return 3;
     }
 }
 
@@ -103,8 +111,9 @@
         cell.numberLabel.text = [NSString stringWithFormat:@"%d SELECTION%s", [item number], [item number] <= 1 ? "" : "S"];
         
         //tmp
-        [cell.bgView setImage:[UIImage imageNamed:@"FOOD_TITLE"]];
-//        [cell.bgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"FOOD_%@",item.name]]];
+        NSURL *imageUrl = [NSURL URLWithString:@"http://139.196.179.145/images/bedb85dd6b3d42188f9309b5010bd8af.jpeg"];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+        [cell.bgView setImage:image];
         
         return cell;
     }else{

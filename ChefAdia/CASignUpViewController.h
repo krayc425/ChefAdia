@@ -14,6 +14,7 @@
 
 @property (nonatomic, nonnull) IBOutlet UIImageView *backgroundView;
 
+@property (nonatomic, nonnull) IBOutlet UITextField *emailText;
 @property (nonatomic, nonnull) IBOutlet UITextField *userNameText;
 @property (nonatomic, nonnull) IBOutlet UITextField *passwordText;
 @property (nonatomic, nonnull) IBOutlet UITextField *phoneNumText;
