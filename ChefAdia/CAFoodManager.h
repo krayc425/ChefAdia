@@ -12,14 +12,15 @@
 
 + (_Nonnull instancetype)shareInstance;
 
-@property (nonnull, nonatomic) NSArray *typeArr;
-//@property (nonnull, nonatomic) NSArray *allF
+@property (nonnull, nonatomic) __block NSMutableArray *typeArr;
+
+- (void)initTypes;
 
 //返回所有食物的类别的列表
 - (NSArray *_Nonnull)getListOfFoodType;
 
 //得到某一种类食物的详细食物列表
-- (NSArray *_Nonnull)getListOfFoodWithType:(NSString *_Nonnull)type;
+- (NSArray *_Nonnull)getListOfFoodWithType:(int)ID;
 
 //得到某一种食物的价钱
 - (double)getPriceOfFood:(NSString *_Nonnull)foodName;

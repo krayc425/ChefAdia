@@ -12,6 +12,8 @@
 #import "CAFoodMenu.h"
 #import "Utilities.h"
 #import "CAFoodDetailTableViewController.h"
+#import "AFNetworking.h"
+#import "AFHTTPSessionManager.h"
 
 @interface CAFoodTableViewController (){
     NSString *fontName;
@@ -26,6 +28,10 @@
     
     fontName = [Utilities getFont];
     
+    //加载食物大类
+    _menuArr = [[NSMutableArray alloc] init];
+    [self loadMenu];
+    
     _backgroundView.image = [UIImage imageNamed:@"FOOD_TITLE"];
     _menuLabel.font = [UIFont fontWithName:fontName size:15];
     _name1Label.font = [UIFont fontWithName:[Utilities getBoldFont] size:40];
@@ -35,12 +41,37 @@
     _name1Label.text = @"KRAYC'S";
     _name2Label.text = @"CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
-    
-    _menuArr = [[CAFoodManager shareInstance] getListOfFoodType];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)loadMenu{
+
+    __weak typeof(self) weakSelf = self;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"
+      parameters:nil
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+             for(NSDictionary *dict in (NSArray *)responseObject){
+                 CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"id"] intValue]
+                                                               andPic:[dict valueForKey:@"picture"]
+                                                              andName:[dict valueForKey:@"name"]
+                                                               andNum:[[dict valueForKey:@"dishnum"] intValue]];
+                 [weakSelf.menuArr addObject:[tmpMenu copy]];
+             }
+             [weakSelf.tableView reloadData];
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
 }
 
 #pragma mark - Table view data source
@@ -110,7 +141,7 @@
         CAFoodDetailTableViewController *caFoodDetailTableViewController = (CAFoodDetailTableViewController *)[segue destinationViewController];
         NSIndexPath *path = (NSIndexPath *)sender;
         CAFoodMenu *caFoodMenu = (CAFoodMenu *)_menuArr[path.row];
-        [caFoodDetailTableViewController setFoodType:caFoodMenu.name];
+        [caFoodDetailTableViewController setFoodType:caFoodMenu];
     }
 }
 

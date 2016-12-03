@@ -19,12 +19,12 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name{
+- (id)initWithName:(NSString *)name andPrice:(double)price{
     self = [super init];
     if(self){
         _name = name;
         _number = 1;    //初始化 一定只有一个
-        _price = [[CAFoodManager shareInstance] getPriceOfFood:_name];  //价格：查询得到
+        _price = price;
     }
     return self;
 }

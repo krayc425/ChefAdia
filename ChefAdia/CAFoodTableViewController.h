@@ -16,6 +16,8 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *contactLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *menuLabel;
 
-@property (nonnull, nonatomic) NSArray *menuArr;
+@property (nonnull, nonatomic) NSMutableArray *menuArr;
+
+- (void)loadMenu;
 
 @end

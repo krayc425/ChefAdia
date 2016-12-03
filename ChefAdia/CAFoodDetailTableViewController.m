@@ -10,9 +10,13 @@
 #import "CAFoodDetailTableViewCell.h"
 #import "CAFoodPayViewController.h"
 #import "CAFoodCart.h"
+#import "CAFoodMenu.h"
 #import "CAFoodDetailInCart.h"
 #import "CAFoodManager.h"
 #import "Utilities.h"
+#import "CAFoodDetail.h"
+#import "AFNetworking.h"
+#import "AFHTTPSessionManager.h"
 
 @interface CAFoodDetailTableViewController (){
     NSString *fontName;
@@ -28,21 +32,56 @@
     fontName = [Utilities getFont];
     color = [Utilities getColor];
     
-    [self.naviItem setTitle:_foodType];
+    [self.naviItem setTitle:[_foodType name]];
     _titleImgView.image = [UIImage imageNamed:@"FOOD_TITLE"];
     
     //加载所有食物数组
-    _foodArr = [[CAFoodManager shareInstance] getListOfFoodWithType:_foodType];
-    //
-    _foodNum = 1;
+    _foodArr = [[NSMutableArray alloc] init];
+    [self loadFood];
     
-    [self.numberLabel setText:[NSString stringWithFormat:@"%d SELECTION%s", _foodNum, _foodNum <= 1 ? "" : "S"]];
     [self.numberLabel setFont:[UIFont fontWithName:fontName size:20]];
-    
     [self.billCountItem setTintColor:color];
     [self.buyItem setTintColor:color];
     
     _foodCart = [CAFoodCart shareInstance];
+}
+
+- (void)loadFood{
+    
+    __weak typeof(self) weakSelf = self;
+    
+    NSDictionary *tempDict = @{
+                              @"menuid" : [NSString stringWithFormat:@"%d",_foodType.ID],
+                              };
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getList"
+      parameters:tempDict
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+             for(NSDictionary *dict in (NSArray *)responseObject){
+                 CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[dict valueForKey:@"name"]
+                                                                         andType:[dict valueForKey:@"type"]
+                                                                        andPrice:[[dict valueForKey:@"price"] doubleValue]
+                                                                          andPic:[dict valueForKey:@"pic"]
+                                                                        andLikes:[[dict valueForKey:@"like"] intValue]
+                                                                     andDislikes:[[dict valueForKey:@"dislike"] intValue]];
+                 [weakSelf.foodArr addObject:[caFoodDetail copy]];
+             }
+             
+             weakSelf.foodNum = (int)[weakSelf.foodArr count];
+             [weakSelf.numberLabel setText:[NSString stringWithFormat:@"%d SELECTION%s",
+                                            weakSelf.foodNum, weakSelf.foodNum <= 1 ? "" : "S"]];
+             [weakSelf.tableView reloadData];
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,10 +106,10 @@
 - (void)addNum:(id)sender{
     NSLog(@"add");
     CAFoodDetailTableViewCell *cell = (CAFoodDetailTableViewCell *)sender;
-    int i = (int)cell.tag;
     //ADD IN FOOD CART
-    [[CAFoodCart shareInstance] modifyFoodInCartWithName:[NSString stringWithFormat:@"%@_%d",_foodType,i+1]
-                                                  andNum:1];
+    [[CAFoodCart shareInstance] modifyFoodInCartWithName:[NSString stringWithFormat:@"%@", cell.nameLabel.text]
+                                                  andNum:1
+                                                andPrice:[cell.priceLabel.text doubleValue]];
     //GET TOTAL PRICE FROM FOOD CART
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }
@@ -78,10 +117,10 @@
 - (void)minusNum:(id)sender{
     NSLog(@"minus");
     CAFoodDetailTableViewCell *cell = (CAFoodDetailTableViewCell *)sender;
-    int i = (int)cell.tag;
     //MINUS IN FOOD CART
-    [[CAFoodCart shareInstance] modifyFoodInCartWithName:[NSString stringWithFormat:@"%@_%d",_foodType,i+1]
-                                                  andNum:-1];
+    [[CAFoodCart shareInstance] modifyFoodInCartWithName:[NSString stringWithFormat:@"%@", cell.nameLabel.text]
+                                                  andNum:-1
+                                                andPrice:[cell.priceLabel.text doubleValue]];
     //GET TOTAL PRICE FROM FOOD CART
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }
@@ -110,27 +149,26 @@
         
         //配置 cell 细节
         //TODO:从服务器获取
-//        CAFood
+        CAFoodDetail *food = [_foodArr objectAtIndex:indexPath.row];
         
-        [cell.nameLabel setText:[NSString stringWithFormat:@"%@_%ld",_foodType,indexPath.row+1]];
-        [cell.goodLabel setText:[NSString stringWithFormat:@"%u",arc4random() % 100]];
-        [cell.badLabel setText:[NSString stringWithFormat:@"%u",arc4random() % 100]];
+        [cell.nameLabel setText:[NSString stringWithFormat:@"%@", food.name]];
+        [cell.goodLabel setText:[NSString stringWithFormat:@"%d", food.likes]];
+        [cell.badLabel setText:[NSString stringWithFormat:@"%d", food.dislikes]];
+        [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
         [cell.picView setImage:[UIImage imageNamed:@"FOOD_DETAIL_TMP"]];
         
         bool foundFlag = false;
         NSArray *tmpFoodArr = [[CAFoodCart shareInstance] getFoodInCart];
         for(int i = 0; i < [tmpFoodArr count]; i++){
-            CAFoodDetailInCart *food = tmpFoodArr[i];
-            if([food.name isEqualToString:cell.nameLabel.text]){
+            CAFoodDetailInCart *foodCart = tmpFoodArr[i];
+            if([foodCart.name isEqualToString:cell.nameLabel.text]){
                 foundFlag = true;
-                [cell.currNumLabel setText:[NSString stringWithFormat:@"%d",food.number]];
-                [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f",food.price]];
+                [cell.currNumLabel setText:[NSString stringWithFormat:@"%d",foodCart.number]];
                 break;
             }
         }
         if(!foundFlag){
             [cell.currNumLabel setText:@"0"];
-            [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f",arc4random() % 1000 / 100.0]];
         }
     
         cell.tag = (int)indexPath.row;

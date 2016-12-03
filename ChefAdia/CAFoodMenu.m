@@ -18,13 +18,24 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name andNum:(int)num{
+- (id)initWithID:(int)ID andPic:(NSString *_Nonnull)pic andName:(NSString *_Nonnull)name andNum:(int)num {
     self = [super init];
     if(self){
         _name = name;
         _number = num;
+        _ID = ID;
+        _pic = pic;
     }
     return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone{
+    CAFoodMenu *caFoodMenu = [[CAFoodMenu alloc] init];
+    caFoodMenu.name = self.name;
+    caFoodMenu.number = self.number;
+    caFoodMenu.ID = self.ID;
+    caFoodMenu.pic = self.pic;
+    return caFoodMenu;
 }
 
 @end

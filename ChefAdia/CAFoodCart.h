@@ -15,7 +15,7 @@
 
 + (_Nonnull instancetype)shareInstance;
 
-- (void)modifyFoodInCartWithName:(NSString *_Nonnull)foodName andNum:(int)num;
+- (void)modifyFoodInCartWithName:(NSString *_Nonnull)foodName andNum:(int)num andPrice:(double)price;
 - (double)getTotalPrice;
 - (int)getTotalNum;
 - (NSArray *_Nonnull)getFoodInCart;

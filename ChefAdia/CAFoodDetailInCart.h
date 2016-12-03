@@ -16,6 +16,6 @@
 //当前拥有的数量
 @property (nonatomic) int number;
 
-- (_Nonnull instancetype)initWithName:(NSString *_Nonnull)name;
+- (_Nonnull instancetype)initWithName:(NSString *_Nonnull)name andPrice:(double)price;
 
 @end

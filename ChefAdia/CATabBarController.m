@@ -10,6 +10,7 @@
 #import "Utilities.h"
 #import "CALoginManager.h"
 #import "CANetworkManager.h"
+#import "CAFoodManager.h"
 
 @interface CATabBarController (){
     NSString *fontName;
@@ -41,9 +42,6 @@
                                                                         action:nil];
     self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:R1,nil];
     
-    //刷新 VC
-    [self refreshVCs];
-    
     //注册观察者
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVCs) name:@"Login" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVCs) name:@"Logout" object:nil];
@@ -55,9 +53,10 @@
     //更改导航栏字体
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIColor lightGrayColor], NSShadowAttributeName,[NSValue valueWithUIOffset:UIOffsetMake(0, 0)], NSShadowAttributeName, fontName, NSFontAttributeName,nil]];
     
-    //检查网络是否畅通
-    [[CANetworkManager shareInstance] checkNetwork];
+    //刷新 VC
+    [self refreshVCs];
     
+    [self.caFoodTableViewController.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

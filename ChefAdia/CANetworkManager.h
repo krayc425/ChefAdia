@@ -16,7 +16,7 @@
 
 #pragma mark - METHODS;
 
-- (void)getMenu;
+- (NSArray *_Nonnull)getMenu;
 - (void)postMenu;
 
 @end

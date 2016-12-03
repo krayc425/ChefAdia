@@ -37,7 +37,7 @@ static CAFoodCart* _instance = nil;
     return [CAFoodCart shareInstance] ;
 }
 
-- (void)modifyFoodInCartWithName:(NSString *)foodName andNum:(int)num{
+- (void)modifyFoodInCartWithName:(NSString *)foodName andNum:(int)num andPrice:(double)price{
     bool foundFlag = false;
     for(int i = 0; i < [_foodArr count]; i++){
         CAFoodDetailInCart *food = _foodArr[i];
@@ -53,7 +53,7 @@ static CAFoodCart* _instance = nil;
     }
     //原来没有，那么增加一个元素
     if(!foundFlag){
-        [_foodArr addObject:[[CAFoodDetailInCart alloc] initWithName:foodName]];
+        [_foodArr addObject:[[CAFoodDetailInCart alloc] initWithName:foodName andPrice:price]];
     }
 }
 

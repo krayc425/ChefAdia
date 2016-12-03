@@ -41,15 +41,12 @@ static CANetworkManager* _instance = nil;
 #pragma mark - NETWORK UTILITIES
 
 - (void)checkNetwork{
-    Reachability *reach = [Reachability reachabilityWithHostName:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/allDish.do"];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
     [reach startNotifier];
-    
-//    [self postMenu];
-    [self getMenu];
 }
 
 - (void)reachabilityChanged:(NSNotification *)notification {
@@ -68,26 +65,6 @@ static CANetworkManager* _instance = nil;
             isConnected = YES;
         }
     }
-}
-
-- (void)getFromHost:(NSString *)URL withParams:(NSDictionary *)params{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                         @"text/plain",
-//                                                         @"application/json",
-                                                         nil];
-    [manager GET:URL
-      parameters:params
-        progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             NSLog(@"JSON GET CLASS: %@", [responseObject class]);
-             [self tranformTest:responseObject];
-         }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"%@",error);
-         }];
-
 }
 
 - (void)postToHost:(NSString *)URL withParams:(NSDictionary *)params{
@@ -114,35 +91,76 @@ static CANetworkManager* _instance = nil;
           }];
 }
 
-- (void)tranformTest:(id)jsonObject{
-    NSArray *array = (NSArray *)jsonObject;
-    NSLog(@"%lu", [array count]);
-    
-    for(NSDictionary *dict in array){
-        for(NSString *key in dict){
-            NSLog(@"KEY : %@ VALUE : %@", key, dict[key]);
-        }
-    }
-}
-
 #pragma mark - METHODS
 
-- (void)getMenu{
-    [self getFromHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/allDish.do" withParams:nil];
+- (NSArray *)getMenu{
+    __block NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"
+      parameters:nil
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+             for(NSDictionary *Dict in (NSArray *)responseObject){
+                 [array addObject:Dict];
+             }
+             
+             NSLog(@"IN BLOCK");
+             NSLog(@"%lu", [array count]);
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
+    
+    NSLog(@"OUT BLOCK");
+    NSLog(@"%lu", [array count]);
+    return [array copy];
 }
 
 - (void)postMenu{
     NSDictionary *parameters = @{
-                                 @"name": @"RICE",
-                                 @"type" : @"type1",
-                                 @"price" : @"1.99",
+                                 @"name": @"NOODLE",
+                                 @"type" : @"type2",
+                                 @"price" : @"3.99",
                                  };
-    [self postToHost:@"http://139.196.179.145/ChefAdia-0.0.1-SNAPSHOT/addDish.do"
+    [self postToHost:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/addDish.do"
             withParams:parameters];
 }
 
-- (void)getList{
+- (void)getList:(int)menuid{
+    __block NSArray *array;
     
+    NSDictionary *param = @{
+                            @"menuid" : [NSString stringWithFormat:@"%d", menuid],
+                            };
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getList"
+      parameters:param
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                          NSLog(@"JSON GET CLASS: %@", [responseObject class]);
+             //                          [self tranformTest:responseObject];
+             array = (NSArray *)responseObject;
+             for(NSDictionary *dict in array){
+                 for(NSString *key in dict){
+                     NSLog(@"KEY2 : %@ VALUE2 : %@", key, dict[key]);
+                 }
+             }
+             
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
+
 }
 
 - (void)getTickInfo{

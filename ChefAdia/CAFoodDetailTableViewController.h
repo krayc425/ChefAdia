@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CAFoodDetailTableViewCell.h"
 #import "CAFoodCart.h"
+#import "CAFoodMenu.h"
 
 @interface CAFoodDetailTableViewController : UITableViewController <DetailDelegate>
 
@@ -22,10 +23,10 @@
 @property (nonnull, nonatomic) IBOutlet UIBarButtonItem *billCountItem;
 @property (nonnull, nonatomic) IBOutlet UIBarButtonItem *buyItem;
 
-@property (nonnull, nonatomic) NSString *foodType;
+@property (nonnull, nonatomic) CAFoodMenu *foodType;
 @property (nonatomic) int foodNum;
 //所有该类型食物的信息
-@property (nonnull, nonatomic) NSArray *foodArr;
+@property (nonnull, nonatomic) NSMutableArray *foodArr;
 
 @property (nonnull, nonatomic) CAFoodCart *foodCart;
 

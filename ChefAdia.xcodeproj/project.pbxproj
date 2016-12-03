@@ -25,6 +25,7 @@
 		246BE4391DCB4CC90055FB97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246BE4371DCB4CC90055FB97 /* Main.storyboard */; };
 		246BE43C1DCB4CC90055FB97 /* ChefAdia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 246BE43A1DCB4CC90055FB97 /* ChefAdia.xcdatamodeld */; };
 		247CEBD11DCF7C6D007938B6 /* CardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247CEBD01DCF7C6D007938B6 /* CardsView.m */; };
+		249320141DF2626900BDAE4B /* CAFoodDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 249320131DF2626900BDAE4B /* CAFoodDetail.m */; };
 		249491EF1DD1AF0C00B99320 /* CAFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249491ED1DD1AF0C00B99320 /* CAFoodTableViewCell.m */; };
 		249491F01DD1AF0C00B99320 /* CAFoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249491EE1DD1AF0C00B99320 /* CAFoodTableViewCell.xib */; };
 		249491F31DD1B74B00B99320 /* CAFoodManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 249491F21DD1B74B00B99320 /* CAFoodManager.m */; };
@@ -85,6 +86,8 @@
 		246BE4421DCB4CC90055FB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		247CEBCF1DCF7C6D007938B6 /* CardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsView.h; sourceTree = "<group>"; };
 		247CEBD01DCF7C6D007938B6 /* CardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsView.m; sourceTree = "<group>"; };
+		249320121DF2626900BDAE4B /* CAFoodDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetail.h; sourceTree = "<group>"; };
+		249320131DF2626900BDAE4B /* CAFoodDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodDetail.m; sourceTree = "<group>"; };
 		249491EC1DD1AF0C00B99320 /* CAFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodTableViewCell.h; sourceTree = "<group>"; };
 		249491ED1DD1AF0C00B99320 /* CAFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodTableViewCell.m; sourceTree = "<group>"; };
 		249491EE1DD1AF0C00B99320 /* CAFoodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFoodTableViewCell.xib; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 				249491F51DD1B8C400B99320 /* CAFoodMenu.m */,
 				24EF4F721DD20E9E00EDB919 /* CAFoodDetailInCart.h */,
 				24EF4F731DD20E9E00EDB919 /* CAFoodDetailInCart.m */,
+				249320121DF2626900BDAE4B /* CAFoodDetail.h */,
+				249320131DF2626900BDAE4B /* CAFoodDetail.m */,
 			);
 			name = FoodData;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 			files = (
 				249C0B5C1DCD90A9008BE6F4 /* CASignUpViewController.m in Sources */,
 				24218B581DCE11200017B0DC /* CAMeLoginTableViewController.m in Sources */,
+				249320141DF2626900BDAE4B /* CAFoodDetail.m in Sources */,
 				24A80B6A1DD545FF008C0998 /* CAMeHistoryDetailTableViewCell.m in Sources */,
 				249C0B4D1DCD8FCD008BE6F4 /* CALoginViewController.m in Sources */,
 				24A80B661DD54574008C0998 /* CAMeHistoryDetailTableViewController.m in Sources */,

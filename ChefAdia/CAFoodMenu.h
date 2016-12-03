@@ -13,7 +13,9 @@
 
 @property (nonnull, nonatomic) NSString *name;
 @property (nonatomic) int number;
+@property (nonatomic) int ID;
+@property (nonatomic, nonnull) NSString *pic;
 
-- (_Nonnull instancetype)initWithName:(NSString *_Nonnull)name andNum:(int)num;
+- (_Nonnull instancetype)initWithID:(int)ID andPic:(NSString *_Nonnull)pic andName:(NSString *_Nonnull)name andNum:(int)num ;
 
 @end
