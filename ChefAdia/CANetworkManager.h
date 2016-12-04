@@ -14,9 +14,4 @@
 
 - (void)checkNetwork;
 
-#pragma mark - METHODS;
-
-- (NSArray *_Nonnull)getMenu;
-- (void)postMenu;
-
 @end

@@ -24,7 +24,4 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *signUpMainLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *signUpSubLabel;
 
-@property (nonnull, nonatomic) IBOutlet UIButton *weChatButton;
-@property (nonnull, nonatomic) IBOutlet UIImageView *weChatView;
-
 @end

@@ -33,7 +33,6 @@
     
     _historyView.image = [UIImage imageNamed:@"HISTORY_ICON"];
     _settingsView.image = [UIImage imageNamed:@"SETTINGS_ICON"];
-    _weChatView.image = [UIImage imageNamed:@"WECHAT_ICON"];
     
     _avatarView.layer.cornerRadius = _avatarView.frame.size.width/2;//裁成圆角
     _avatarView.layer.masksToBounds = YES;//隐藏裁剪掉的部分
@@ -43,7 +42,6 @@
     
     _historyLabel.font = [UIFont fontWithName:fontName size:15];
     _settingsLabel.font = [UIFont fontWithName:fontName size:15];
-    _weChatLabel.font = [UIFont fontWithName:fontName size:15];
     
     _logoutButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
     [_logoutButton setTitleColor:color forState:UIControlStateNormal];
@@ -61,7 +59,7 @@
 
 - (void)refreshLabel{
     _userNameLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_name"];
-    _addressLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_destination"];
+    _addressLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_addr"];
     _avatarView.image = [[CAUserInfoManager shareInstance] readAvatar];
 }
 
@@ -77,7 +75,7 @@
                                                      handler:^(UIAlertAction *action){
                                                          
                                                          NSLog(@"LOG OUT");
-                                                         [CALoginManager setLoginState:LOGOUT];
+                                                         [[CALoginManager shareInstance] setLoginState:LOGOUT];
                                                          [[NSNotificationCenter defaultCenter] postNotificationName:@"Logout" object:nil];
                                                          
                                                      }];
@@ -138,7 +136,7 @@
         case 0:
             return 1;
         case 1:
-            return 3;
+            return 2;
         default:
             return 0;
     }

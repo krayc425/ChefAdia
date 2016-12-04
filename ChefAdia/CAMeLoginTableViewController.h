@@ -18,10 +18,8 @@
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *historyView;
 @property (nonnull, nonatomic) IBOutlet UIImageView *settingsView;
-@property (nonnull, nonatomic) IBOutlet UIImageView *weChatView;
 @property (nonnull, nonatomic) IBOutlet UILabel *historyLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *settingsLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *weChatLabel;
 
 @property (nonnull, nonatomic) IBOutlet UIButton *logoutButton;
 

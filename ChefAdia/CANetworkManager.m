@@ -91,100 +91,31 @@ static CANetworkManager* _instance = nil;
           }];
 }
 
-#pragma mark - METHODS
-
-- (NSArray *)getMenu{
-    __block NSMutableArray *array = [[NSMutableArray alloc] init];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                         @"text/plain",
-                                                         @"text/html",
-                                                         nil];
-    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"
-      parameters:nil
-        progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             for(NSDictionary *Dict in (NSArray *)responseObject){
-                 [array addObject:Dict];
-             }
-             
-             NSLog(@"IN BLOCK");
-             NSLog(@"%lu", [array count]);
-         }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"%@",error);
-         }];
-    
-    NSLog(@"OUT BLOCK");
-    NSLog(@"%lu", [array count]);
-    return [array copy];
-}
-
-- (void)postMenu{
-    NSDictionary *parameters = @{
-                                 @"name": @"NOODLE",
-                                 @"type" : @"type2",
-                                 @"price" : @"3.99",
-                                 };
-    [self postToHost:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/addDish.do"
-            withParams:parameters];
-}
-
-- (void)getList:(int)menuid{
-    __block NSArray *array;
-    
-    NSDictionary *param = @{
-                            @"menuid" : [NSString stringWithFormat:@"%d", menuid],
-                            };
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                         @"text/plain",
-                                                         @"text/html",
-                                                         nil];
-    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getList"
-      parameters:param
-        progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-                          NSLog(@"JSON GET CLASS: %@", [responseObject class]);
-             //                          [self tranformTest:responseObject];
-             array = (NSArray *)responseObject;
-             for(NSDictionary *dict in array){
-                 for(NSString *key in dict){
-                     NSLog(@"KEY2 : %@ VALUE2 : %@", key, dict[key]);
-                 }
-             }
-             
-         }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"%@",error);
-         }];
-
-}
-
-- (void)getTickInfo{
-    
-}
-
-- (void)buyTicket{
-    
-}
-
-- (void)addOrder{
-    
-}
-
-- (void)getOrderList{
-
-}
-
-- (void)getOrder{
-    
-}
-
-- (void)comment{
-    
-}
+//- (NSArray *)getMenu{
+//    __block NSMutableArray *array = [[NSMutableArray alloc] init];
+//    
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+//                                                         @"text/plain",
+//                                                         @"text/html",
+//                                                         nil];
+//    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"
+//      parameters:nil
+//        progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+//             for(NSDictionary *Dict in (NSArray *)responseObject){
+//                 [array addObject:Dict];
+//             }
+//             
+//             NSLog(@"IN BLOCK");
+//             NSLog(@"%lu", [array count]);
+//         }
+//         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//             NSLog(@"%@",error);
+//         }];
+//    
+//    NSLog(@"%lu", [array count]);
+//    return [array copy];
+//}
 
 @end

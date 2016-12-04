@@ -9,6 +9,9 @@
 #import "CASignUpViewController.h"
 #import "Utilities.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AFNetworking.h"
+#import "AFHTTPSessionManager.h"
+#import "CALoginManager.h"
 
 @interface CASignUpViewController (){
     NSString *fontName;
@@ -34,15 +37,15 @@
     _emailText.font = [UIFont fontWithName:fontName size:20];
     _userNameText.font = [UIFont fontWithName:fontName size:20];
     _passwordText.font = [UIFont fontWithName:fontName size:20];
-    _phoneNumText.font = [UIFont fontWithName:fontName size:20];
+    
     _emailText.delegate = self;
     _userNameText.delegate = self;
     _passwordText.delegate = self;
-    _phoneNumText.delegate = self;
+    
     _emailText.layer.cornerRadius = 20.0;
     _userNameText.layer.cornerRadius = 20.0;
     _passwordText.layer.cornerRadius = 20.0;
-    _phoneNumText.layer.cornerRadius = 20.0;
+    
     
     _signUpButton.titleLabel.font = [UIFont fontWithName:fontName size:20];
     _signUpButton.backgroundColor = [UIColor clearColor];
@@ -59,14 +62,89 @@
 }
 
 - (IBAction)signUpAction:(id)sender{
+    NSLog(@"SIGN UP");
     
+    //输入正确性检查
+    if([_emailText.text isEqualToString:@""] || [_passwordText.text isEqualToString:@""]
+       || [_userNameText.text isEqualToString:@""]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info imcompleted!"
+                                                                        message:@"Please fill all the info"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        
+        NSDictionary *tempDict = @{
+                                   @"email" : _emailText.text,
+                                   @"username" : _userNameText.text,
+                                   @"password" : _passwordText.text,
+                                   };
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                             @"text/plain",
+                                                             @"application/json",
+                                                             @"text/html",
+                                                             @"text/json",
+                                                             nil];
+        [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/register.do"
+           parameters:tempDict
+             progress:nil
+              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                  NSLog(@"SUCCESS");
+                  NSDictionary *resultDict = (NSDictionary *)responseObject;
+                  if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                      
+//                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sign Up Success"
+//                                                                                      message:nil
+//                                                                               preferredStyle:UIAlertControllerStyleAlert];
+//                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+//                                                                         style:UIAlertActionStyleDefault
+//                                                                       handler:nil];
+//                      [alertC addAction:okAction];
+//                      [self presentViewController:alertC animated:YES completion:nil];
+                      
+                      NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
+                      
+                      [[CALoginManager shareInstance] setUserID:[dict valueForKey:@"userid"]];
+                      [[CALoginManager shareInstance] setUserName:[dict valueForKey:@"username"]];
+//                      [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
+                      [[CALoginManager shareInstance] setLoginState:LOGIN];
+                      
+                      [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
+                      [self.navigationController popViewControllerAnimated:YES];
+                  }else{
+                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"code"]);
+                      
+                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sign Up Failed"
+                                                                                      message:@"Email existed"
+                                                                               preferredStyle:UIAlertControllerStyleAlert];
+                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                         style:UIAlertActionStyleDefault
+                                                                       handler:nil];
+                      [alertC addAction:okAction];
+                      [self presentViewController:alertC animated:YES completion:nil];
+
+                  }
+
+              } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                  NSLog(@"FAILED");
+                  NSLog(@"Error: %@", error);
+              }];
+        
+    }
+
 }
 
 - (void)hideKeyboard{
     [_emailText resignFirstResponder];
     [_userNameText resignFirstResponder];
     [_passwordText resignFirstResponder];
-    [_phoneNumText resignFirstResponder];
+    
     [self resumeView];
 }
 
@@ -92,9 +170,7 @@
     }else if(textField == _userNameText){
         [_passwordText becomeFirstResponder];
     }else if(textField == _passwordText){
-        [_phoneNumText becomeFirstResponder];
-    }else if(textField == _phoneNumText){
-        [_phoneNumText resignFirstResponder];
+        [_passwordText resignFirstResponder];
         flag = YES;
     }
     return flag;

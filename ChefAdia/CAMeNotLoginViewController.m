@@ -41,11 +41,6 @@
     [_signUpMainLabel setTextColor:color];
     [_signUpSubLabel setFont:[UIFont fontWithName:fontName size:15]];
     [_signUpSubLabel setTextColor:color];
-    
-    _weChatButton.titleLabel.font = [UIFont fontWithName:fontName size:20];
-    _weChatButton.backgroundColor = [UIColor clearColor];
-    [_weChatButton setTitleColor:[Utilities getWechatColor] forState:UIControlStateNormal];
-    _weChatView.image = [UIImage imageNamed:@"WECHAT_ICON"];
 }
 
 - (void)didReceiveMemoryWarning {

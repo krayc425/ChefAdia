@@ -79,7 +79,7 @@
     
     self.caFindTableViewController = (CAFindTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CAFindTableViewController"];
     
-    if([CALoginManager getLoginState] == LOGIN){
+    if([[CALoginManager shareInstance] getLoginState] == LOGIN){
         self.caMeLoginTableViewController = (CAMeLoginTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CAMeLoginTableViewController"];
         
         self.viewControllers = [NSArray arrayWithObjects:

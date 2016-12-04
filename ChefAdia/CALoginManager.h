@@ -15,10 +15,14 @@ enum LoginState{
 
 @interface CALoginManager : NSObject
 
-+ (int)getLoginState;
++ (_Nonnull instancetype)shareInstance;
 
-+ (void)setLoginState:(int)state;
+@property (nonatomic, nonnull) NSString *userID;
+@property (nonatomic, nonnull) NSString *userName;
+@property (nonatomic, nonnull) NSString *avatarURL;
 
-+ (Boolean)loginWithUsername:(NSString *)userName andPassword:(NSString *)password;
+- (int)getLoginState;
+
+- (void)setLoginState:(int)state;
 
 @end
