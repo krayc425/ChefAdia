@@ -55,7 +55,7 @@
     
     //输入正确性检查
     if([_emailText.text isEqualToString:@""] || [_passwordText.text isEqualToString:@""]){
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info imcompleted!"
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info imcomplete"
                                                                         message:@"Please fill all the info"
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"

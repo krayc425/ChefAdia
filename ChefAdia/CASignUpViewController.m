@@ -67,7 +67,7 @@
     //输入正确性检查
     if([_emailText.text isEqualToString:@""] || [_passwordText.text isEqualToString:@""]
        || [_userNameText.text isEqualToString:@""]){
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info imcompleted!"
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info imcomplete"
                                                                         message:@"Please fill all the info"
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
@@ -84,12 +84,9 @@
                                    };
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                              @"text/plain",
-                                                             @"application/json",
                                                              @"text/html",
-                                                             @"text/json",
                                                              nil];
         [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/register.do"
            parameters:tempDict

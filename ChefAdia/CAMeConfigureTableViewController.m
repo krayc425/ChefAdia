@@ -47,7 +47,7 @@
 }
 
 - (void)editDestination{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Edit Destination"
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Edit destination"
                                                                     message:@""
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [alertC addTextFieldWithConfigurationHandler:^(UITextField *textField){
@@ -107,7 +107,7 @@
 }
 
 - (void)editPhone{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Edit Phone Number"
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Edit phone number"
                                                                     message:@""
                                                              preferredStyle:UIAlertControllerStyleAlert];
     [alertC addTextFieldWithConfigurationHandler:^(UITextField *textField){

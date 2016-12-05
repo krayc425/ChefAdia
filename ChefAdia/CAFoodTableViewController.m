@@ -69,7 +69,7 @@
                      CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"id"] intValue]
                                                                    andPic:[dict valueForKey:@"picture"]
                                                                   andName:[dict valueForKey:@"name"]
-                                                                   andNum:[[dict valueForKey:@"dishnum"] intValue]];
+                                                                   andNum:[[dict valueForKey:@"foodNum"] intValue]];
                      [weakSelf.menuArr addObject:[tmpMenu copy]];
                  }
                  [weakSelf.tableView reloadData];
@@ -110,8 +110,7 @@
         cell.nameLabel.text = [item name];
         cell.numberLabel.text = [NSString stringWithFormat:@"%d SELECTION%s", [item number], [item number] <= 1 ? "" : "S"];
         
-        //tmp
-        NSURL *imageUrl = [NSURL URLWithString:@"http://139.196.179.145/images/bedb85dd6b3d42188f9309b5010bd8af.jpeg"];
+        NSURL *imageUrl = [NSURL URLWithString:[item pic]];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
         [cell.bgView setImage:image];
         

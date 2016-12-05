@@ -66,7 +66,7 @@
                      CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[dict valueForKey:@"name"]
                                                                              andType:[dict valueForKey:@"type"]
                                                                             andPrice:[[dict valueForKey:@"price"] doubleValue]
-                                                                              andPic:[dict valueForKey:@"pic"]
+                                                                              andPic:[dict valueForKey:@"picture"]
                                                                             andLikes:[[dict valueForKey:@"like"] intValue]
                                                                          andDislikes:[[dict valueForKey:@"dislike"] intValue]];
                      [weakSelf.foodArr addObject:[caFoodDetail copy]];
@@ -161,7 +161,10 @@
         [cell.goodLabel setText:[NSString stringWithFormat:@"%d", food.likes]];
         [cell.badLabel setText:[NSString stringWithFormat:@"%d", food.dislikes]];
         [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
-        [cell.picView setImage:[UIImage imageNamed:@"FOOD_DETAIL_TMP"]];
+        
+        NSURL *imageUrl = [NSURL URLWithString:food.pic];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+        [cell.picView setImage:image];
         
         bool foundFlag = false;
         NSArray *tmpFoodArr = [[CAFoodCart shareInstance] getFoodInCart];
