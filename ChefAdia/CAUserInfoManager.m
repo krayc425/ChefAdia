@@ -7,6 +7,7 @@
 //
 
 #import "CAUserInfoManager.h"
+#import "CALoginManager.h"
 
 @implementation CAUserInfoManager
 
@@ -35,13 +36,13 @@ static CAUserInfoManager* _instance = nil;
 #pragma mark - Avatar
 
 - (BOOL)saveAvatar:(UIImage *)avatarImg{
-    NSString *imagePath = [self imageSavedPath:@"avatar.png"];
+    NSString *imagePath = [self imageSavedPath:@"avatar.jpeg"];
     BOOL isSaveSuccess = [self saveToDocument:avatarImg withFilePath:imagePath];
     return isSaveSuccess;
 }
 
 - (UIImage *)readAvatar{
-    NSString *imagePath = [self imageSavedPath:@"avatar.png"];
+    NSString *imagePath = [self imageSavedPath:@"avatar.jpeg"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if (![fileManager fileExistsAtPath:imagePath]) {
@@ -50,9 +51,13 @@ static CAUserInfoManager* _instance = nil;
     }else {
         return [UIImage imageWithContentsOfFile:imagePath];
     }
+    
+//    NSURL *imageUrl = [NSURL URLWithString:[[CALoginManager shareInstance] avatarURL]];
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+//    return image;
 }
 
--(BOOL)saveToDocument:(UIImage *) image withFilePath:(NSString *) filePath{
+- (BOOL)saveToDocument:(UIImage *) image withFilePath:(NSString *) filePath{
     if ((image == nil) || (filePath == nil) || [filePath isEqualToString:@""]) {
         return NO;
     }
@@ -61,7 +66,7 @@ static CAUserInfoManager* _instance = nil;
         NSData *imageData = nil;
         //获取文件扩展名
         NSString *extention = [filePath pathExtension];
-        if ([extention isEqualToString:@"png"]) {
+        if ([extention isEqualToString:@"jpeg"]) {
             //返回PNG格式的图片数据
             imageData = UIImagePNGRepresentation(image);
         }else{
@@ -82,7 +87,7 @@ static CAUserInfoManager* _instance = nil;
 }
 
 //根据图片名将图片保存到ImageFile文件夹中
--(NSString *)imageSavedPath:(NSString *) imageName{
+- (NSString *)imageSavedPath:(NSString *) imageName{
     //获取Documents文件夹目录
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [path objectAtIndex:0];

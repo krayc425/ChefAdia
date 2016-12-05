@@ -55,6 +55,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [self refreshLabel];
+    [self.tableView reloadData];
 }
 
 - (void)refreshLabel{
@@ -150,7 +151,7 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 // 完成图片的选取后调用的方法
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // 选取完图片后跳转回原控制器
     [picker dismissViewControllerAnimated:YES completion:nil];
     
@@ -168,26 +169,57 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     NSData *imageData = UIImagePNGRepresentation(image);
     
+//    NSLog(info.description);
+    //存到本地
+//    if([[CAUserInfoManager shareInstance] saveAvatar:image]){
+//        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Successfully!"
+//                                                                        message:nil
+//                                                                 preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+//                                                           style:UIAlertActionStyleDefault
+//                                                         handler:nil];
+//        [alertC addAction:okAction];
+//        [self presentViewController:alertC animated:YES completion:nil];
+        
+//    }else{
+//        NSLog(@"保存头像失败");
+//    }
+    
     //上传到服务器
-    NSString *url = @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/file/upload";
+    NSString *url = @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modAva";
     NSDictionary *dict = @{
-                           @"name" : _userNameLabel.text,
-                           @"password" : @"1234567890",
-                           @"file" : @"file.jpeg",
+                           @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
+                           @"avatar" : @"avatar.jpeg",
                            };
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         @"text/json",
+                                                         @"application/json",
+                                                         nil];
+
     
     [manager POST:url
        parameters:dict
+     
 constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    [formData appendPartWithFileData:imageData name:@"file" fileName:@"file.jpeg" mimeType:@"image/jpeg"];
+    [formData appendPartWithFileData:imageData name:@"avatar" fileName:@"avatar.jpeg" mimeType:@"image/jpeg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"SUCCESS");
         //存到本地
         if([[CAUserInfoManager shareInstance] saveAvatar:image]){
+            
+            //刷新头像
+            [self refreshLabel];
+            
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Successfully!"
                                                                                                                                  message:nil
                                                                                                                           preferredStyle:UIAlertControllerStyleAlert];
@@ -201,6 +233,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             NSLog(@"保存头像失败");
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"FAILED");
+        NSLog(@"%@", [error description]);
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Failed!"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
@@ -211,8 +245,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [self presentViewController:alertC animated:YES completion:nil];
     }];
     
-    //刷新头像
-    [self refreshLabel];
     
     // 创建保存图像时需要传入的选择器对象（回调方法格式固定）
 //    SEL selectorToCall = @selector(image:didFinishSavingWithError:contextInfo:);

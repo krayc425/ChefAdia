@@ -42,7 +42,6 @@
     _loginButton.titleLabel.font = [UIFont fontWithName:fontName size:20];
     _loginButton.backgroundColor = [UIColor clearColor];
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,6 +85,7 @@
                      [[CALoginManager shareInstance] setUserID:[dict valueForKey:@"userid"]];
                      [[CALoginManager shareInstance] setUserName:[dict valueForKey:@"username"]];
                      [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
+                     
                      [[CALoginManager shareInstance] setLoginState:LOGIN];
                      
                      [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
@@ -103,7 +103,6 @@
                      [self presentViewController:alertC animated:YES completion:nil];
 
                  }
-                 
              }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                  NSLog(@"%@",error);

@@ -62,14 +62,14 @@
                                                          NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                                                          
                                                          NSDictionary *tempDict = @{
-                                                                                    @"userid" : [userDefaults valueForKey:@"user_id"],
+                                                                                    @"userid" : (NSString *)[userDefaults valueForKey:@"user_id"],
                                                                                     @"addr" : destinationText.text,
                                                                                     };
                                                          
                                                          AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-                                                         
+//                                                         
                                                          manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-                                                         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//                                                         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
                                                          
                                                          manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                                                                               @"text/plain",
@@ -78,27 +78,27 @@
                                                                                                               @"text/json",
                                                                                                               nil];
 
-                                                         [manager POST:@"--------------------"
+                                                         [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modAddr"
                                                            parameters:tempDict
                                                              progress:nil
                                                               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                                                                      NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                                                                       
-                                                                      NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                                                                      [userDefaults setValue:[dict objectForKey:@"addr"] forKey:@"user_addr"];
+                                                                      [_destinationLabel setText: [destinationText text]];
+                                                                      
+                                                                      [self.tableView reloadData];
+                                                                      
+                                                                      [[CALoginManager shareInstance] setLoginState:LOGIN];
                                                                       
                                                                   }else{
-                                                                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                                                                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"code"]);
                                                                   }
                                                                   
                                                               }
                                                               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                                                   NSLog(@"%@",error);
                                                               }];
-                                                         
-                                                         [self refreshLabel];
                                                          
                                                      }];
     [alertC addAction:cancelAction];
@@ -122,14 +122,14 @@
                                                          NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                                                          
                                                          NSDictionary *tempDict = @{
-                                                                                    @"userid" : [userDefaults valueForKey:@"user_id"],
-                                                                                    @"phone" : phoneText.text,
+                                                                                    @"userid" : (NSString *)[userDefaults valueForKey:@"user_id"],
+                                                                                    @"phone" : (NSString *)phoneText.text,
                                                                                     };
                                                          
                                                          AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
                                                          
                                                          manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-                                                         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//                                                         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
                                                          
                                                          manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                                                                               @"text/plain",
@@ -138,15 +138,18 @@
                                                                                                               @"text/json",
                                                                                                               nil];
 
-                                                         [manager POST:@"--------------------"
+                                                         [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modPhone"
                                                            parameters:tempDict
                                                              progress:nil
                                                               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                                                                      NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                                                                       
-                                                                      [userDefaults setValue:[dict objectForKey:@"phone"] forKey:@"user_phone"];
+                                                                      [_phoneLabel setText:[phoneText text]];
+                                                                      
+                                                                      [self.tableView reloadData];
+                                                                      
+                                                                      [[CALoginManager shareInstance] setLoginState:LOGIN];
                                                                       
                                                                   }else{
                                                                       NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
@@ -156,8 +159,6 @@
                                                               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                                                   NSLog(@"%@",error);
                                                               }];
-                                                         
-                                                         [self refreshLabel];
                                                          
                                                      }];
     [alertC addAction:cancelAction];

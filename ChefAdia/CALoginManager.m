@@ -39,7 +39,9 @@ static CALoginManager* _instance = nil;
 }
 
 - (void)setLoginState:(int)state{
+    
     [[NSUserDefaults standardUserDefaults] setInteger:state forKey:@"LoginState"];
+    
     if(state == LOGOUT){
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setValue:@"" forKey:@"user_id"];
@@ -52,6 +54,9 @@ static CALoginManager* _instance = nil;
         [userDefaults setValue:_userID forKey:@"user_id"];
         [userDefaults setValue:_userName forKey:@"user_name"];
         [userDefaults setValue:_avatarURL forKey:@"user_avatar"];
+        
+        NSLog(@"AVATAR URL : %@", _avatarURL);
+        
         //获取地址与手机号 并存储在本地
         NSDictionary *tempDict = @{
                                    @"userid" : _userID,
@@ -61,18 +66,16 @@ static CALoginManager* _instance = nil;
                                                              @"text/plain",
                                                              @"text/html",
                                                              nil];
-        [manager GET:@"--------------------"
+        [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getInfo"
           parameters:tempDict
             progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                  NSDictionary *resultDict = (NSDictionary *)responseObject;
                  if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                      NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
-                 
                      
                      [userDefaults setValue:[dict valueForKey:@"addr"] forKey:@"user_addr"];
                      [userDefaults setValue:[dict valueForKey:@"phone"] forKey:@"user_phone"];
-                 
                  
                  }else{
                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);

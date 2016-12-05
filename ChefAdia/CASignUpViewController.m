@@ -109,7 +109,7 @@
                       
                       [[CALoginManager shareInstance] setUserID:[dict valueForKey:@"userid"]];
                       [[CALoginManager shareInstance] setUserName:[dict valueForKey:@"username"]];
-//                      [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
+                      [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
                       [[CALoginManager shareInstance] setLoginState:LOGIN];
                       
                       [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];

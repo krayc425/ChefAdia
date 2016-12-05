@@ -47,8 +47,4 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)loginWeChatAction:(id)sender{
-    
-}
-
 @end
