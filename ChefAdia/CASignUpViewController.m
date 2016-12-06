@@ -95,16 +95,6 @@
                   NSLog(@"SUCCESS");
                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                      
-//                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sign Up Success"
-//                                                                                      message:nil
-//                                                                               preferredStyle:UIAlertControllerStyleAlert];
-//                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-//                                                                         style:UIAlertActionStyleDefault
-//                                                                       handler:nil];
-//                      [alertC addAction:okAction];
-//                      [self presentViewController:alertC animated:YES completion:nil];
-                      
                       NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                       
                       [[CALoginManager shareInstance] setUserID:[dict valueForKey:@"userid"]];
@@ -125,7 +115,6 @@
                                                                        handler:nil];
                       [alertC addAction:okAction];
                       [self presentViewController:alertC animated:YES completion:nil];
-
                   }
 
               } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

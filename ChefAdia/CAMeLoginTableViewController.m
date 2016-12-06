@@ -197,11 +197,11 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"SUCCESS");
+        [self refreshLabel];
         //存到本地
         if([[CALoginManager shareInstance] saveAvatar:image]){
             
             //刷新头像
-            [self refreshLabel];
             
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Successfully!"
                                                                                                                                  message:nil

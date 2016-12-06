@@ -56,10 +56,13 @@ static CALoginManager* _instance = nil;
         [userDefaults setValue:_avatarURL forKey:@"user_avatar"];
         
         NSLog(@"AVATAR URL : %@", _avatarURL);
+        
         if(_avatarURL != NULL){
             NSURL *imageUrl = [NSURL URLWithString:[_avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
             [self saveAvatar:image];
+        }else{
+            [self clearAvatar];
         }
         
         //获取地址与手机号 并存储在本地
@@ -113,6 +116,12 @@ static CALoginManager* _instance = nil;
     }else {
         return [UIImage imageWithContentsOfFile:imagePath];
     }
+}
+
+- (void)clearAvatar{
+    NSString *imagePath = [self imageSavedPath:@"avatar.jpeg"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:imagePath error:nil];
 }
 
 - (BOOL)saveToDocument:(UIImage *) image withFilePath:(NSString *) filePath{
