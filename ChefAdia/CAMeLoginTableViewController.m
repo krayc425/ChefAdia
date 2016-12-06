@@ -9,7 +9,6 @@
 #import "CAMeLoginTableViewController.h"
 #import "Utilities.h"
 #import "CALoginManager.h"
-#import "CAUserInfoManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
@@ -61,7 +60,7 @@
 - (void)refreshLabel{
     _userNameLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_name"];
     _addressLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_addr"];
-    _avatarView.image = [[CAUserInfoManager shareInstance] readAvatar];
+    _avatarView.image = [[CALoginManager shareInstance] readAvatar];
 }
 
 - (IBAction)logoutAction:(id)sender{
@@ -169,22 +168,6 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     NSData *imageData = UIImagePNGRepresentation(image);
     
-//    NSLog(info.description);
-    //存到本地
-//    if([[CAUserInfoManager shareInstance] saveAvatar:image]){
-//        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Successfully!"
-//                                                                        message:nil
-//                                                                 preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-//                                                           style:UIAlertActionStyleDefault
-//                                                         handler:nil];
-//        [alertC addAction:okAction];
-//        [self presentViewController:alertC animated:YES completion:nil];
-        
-//    }else{
-//        NSLog(@"保存头像失败");
-//    }
-    
     //上传到服务器
     NSString *url = @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modAva";
     NSDictionary *dict = @{
@@ -215,7 +198,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"SUCCESS");
         //存到本地
-        if([[CAUserInfoManager shareInstance] saveAvatar:image]){
+        if([[CALoginManager shareInstance] saveAvatar:image]){
             
             //刷新头像
             [self refreshLabel];

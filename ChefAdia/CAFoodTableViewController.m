@@ -111,6 +111,9 @@
         cell.numberLabel.text = [NSString stringWithFormat:@"%d SELECTION%s", [item number], [item number] <= 1 ? "" : "S"];
         
         NSURL *imageUrl = [NSURL URLWithString:[item pic]];
+        
+        
+        
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
         [cell.bgView setImage:image];
         

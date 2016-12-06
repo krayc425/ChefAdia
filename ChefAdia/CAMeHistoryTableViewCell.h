@@ -17,6 +17,6 @@
 
 @property (nonnull, nonatomic) IBOutlet UIButton *badButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *goodButton;
-@property (nonnull, nonatomic) IBOutlet UIButton *repeatButton;
+@property (nonnull, nonatomic) IBOutlet UIButton *easyOrderButton;
 
 @end

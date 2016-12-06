@@ -21,13 +21,12 @@
     [self.nameLabel setFont:[UIFont fontWithName:fontName size:20]];
     [self.numberLabel setFont:[UIFont fontWithName:fontName size:15]];
     
-    _repeatButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
+    _easyOrderButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

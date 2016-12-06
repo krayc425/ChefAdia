@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 enum LoginState{
     LOGIN = 1,
@@ -22,7 +23,9 @@ enum LoginState{
 @property (nonatomic, nonnull) NSString *avatarURL;
 
 - (int)getLoginState;
-
 - (void)setLoginState:(int)state;
+
+- (BOOL)saveAvatar:(UIImage *_Nonnull)avatarImg;
+- (UIImage *_Nonnull)readAvatar;
 
 @end

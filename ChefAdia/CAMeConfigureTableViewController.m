@@ -85,8 +85,9 @@
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                                                                       
-                                                                      [_destinationLabel setText: [destinationText text]];
+//                                                                      [userDefaults setValue:[destinationText text] forKey:@"user_addr"];
                                                                       
+                                                                      [_destinationLabel setText: [destinationText text]];
                                                                       [self.tableView reloadData];
                                                                       
                                                                       [[CALoginManager shareInstance] setLoginState:LOGIN];
@@ -145,10 +146,9 @@
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                                                                       
+//                                                                      [userDefaults setValue:[phoneText text] forKey:@"user_phone"];
                                                                       [_phoneLabel setText:[phoneText text]];
-                                                                      
                                                                       [self.tableView reloadData];
-                                                                      
                                                                       [[CALoginManager shareInstance] setLoginState:LOGIN];
                                                                       
                                                                   }else{

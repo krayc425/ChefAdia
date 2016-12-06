@@ -107,7 +107,7 @@
                                             <constraint firstAttribute="height" constant="25" id="10o-Ys-wlu"/>
                                             <constraint firstAttribute="width" secondItem="hhp-jR-EpN" secondAttribute="height" multiplier="5:1" id="KnY-81-xEi"/>
                                         </constraints>
-                                        <state key="normal" title="     REPEAT" backgroundImage="BUTTON_BG_DEFAULT_SHORT">
+                                        <state key="normal" title="EASY ORDER" backgroundImage="BUTTON_BG_DEFAULT_SHORT">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
@@ -118,30 +118,21 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="REPEAT" translatesAutoresizingMaskIntoConstraints="NO" id="Hck-cX-gwe">
-                        <rect key="frame" x="198" y="118.5" width="17" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="17" id="1IU-EL-emr"/>
-                            <constraint firstAttribute="width" secondItem="Hck-cX-gwe" secondAttribute="height" multiplier="1:1" id="smi-Mt-Iev"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Hck-cX-gwe" secondAttribute="trailing" constant="105" id="6GD-d6-dOb"/>
                     <constraint firstItem="ur7-7n-UzS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="QIg-lj-9tR"/>
                     <constraint firstAttribute="trailing" secondItem="ur7-7n-UzS" secondAttribute="trailing" constant="15" id="f0r-h0-kTj"/>
                     <constraint firstAttribute="bottom" secondItem="ur7-7n-UzS" secondAttribute="bottom" constant="10" id="kwQ-1B-2vS"/>
                     <constraint firstItem="ur7-7n-UzS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="nkB-gt-cXt"/>
-                    <constraint firstItem="hhp-jR-EpN" firstAttribute="centerY" secondItem="Hck-cX-gwe" secondAttribute="centerY" id="u6M-Fv-H12"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="badButton" destination="EZS-iY-Ptr" id="PZf-qt-QPZ"/>
+                <outlet property="easyOrderButton" destination="hhp-jR-EpN" id="Efe-c9-c1l"/>
                 <outlet property="goodButton" destination="viW-I8-Ysy" id="JVn-Sj-uHZ"/>
                 <outlet property="nameLabel" destination="3Aq-vd-bw0" id="Uee-wV-98u"/>
                 <outlet property="numberLabel" destination="hYN-RH-jbC" id="RnN-hR-5zx"/>
                 <outlet property="priceLabel" destination="89c-A3-ROZ" id="Hqk-cy-ZxT"/>
-                <outlet property="repeatButton" destination="hhp-jR-EpN" id="7sw-wr-z2A"/>
                 <outlet property="timeLabel" destination="5mV-uq-Xpe" id="6zu-4p-PAG"/>
             </connections>
             <point key="canvasLocation" x="34" y="73"/>
@@ -154,6 +145,5 @@
         <image name="GOOD" width="32" height="32"/>
         <image name="Line_LIGHT" width="51" height="1"/>
         <image name="Logo_Color" width="104" height="84"/>
-        <image name="REPEAT" width="42" height="39"/>
     </resources>
 </document>
