@@ -12,6 +12,8 @@
 #import "AFHTTPSessionManager.h"
 #import "JSONKit.h"
 
+#define TEST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getMenu"
+
 @implementation CANetworkManager
 
 static CANetworkManager* _instance = nil;
@@ -41,7 +43,7 @@ static CANetworkManager* _instance = nil;
 #pragma mark - NETWORK UTILITIES
 
 - (void)checkNetwork{
-    Reachability *reach = [Reachability reachabilityWithHostName:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"];
+    Reachability *reach = [Reachability reachabilityWithHostName:TEST_URL];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged:)
                                                  name:kReachabilityChangedNotification
@@ -90,32 +92,5 @@ static CANetworkManager* _instance = nil;
               NSLog(@"Error: %@", error);
           }];
 }
-
-//- (NSArray *)getMenu{
-//    __block NSMutableArray *array = [[NSMutableArray alloc] init];
-//    
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-//                                                         @"text/plain",
-//                                                         @"text/html",
-//                                                         nil];
-//    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"
-//      parameters:nil
-//        progress:nil
-//         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-//             for(NSDictionary *Dict in (NSArray *)responseObject){
-//                 [array addObject:Dict];
-//             }
-//             
-//             NSLog(@"IN BLOCK");
-//             NSLog(@"%lu", [array count]);
-//         }
-//         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//             NSLog(@"%@",error);
-//         }];
-//    
-//    NSLog(@"%lu", [array count]);
-//    return [array copy];
-//}
 
 @end

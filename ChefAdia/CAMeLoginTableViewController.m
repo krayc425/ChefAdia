@@ -13,6 +13,8 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
+#define AVATAR_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modAva"
+
 @interface CAMeLoginTableViewController (){
     NSString *fontName;
     UIColor *color;
@@ -169,7 +171,7 @@
     NSData *imageData = UIImagePNGRepresentation(image);
     
     //上传到服务器
-    NSString *url = @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modAva";
+    NSString *url = AVATAR_URL;
     NSDictionary *dict = @{
                            @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
                            @"avatar" : @"avatar.jpeg",

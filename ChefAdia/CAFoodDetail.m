@@ -18,7 +18,7 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name andType:(NSString *)type andPrice:(double)price andPic:(NSString *)pic andLikes:(int)likes andDislikes:(int)dislikes{
+- (id)initWithName:(NSString *)name andID:(NSString *)foodid andPrice:(double)price andPic:(NSString *)pic andLikes:(int)likes andDislikes:(int)dislikes{
     self = [super init];
     if(self){
         _name = name;
@@ -26,7 +26,7 @@
         _dislikes = dislikes;
         _price = price;
         _pic = pic;
-        _type = type;
+        _foodid = foodid;
     }
     return self;
 }
@@ -34,7 +34,7 @@
 - (id)copyWithZone:(NSZone *)zone{
     CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] init];
     caFoodDetail.name = self.name;
-    caFoodDetail.type = self.type;
+    caFoodDetail.foodid = self.foodid;
     caFoodDetail.price = self.price;
     caFoodDetail.likes = self.likes;
     caFoodDetail.dislikes = self.dislikes;

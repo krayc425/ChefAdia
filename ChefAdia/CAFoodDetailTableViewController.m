@@ -18,6 +18,8 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
+#define LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getList"
+
 @interface CAFoodDetailTableViewController (){
     NSString *fontName;
     UIColor *color;
@@ -33,7 +35,6 @@
     color = [Utilities getColor];
     
     [self.naviItem setTitle:[_foodType name]];
-    _titleImgView.image = [UIImage imageNamed:@"FOOD_TITLE"];
     
     [self.numberLabel setFont:[UIFont fontWithName:fontName size:20]];
     [self.billCountItem setTintColor:color];
@@ -55,25 +56,36 @@
                                                          @"text/plain",
                                                          @"text/html",
                                                          nil];
-    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getList"
+    [manager GET:LIST_URL
       parameters:tempDict
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                 NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
-                 for(NSDictionary *dict in resultArr){
-                     CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[dict valueForKey:@"name"]
-                                                                             andType:[dict valueForKey:@"type"]
-                                                                            andPrice:[[dict valueForKey:@"price"] doubleValue]
-                                                                              andPic:[dict valueForKey:@"picture"]
-                                                                            andLikes:[[dict valueForKey:@"like"] intValue]
-                                                                         andDislikes:[[dict valueForKey:@"dislike"] intValue]];
-                     [weakSelf.foodArr addObject:[caFoodDetail copy]];
+                 
+                 NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
+                 
+                 for(NSDictionary *Dict in (NSArray *)[subResultDict objectForKey:@"list"]){
+//                     [_foodArr addObject:Dict];
+                     
+                     CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[Dict objectForKey:@"name"]
+                                                                             andID:[Dict objectForKey:@"foodid"]
+                                                                            andPrice:[[Dict objectForKey:@"price"] doubleValue]
+                                                                              andPic:[Dict objectForKey:@"pic"]
+                                                                            andLikes:[[Dict objectForKey:@"good_num"] intValue]
+                                                                         andDislikes:[[Dict objectForKey:@"bad_num"] intValue]];
+                     [_foodArr addObject:caFoodDetail];
                  }
-                 weakSelf.foodNum = (int)[weakSelf.foodArr count];
+                 
+                 weakSelf.foodNum = [[subResultDict objectForKey:@"num"] intValue];
+                
                  [weakSelf.numberLabel setText:[NSString stringWithFormat:@"%d SELECTION%s",
                                                 weakSelf.foodNum, weakSelf.foodNum <= 1 ? "" : "S"]];
+                 
+                 NSURL *imageUrl = [NSURL URLWithString:[subResultDict objectForKey:@"pic"]];
+                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+                 [weakSelf.titleImgView setImage:image];
+                 
                  [weakSelf.tableView reloadData];
              }else{
                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);

@@ -12,6 +12,9 @@
 #import "AFHTTPSessionManager.h"
 #import "CALoginManager.h"
 
+#define PHONE_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modPhone"
+#define ADDRESS_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modAddr"
+
 @interface CAMeConfigureTableViewController (){
     NSString *fontName;
 }
@@ -78,14 +81,12 @@
                                                                                                               @"text/json",
                                                                                                               nil];
 
-                                                         [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modAddr"
+                                                         [manager POST:ADDRESS_URL
                                                            parameters:tempDict
                                                              progress:nil
                                                               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                                                                      
-//                                                                      [userDefaults setValue:[destinationText text] forKey:@"user_addr"];
                                                                       
                                                                       [_destinationLabel setText: [destinationText text]];
                                                                       [self.tableView reloadData];
@@ -139,14 +140,13 @@
                                                                                                               @"text/json",
                                                                                                               nil];
 
-                                                         [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/modPhone"
+                                                         [manager POST:PHONE_URL
                                                            parameters:tempDict
                                                              progress:nil
                                                               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                                                                       
-//                                                                      [userDefaults setValue:[phoneText text] forKey:@"user_phone"];
                                                                       [_phoneLabel setText:[phoneText text]];
                                                                       [self.tableView reloadData];
                                                                       [[CALoginManager shareInstance] setLoginState:LOGIN];

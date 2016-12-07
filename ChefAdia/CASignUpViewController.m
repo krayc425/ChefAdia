@@ -13,6 +13,8 @@
 #import "AFHTTPSessionManager.h"
 #import "CALoginManager.h"
 
+#define SIGNUP_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/register.do"
+
 @interface CASignUpViewController (){
     NSString *fontName;
     UIColor *color;
@@ -88,7 +90,7 @@
                                                              @"text/plain",
                                                              @"text/html",
                                                              nil];
-        [manager POST:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/register.do"
+        [manager POST:SIGNUP_URL
            parameters:tempDict
              progress:nil
               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {

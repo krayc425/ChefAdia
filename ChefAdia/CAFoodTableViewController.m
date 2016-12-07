@@ -15,6 +15,8 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
+#define MENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getMenu"
+
 @interface CAFoodTableViewController (){
     NSString *fontName;
 }
@@ -58,7 +60,7 @@
                                                          @"text/plain",
                                                          @"text/html",
                                                          nil];
-    [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getMenu"
+    [manager GET:MENU_URL
       parameters:nil
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
@@ -66,10 +68,10 @@
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
                  for(NSDictionary *dict in resultArr){
-                     CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"id"] intValue]
-                                                                   andPic:[dict valueForKey:@"picture"]
+                     CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"menuid"] intValue]
+                                                                   andPic:[dict valueForKey:@"pic"]
                                                                   andName:[dict valueForKey:@"name"]
-                                                                   andNum:[[dict valueForKey:@"foodNum"] intValue]];
+                                                                   andNum:[[dict valueForKey:@"num"] intValue]];
                      [weakSelf.menuArr addObject:[tmpMenu copy]];
                  }
                  [weakSelf.tableView reloadData];
@@ -111,9 +113,6 @@
         cell.numberLabel.text = [NSString stringWithFormat:@"%d SELECTION%s", [item number], [item number] <= 1 ? "" : "S"];
         
         NSURL *imageUrl = [NSURL URLWithString:[item pic]];
-        
-        
-        
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
         [cell.bgView setImage:image];
         

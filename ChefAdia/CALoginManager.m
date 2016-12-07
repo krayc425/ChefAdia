@@ -10,6 +10,8 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
+#define INFO_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getInfo"
+
 @implementation CALoginManager
 
 static CALoginManager* _instance = nil;
@@ -74,7 +76,7 @@ static CALoginManager* _instance = nil;
                                                              @"text/plain",
                                                              @"text/html",
                                                              nil];
-        [manager GET:@"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/getInfo"
+        [manager GET:INFO_URL
           parameters:tempDict
             progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
