@@ -29,19 +29,24 @@ PODS:
     - ASIHTTPRequest/Core
   - JSONKit (1.4)
   - Reachability (3.2)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - AFNetworking
   - ASIHTTPRequest
   - JSONKit
   - Reachability
+  - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: cad419a183b2e54522ee7a2a2c3339056287403f
+PODFILE CHECKSUM: 313348477ac0b7d62e47ca4c025f019883336d79
 
 COCOAPODS: 1.1.1

@@ -14,6 +14,7 @@
 #import "CAFoodDetailTableViewController.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define MENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getMenu"
 
@@ -113,8 +114,9 @@
         cell.numberLabel.text = [NSString stringWithFormat:@"%d SELECTION%s", [item number], [item number] <= 1 ? "" : "S"];
         
         NSURL *imageUrl = [NSURL URLWithString:[item pic]];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-        [cell.bgView setImage:image];
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+//        [cell.bgView setImage:image];
+        [cell.bgView sd_setImageWithURL:imageUrl];
         
         return cell;
     }else{

@@ -12,4 +12,5 @@ target 'ChefAdia' do
   pod 'Reachability'
   pod 'ASIHTTPRequest'
   pod 'AFNetworking'
+  pod 'SDWebImage'
 end

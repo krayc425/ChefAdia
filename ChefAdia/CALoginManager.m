@@ -9,6 +9,7 @@
 #import "CALoginManager.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "SDWebImageDownloader.h"
 
 #define INFO_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getInfo"
 
@@ -61,10 +62,20 @@ static CALoginManager* _instance = nil;
         
         if(_avatarURL != NULL){
             NSURL *imageUrl = [NSURL URLWithString:[_avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-            [self saveAvatar:image];
+//            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+            
+            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl
+                                                                  options:SDWebImageDownloaderContinueInBackground
+                                                                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                                     
+                                                                 } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                                     [self saveAvatar:image];
+                                                                 }];
+            
         }else{
+        
             [self clearAvatar];
+            
         }
         
         //获取地址与手机号 并存储在本地

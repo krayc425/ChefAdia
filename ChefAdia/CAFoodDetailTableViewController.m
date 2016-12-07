@@ -17,6 +17,7 @@
 #import "CAFoodDetail.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getList"
 
@@ -83,8 +84,9 @@
                                                 weakSelf.foodNum, weakSelf.foodNum <= 1 ? "" : "S"]];
                  
                  NSURL *imageUrl = [NSURL URLWithString:[subResultDict objectForKey:@"pic"]];
-                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-                 [weakSelf.titleImgView setImage:image];
+//                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+//                 [weakSelf.titleImgView setImage:image];
+                 [weakSelf.titleImgView sd_setImageWithURL:imageUrl];
                  
                  [weakSelf.tableView reloadData];
              }else{
@@ -175,8 +177,9 @@
         [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
         
         NSURL *imageUrl = [NSURL URLWithString:food.pic];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-        [cell.picView setImage:image];
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+//        [cell.picView setImage:image];
+        [cell.picView sd_setImageWithURL:imageUrl];
         
         bool foundFlag = false;
         NSArray *tmpFoodArr = [[CAFoodCart shareInstance] getFoodInCart];
