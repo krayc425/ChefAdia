@@ -47,22 +47,24 @@
     _logoutButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
     [_logoutButton setTitleColor:color forState:UIControlStateNormal];
     
-    [self refreshLabel];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLabel) name:@"Login" object:nil];
+    
+//    [self refreshLabel];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [self refreshLabel];
-    [self.tableView reloadData];
 }
 
 - (void)refreshLabel{
     _userNameLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_name"];
     _addressLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_addr"];
     _avatarView.image = [[CALoginManager shareInstance] readAvatar];
+    [self.tableView reloadData];
 }
 
 - (IBAction)logoutAction:(id)sender{
@@ -199,7 +201,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"SUCCESS");
-        [self refreshLabel];
         //存到本地
         if([[CALoginManager shareInstance] saveAvatar:image]){
             
@@ -212,7 +213,10 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                                                                style:UIAlertActionStyleDefault
                                                              handler:nil];
             [alertC addAction:okAction];
-            [self presentViewController:alertC animated:YES completion:nil];
+            [self presentViewController:alertC animated:YES completion:^(){
+                [self refreshLabel];
+            }];
+            
             
         }else{
             NSLog(@"保存头像失败");

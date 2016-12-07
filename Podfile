@@ -13,4 +13,5 @@ target 'ChefAdia' do
   pod 'ASIHTTPRequest'
   pod 'AFNetworking'
   pod 'SDWebImage'
+  pod 'MBProgressHUD'
 end

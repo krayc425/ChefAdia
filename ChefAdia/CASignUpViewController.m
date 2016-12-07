@@ -13,7 +13,7 @@
 #import "AFHTTPSessionManager.h"
 #import "CALoginManager.h"
 
-#define SIGNUP_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/register.do"
+#define SIGNUP_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/register"
 
 @interface CASignUpViewController (){
     NSString *fontName;
@@ -96,6 +96,7 @@
               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                   NSLog(@"SUCCESS");
                   NSDictionary *resultDict = (NSDictionary *)responseObject;
+                  
                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                       NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                       
@@ -104,12 +105,12 @@
                       [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
                       [[CALoginManager shareInstance] setLoginState:LOGIN];
                       
-                      [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
+//                      [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
                       [self.navigationController popViewControllerAnimated:YES];
                   }else{
                       NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"code"]);
                       
-                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sign Up Failed"
+                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sign up failed"
                                                                                       message:@"Email existed"
                                                                                preferredStyle:UIAlertControllerStyleAlert];
                       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"

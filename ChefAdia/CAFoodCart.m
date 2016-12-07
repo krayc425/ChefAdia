@@ -37,11 +37,11 @@ static CAFoodCart* _instance = nil;
     return [CAFoodCart shareInstance] ;
 }
 
-- (void)modifyFoodInCartWithName:(NSString *)foodName andNum:(int)num andPrice:(double)price{
+- (void)modifyFoodInCartWithID:(NSString *)foodID andName:(NSString *_Nonnull)foodName andNum:(int)num andPrice:(double)price{
     bool foundFlag = false;
     for(int i = 0; i < [_foodArr count]; i++){
         CAFoodDetailInCart *food = _foodArr[i];
-        if([food.name isEqualToString:foodName]){
+        if([food.foodID isEqualToString:foodID]){
             foundFlag = true;
             food.number += num;
             //如果数量变为0，那么删除元素
@@ -53,7 +53,7 @@ static CAFoodCart* _instance = nil;
     }
     //原来没有，那么增加一个元素
     if(!foundFlag){
-        [_foodArr addObject:[[CAFoodDetailInCart alloc] initWithName:foodName andPrice:price]];
+        [_foodArr addObject:[[CAFoodDetailInCart alloc] initWithID:foodID andName:foodName andPrice:price]];
     }
 }
 

@@ -70,7 +70,7 @@
     //TODO
     //配置 cell
     CAFoodDetailInCart *food = _payFoodArr[indexPath.row];
-    cell.nameLabel.text = food.name;
+    cell.nameLabel.text = food.foodName;
     cell.priceLabel.text = [NSString stringWithFormat:@"%.2f",food.price];
     cell.numLabel.text = [NSString stringWithFormat:@"%d",food.number];
     

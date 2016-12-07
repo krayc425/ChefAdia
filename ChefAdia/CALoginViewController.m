@@ -13,7 +13,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
-#define LOGIN_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/login.do"
+#define LOGIN_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/login"
 
 @interface CALoginViewController (){
     NSString *fontName;
@@ -44,6 +44,8 @@
     _loginButton.titleLabel.font = [UIFont fontWithName:fontName size:20];
     _loginButton.backgroundColor = [UIColor clearColor];
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"Login" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,10 +89,9 @@
                      [[CALoginManager shareInstance] setUserID:[dict valueForKey:@"userid"]];
                      [[CALoginManager shareInstance] setUserName:[dict valueForKey:@"username"]];
                      [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
-                     
+
                      [[CALoginManager shareInstance] setLoginState:LOGIN];
                      
-                     [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
                      [self.navigationController popViewControllerAnimated:YES];
                  }else{
                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
@@ -110,6 +111,10 @@
                  NSLog(@"%@",error);
              }];
     }
+}
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

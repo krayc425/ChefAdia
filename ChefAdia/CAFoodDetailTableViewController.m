@@ -127,9 +127,11 @@
     NSLog(@"add");
     CAFoodDetailTableViewCell *cell = (CAFoodDetailTableViewCell *)sender;
     //ADD IN FOOD CART
-    [[CAFoodCart shareInstance] modifyFoodInCartWithName:[NSString stringWithFormat:@"%@", cell.nameLabel.text]
-                                                  andNum:1
-                                                andPrice:[cell.priceLabel.text doubleValue]];
+    CAFoodDetail *caFoodDetail = [_foodArr objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
+    [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
+                                               andName:caFoodDetail.name
+                                                andNum:1
+                                            andPrice:[cell.priceLabel.text doubleValue]];
     //GET TOTAL PRICE FROM FOOD CART
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }
@@ -138,9 +140,11 @@
     NSLog(@"minus");
     CAFoodDetailTableViewCell *cell = (CAFoodDetailTableViewCell *)sender;
     //MINUS IN FOOD CART
-    [[CAFoodCart shareInstance] modifyFoodInCartWithName:[NSString stringWithFormat:@"%@", cell.nameLabel.text]
-                                                  andNum:-1
-                                                andPrice:[cell.priceLabel.text doubleValue]];
+    CAFoodDetail *caFoodDetail = [_foodArr objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
+    [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
+                                               andName:caFoodDetail.name
+                                                andNum:-1
+                                              andPrice:[cell.priceLabel.text doubleValue]];
     //GET TOTAL PRICE FROM FOOD CART
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }
@@ -185,7 +189,7 @@
         NSArray *tmpFoodArr = [[CAFoodCart shareInstance] getFoodInCart];
         for(int i = 0; i < [tmpFoodArr count]; i++){
             CAFoodDetailInCart *foodCart = tmpFoodArr[i];
-            if([foodCart.name isEqualToString:cell.nameLabel.text]){
+            if([foodCart.foodName isEqualToString:cell.nameLabel.text]){
                 foundFlag = true;
                 [cell.currNumLabel setText:[NSString stringWithFormat:@"%d",foodCart.number]];
                 break;

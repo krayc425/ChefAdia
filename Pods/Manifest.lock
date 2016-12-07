@@ -28,6 +28,7 @@ PODS:
   - ASIHTTPRequest/S3 (1.8.2):
     - ASIHTTPRequest/Core
   - JSONKit (1.4)
+  - MBProgressHUD (1.0.0)
   - Reachability (3.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - AFNetworking
   - ASIHTTPRequest
   - JSONKit
+  - MBProgressHUD
   - Reachability
   - SDWebImage
 
@@ -44,9 +46,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 313348477ac0b7d62e47ca4c025f019883336d79
+PODFILE CHECKSUM: 67eda0b335b24ce4ac371f1ac8d42d7fed4bd282
 
 COCOAPODS: 1.1.1

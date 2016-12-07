@@ -58,26 +58,6 @@ static CALoginManager* _instance = nil;
         [userDefaults setValue:_userName forKey:@"user_name"];
         [userDefaults setValue:_avatarURL forKey:@"user_avatar"];
         
-        NSLog(@"AVATAR URL : %@", _avatarURL);
-        
-        if(_avatarURL != NULL){
-            NSURL *imageUrl = [NSURL URLWithString:[_avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
-//            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-            
-            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl
-                                                                  options:SDWebImageDownloaderContinueInBackground
-                                                                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                                     
-                                                                 } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                                     [self saveAvatar:image];
-                                                                 }];
-            
-        }else{
-        
-            [self clearAvatar];
-            
-        }
-        
         //获取地址与手机号 并存储在本地
         NSDictionary *tempDict = @{
                                    @"userid" : _userID,
@@ -97,7 +77,7 @@ static CALoginManager* _instance = nil;
                      
                      [userDefaults setValue:[dict valueForKey:@"addr"] forKey:@"user_addr"];
                      [userDefaults setValue:[dict valueForKey:@"phone"] forKey:@"user_phone"];
-                 
+                     
                  }else{
                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
                  }
@@ -106,6 +86,30 @@ static CALoginManager* _instance = nil;
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                  NSLog(@"%@",error);
              }];
+        
+        
+        NSLog(@"AVATAR URL : %@", _avatarURL);
+        
+        if(_avatarURL != NULL){
+            NSURL *imageUrl = [NSURL URLWithString:[_avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
+//            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+            
+            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl
+                                                                  options:SDWebImageDownloaderContinueInBackground
+                                                                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                                     
+                                                                 } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                                     [self saveAvatar:image];
+                                                                     
+                                                                     [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
+                                                                     
+                                                                 }];
+            
+        }else{
+        
+            [self clearAvatar];
+            
+        }
 
     }
 }

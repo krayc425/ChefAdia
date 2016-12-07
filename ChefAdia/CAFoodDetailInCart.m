@@ -19,10 +19,11 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name andPrice:(double)price{
+- (id)initWithID:(NSString *)foodID andName:(NSString *_Nonnull)foodName andPrice:(double)price{
     self = [super init];
     if(self){
-        _name = name;
+        _foodID = foodID;
+        _foodName = foodName;
         _number = 1;    //初始化 一定只有一个
         _price = price;
     }
