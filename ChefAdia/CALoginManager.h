@@ -21,6 +21,8 @@ enum LoginState{
 @property (nonatomic, nonnull) NSString *userID;
 @property (nonatomic, nonnull) NSString *userName;
 @property (nonatomic, nonnull) NSString *avatarURL;
+@property (nonatomic, nonnull) NSString *address;
+@property (nonatomic, nonnull) NSString *phone;
 
 - (int)getLoginState;
 - (void)setLoginState:(int)state;

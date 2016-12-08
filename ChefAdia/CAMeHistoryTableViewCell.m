@@ -17,9 +17,8 @@
     NSString *fontName = [Utilities getFont];
     
     [self.timeLabel setFont:[UIFont fontWithName:fontName size:20]];
-    [self.priceLabel setFont:[UIFont fontWithName:fontName size:30]];
-    [self.nameLabel setFont:[UIFont fontWithName:fontName size:20]];
-    [self.numberLabel setFont:[UIFont fontWithName:fontName size:15]];
+    [self.priceLabel setFont:[UIFont fontWithName:fontName size:20]];
+    [self.orderIDLabel setFont:[UIFont fontWithName:fontName size:10]];
     
     _easyOrderButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
 }

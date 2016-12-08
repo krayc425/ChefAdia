@@ -9,6 +9,10 @@
 #import "CAMeHistoryTableViewController.h"
 #import "CAMeHistoryTableViewCell.h"
 #import "CAMeHistoryDetailTableViewController.h"
+#import "AFNetworking.h"
+#import "AFHTTPSessionManager.h"
+
+#define ORDER_LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getOrderList"
 
 @interface CAMeHistoryTableViewController ()
 
@@ -18,10 +22,51 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated{
+    [self loadOrder];
+}
+
+- (void)loadOrder{
+    self.orderArr = [[NSMutableArray alloc] init];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    NSDictionary *tempDict = @{
+                               @"userid" : self.userID,
+                               };
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager GET:ORDER_LIST_URL
+      parameters:tempDict
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+             NSDictionary *resultDict = (NSDictionary *)responseObject;
+             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 for(NSDictionary *dict in (NSArray *)[resultDict objectForKey:@"data"]){
+                     [weakSelf.orderArr addObject:dict];
+                 }
+                 
+                 [weakSelf.tableView reloadData];
+             }else{
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+             }
+             
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
+
 }
 
 #pragma mark - Table view data source
@@ -31,7 +76,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self.orderArr count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -40,59 +85,31 @@
     [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
     CAMeHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    [cell.orderIDLabel setText:[NSString stringWithFormat:@"Order ID : %@", [self.orderArr[indexPath.row] objectForKey:@"orderid"]]];
+    [cell.timeLabel setText:[self.orderArr[indexPath.row] objectForKey:@"time"]];
+    [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.orderArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"detailSegue" sender:nil];
+    [self performSegueWithIdentifier:@"detailSegue" sender:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 110;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 10;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    []
+    NSIndexPath *indexPath = (NSIndexPath *)sender;
+    CAMeHistoryDetailTableViewController *caMeHistoryDetailTableViewController = (CAMeHistoryDetailTableViewController *)[segue destinationViewController];
+    [caMeHistoryDetailTableViewController setOrderID:[self.orderArr[indexPath.row] objectForKey:@"orderid"]];
 }
 
 @end

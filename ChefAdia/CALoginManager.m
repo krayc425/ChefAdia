@@ -11,8 +11,6 @@
 #import "AFHTTPSessionManager.h"
 #import "SDWebImageDownloader.h"
 
-#define INFO_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getInfo"
-
 @implementation CALoginManager
 
 static CALoginManager* _instance = nil;
@@ -57,42 +55,13 @@ static CALoginManager* _instance = nil;
         [userDefaults setValue:_userID forKey:@"user_id"];
         [userDefaults setValue:_userName forKey:@"user_name"];
         [userDefaults setValue:_avatarURL forKey:@"user_avatar"];
-        
-        //获取地址与手机号 并存储在本地
-        NSDictionary *tempDict = @{
-                                   @"userid" : _userID,
-                                   };
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                             @"text/plain",
-                                                             @"text/html",
-                                                             nil];
-        [manager GET:INFO_URL
-          parameters:tempDict
-            progress:nil
-             success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-                 NSDictionary *resultDict = (NSDictionary *)responseObject;
-                 if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                     NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
-                     
-                     [userDefaults setValue:[dict valueForKey:@"addr"] forKey:@"user_addr"];
-                     [userDefaults setValue:[dict valueForKey:@"phone"] forKey:@"user_phone"];
-                     
-                 }else{
-                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
-                 }
-                 
-             }
-             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                 NSLog(@"%@",error);
-             }];
-        
+        [userDefaults setValue:_address forKey:@"user_addr"];
+        [userDefaults setValue:_phone forKey:@"user_phone"];
         
         NSLog(@"AVATAR URL : %@", _avatarURL);
         
         if(_avatarURL != NULL){
             NSURL *imageUrl = [NSURL URLWithString:[_avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
-//            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
             
             [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl
                                                                   options:SDWebImageDownloaderContinueInBackground
@@ -101,7 +70,7 @@ static CALoginManager* _instance = nil;
                                                                  } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                                      [self saveAvatar:image];
                                                                      
-                                                                     [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
+                                                                     //[[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
                                                                      
                                                                  }];
             

@@ -43,12 +43,10 @@
     
     _cashButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
     _visaButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
-    
-    //GET FOOD FROM CART
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (IBAction)backAction:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -67,7 +65,6 @@
     UINib *nib = [UINib nibWithNibName:@"CAFoodPayTableViewCell" bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     CAFoodPayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    //TODO
     //配置 cell
     CAFoodDetailInCart *food = _payFoodArr[indexPath.row];
     cell.nameLabel.text = food.foodName;

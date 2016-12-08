@@ -10,4 +10,12 @@
 
 @interface CAMeHistoryTableViewController : UITableViewController
 
+@property (nonatomic, nonnull) NSString *userID;
+
+@property (nonatomic, nonnull) NSMutableArray *orderArr;
+
+//@property (nonatomic, nonnull) NSString *orderID;
+//@property (nonatomic) double price;
+//@property (nonatomic, nonnull) NSString *time;
+
 @end

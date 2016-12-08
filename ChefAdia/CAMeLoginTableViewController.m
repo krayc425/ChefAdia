@@ -47,9 +47,7 @@
     _logoutButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
     [_logoutButton setTitleColor:color forState:UIControlStateNormal];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLabel) name:@"Login" object:nil];
-    
-//    [self refreshLabel];
+    [self refreshLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +56,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self refreshLabel];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+//    [self refreshLabel];
 }
 
 - (void)refreshLabel{

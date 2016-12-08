@@ -91,6 +91,7 @@
                                                                       [_destinationLabel setText: [destinationText text]];
                                                                       [self.tableView reloadData];
                                                                       
+                                                                      [[CALoginManager shareInstance] setAddress:[destinationText text]];
                                                                       [[CALoginManager shareInstance] setLoginState:LOGIN];
                                                                       
                                                                   }else{
@@ -149,6 +150,8 @@
                                                                       
                                                                       [_phoneLabel setText:[phoneText text]];
                                                                       [self.tableView reloadData];
+                                                                      
+                                                                      [[CALoginManager shareInstance] setPhone:[phoneText text]];
                                                                       [[CALoginManager shareInstance] setLoginState:LOGIN];
                                                                       
                                                                   }else{

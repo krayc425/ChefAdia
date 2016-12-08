@@ -32,7 +32,6 @@
     fontName = [Utilities getFont];
     
     //加载食物大类
-    _menuArr = [[NSMutableArray alloc] init];
     [self loadMenu];
     
     _backgroundView.image = [UIImage imageNamed:@"FOOD_TITLE"];
@@ -46,13 +45,12 @@
     _name1Label.text = @"KRAYC'S";
     _name2Label.text = @"CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    
+//    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)loadMenu{
+    _menuArr = [[NSMutableArray alloc] init];
 
     __weak typeof(self) weakSelf = self;
     
@@ -114,8 +112,6 @@
         cell.numberLabel.text = [NSString stringWithFormat:@"%d SELECTION%s", [item number], [item number] <= 1 ? "" : "S"];
         
         NSURL *imageUrl = [NSURL URLWithString:[item pic]];
-//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-//        [cell.bgView setImage:image];
         [cell.bgView sd_setImageWithURL:imageUrl];
         
         return cell;

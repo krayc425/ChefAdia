@@ -12,8 +12,10 @@
 #import "CALoginManager.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "MBProgressHUD.h"
 
 #define LOGIN_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/login"
+#define INFO_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getInfo"
 
 @interface CALoginViewController (){
     NSString *fontName;
@@ -46,10 +48,6 @@
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"Login" object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (IBAction)loginAction:(id)sender{
@@ -90,9 +88,40 @@
                      [[CALoginManager shareInstance] setUserName:[dict valueForKey:@"username"]];
                      [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
 
-                     [[CALoginManager shareInstance] setLoginState:LOGIN];
-                     
-                     [self.navigationController popViewControllerAnimated:YES];
+                     //获取地址与手机号 并存储在本地
+                     NSDictionary *tempDict = @{
+                                                @"userid" : [dict valueForKey:@"userid"],
+                                                };
+                     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                                          @"text/plain",
+                                                                          @"text/html",
+                                                                          nil];
+                     [manager GET:INFO_URL
+                       parameters:tempDict
+                         progress:nil
+                          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                              NSDictionary *resultDict = (NSDictionary *)responseObject;
+                              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                                  NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
+                                  
+                                  [[CALoginManager shareInstance] setAddress:[dict valueForKey:@"addr"]];
+                                  [[CALoginManager shareInstance] setPhone:[dict valueForKey:@"phone"]];
+                                  
+                                  [[CALoginManager shareInstance] setLoginState:LOGIN];
+                                  
+                                  [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
+                                  
+                                  [self.navigationController popViewControllerAnimated:YES];
+                                  
+                              }else{
+                                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                              }
+                              
+                          }
+                          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                              NSLog(@"%@",error);
+                          }];
                  }else{
                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
                      

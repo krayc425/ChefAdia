@@ -42,9 +42,12 @@
     [self.buyItem setTintColor:color];
     
     _foodCart = [CAFoodCart shareInstance];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)loadFood{
+    _foodArr = [[NSMutableArray alloc] init];
     
     __weak typeof(self) weakSelf = self;
     
@@ -67,7 +70,6 @@
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  
                  for(NSDictionary *Dict in (NSArray *)[subResultDict objectForKey:@"list"]){
-//                     [_foodArr addObject:Dict];
                      
                      CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[Dict objectForKey:@"name"]
                                                                              andID:[Dict objectForKey:@"foodid"]
@@ -84,8 +86,6 @@
                                                 weakSelf.foodNum, weakSelf.foodNum <= 1 ? "" : "S"]];
                  
                  NSURL *imageUrl = [NSURL URLWithString:[subResultDict objectForKey:@"pic"]];
-//                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-//                 [weakSelf.titleImgView setImage:image];
                  [weakSelf.titleImgView sd_setImageWithURL:imageUrl];
                  
                  [weakSelf.tableView reloadData];
@@ -100,13 +100,8 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     //加载所有食物数组
-    _foodArr = [[NSMutableArray alloc] init];
     [self loadFood];
     
     [self.navigationController setToolbarHidden:NO];
