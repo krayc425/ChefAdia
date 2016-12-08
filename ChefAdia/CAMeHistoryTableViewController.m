@@ -13,6 +13,7 @@
 #import "AFHTTPSessionManager.h"
 
 #define ORDER_LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getOrderList"
+#define EASY_ORDER_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modEasyOrder"
 
 @interface CAMeHistoryTableViewController ()
 
@@ -69,6 +70,42 @@
 
 }
 
+- (void)setEasyOrder:(id)sender{
+    CAMeHistoryTableViewCell *cell = (CAMeHistoryTableViewCell *)sender;
+    
+    __weak typeof(self) weakSelf = self;
+    
+    NSDictionary *tempDict = @{
+                               @"userid" : self.userID,
+                               @"orderid" : [self.orderArr[[[self.tableView indexPathForCell:cell] row]] objectForKey:@"orderid"],
+                               };
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager POST:EASY_ORDER_URL
+      parameters:tempDict
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+             NSDictionary *resultDict = (NSDictionary *)responseObject;
+             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 NSLog(@"success");
+                 
+                 [weakSelf.tableView reloadData];
+             }else{
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+             }
+             
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
+
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,6 +125,14 @@
     [cell.orderIDLabel setText:[NSString stringWithFormat:@"Order ID : %@", [self.orderArr[indexPath.row] objectForKey:@"orderid"]]];
     [cell.timeLabel setText:[self.orderArr[indexPath.row] objectForKey:@"time"]];
     [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.orderArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
+    
+    if([cell.orderIDLabel.text isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"easy_order_id"]]){
+        [cell setIsEasyOrder:true];
+    }else{
+        [cell setIsEasyOrder:false];
+    }
+    
+    cell.delegate = self;
     
     return cell;
 }

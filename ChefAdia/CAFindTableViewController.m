@@ -45,13 +45,13 @@
     switch (indexPath.row) {
         case 0:
             img = [UIImage imageNamed:@"FIND_1"];
-            mainText = @"ADD A NEW DISH";
-            subText = @"WE EXPECT YOUR GREAT NEW IDEAS!";
+            mainText = @"ADD MY MENU";
+            subText = @"MAKE YOUR OWN EXCLUSIVE MENU";
             break;
         case 1:
             img = [UIImage imageNamed:@"FIND_2"];
             mainText = @"MEAL TICKET";
-            subText = @"BUY SOME VALUABLE MEAL TICKETS.";
+            subText = @"BUY SOME VALUABLE MEAL TICKETS";
             break;
         default:
             break;

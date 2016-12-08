@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EasyOrderDelegate<NSObject>
+
+- (void)setEasyOrder:(_Nonnull id)sender;
+
+@end
+
 @interface CAMeHistoryTableViewCell : UITableViewCell
+
+@property (nonatomic, nonnull) id<EasyOrderDelegate> delegate;
 
 @property (nonnull, nonatomic) IBOutlet UILabel *timeLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *orderIDLabel;
 
 @property (nonnull, nonatomic) IBOutlet UIButton *easyOrderButton;
+
+- (void)setIsEasyOrder:(Boolean)isEasyOrder;
 
 @end

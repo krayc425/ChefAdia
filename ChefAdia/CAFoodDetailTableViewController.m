@@ -176,15 +176,13 @@
         [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
         
         NSURL *imageUrl = [NSURL URLWithString:food.pic];
-//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-//        [cell.picView setImage:image];
         [cell.picView sd_setImageWithURL:imageUrl];
         
         bool foundFlag = false;
         NSArray *tmpFoodArr = [[CAFoodCart shareInstance] getFoodInCart];
         for(int i = 0; i < [tmpFoodArr count]; i++){
             CAFoodDetailInCart *foodCart = tmpFoodArr[i];
-            if([foodCart.foodName isEqualToString:cell.nameLabel.text]){
+            if([foodCart.foodID isEqualToString:[self.foodArr[indexPath.row] foodid]]){
                 foundFlag = true;
                 [cell.currNumLabel setText:[NSString stringWithFormat:@"%d",foodCart.number]];
                 break;

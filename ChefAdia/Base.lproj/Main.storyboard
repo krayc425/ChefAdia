@@ -108,6 +108,9 @@
                                                     <state key="normal" title="EASY ORDER" backgroundImage="BUTTON_BG_DEFAULT">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="easyOrderAction:" destination="1F1-EI-4bQ" eventType="touchUpInside" id="dkn-Jh-voB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -180,11 +183,12 @@
                         <outlet property="name1Label" destination="UG0-Rp-VrA" id="puw-L7-bQk"/>
                         <outlet property="name2Label" destination="YSx-fc-nTj" id="Xbu-oe-TWZ"/>
                         <segue destination="TGP-B2-IGR" kind="show" identifier="detailSegue" id="Vhj-j1-JOn"/>
+                        <segue destination="Mz8-Ga-rK3" kind="show" identifier="easyOrderSegue" id="vYE-hH-yYs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKj-MR-Vpx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1502" y="-1157"/>
+            <point key="canvasLocation" x="1502" y="-1140"/>
         </scene>
         <!--CAFoodDetailTableViewController-->
         <scene sceneID="Cui-d5-HHu">
@@ -268,7 +272,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="znR-0j-vtB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2466" y="-1157"/>
+            <point key="canvasLocation" x="2468" y="-1668"/>
         </scene>
         <!--CAFoodPayViewController-->
         <scene sceneID="OWw-ZJ-jBT">
@@ -279,7 +283,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rOq-pb-mqA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZQw-kk-zzb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wTl-ag-YFY">
@@ -307,7 +311,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-Oa-81m">
-                                <rect key="frame" x="20" y="259" width="335" height="227"/>
+                                <rect key="frame" x="20" y="259" width="335" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -327,7 +331,7 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-yq-E3x">
-                                <rect key="frame" x="20" y="506" width="335" height="77"/>
+                                <rect key="frame" x="20" y="550" width="335" height="77"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
@@ -350,14 +354,14 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VISA" translatesAutoresizingMaskIntoConstraints="NO" id="rUV-Ox-MK3">
-                                <rect key="frame" x="281" y="514" width="54" height="18"/>
+                                <rect key="frame" x="281" y="558" width="54" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17.5" id="Vqi-dy-UPx"/>
                                     <constraint firstAttribute="width" secondItem="rUV-Ox-MK3" secondAttribute="height" multiplier="3:1" id="xEc-ni-XzV"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CASH" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-bX-0c0">
-                                <rect key="frame" x="301" y="555.5" width="34" height="21.5"/>
+                                <rect key="frame" x="301" y="599.5" width="34" height="21.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fSg-bX-0c0" secondAttribute="height" multiplier="79:50" id="x9K-2F-APk"/>
                                 </constraints>
@@ -409,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hK6-x3-bMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3378" y="-1158"/>
+            <point key="canvasLocation" x="3374" y="-1164"/>
         </scene>
         <!--CAFindTableViewController-->
         <scene sceneID="ODO-YQ-bAi">
@@ -630,7 +634,7 @@
         <!--CAMeHistoryTableViewController-->
         <scene sceneID="b7A-OO-ddK">
             <objects>
-                <tableViewController storyboardIdentifier="CAMeHistoryTableViewController" title="HISTORY" id="PNQ-hj-mzf" userLabel="CAMeHistoryTableViewController" customClass="CAMeHistoryTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CAMeHistoryTableViewController" title="ORDER" id="PNQ-hj-mzf" userLabel="CAMeHistoryTableViewController" customClass="CAMeHistoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uiC-kI-PAy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -715,16 +719,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="465-2w-6hj">
-                                                    <rect key="frame" x="315.5" y="11.5" width="49.5" height="20.5"/>
+                                                    <rect key="frame" x="317" y="11.5" width="48" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4f-GM-IQc">
-                                                            <rect key="frame" x="0.0" y="0.0" width="11" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4f-GM-IQc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="9.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSP-lm-UDc">
-                                                            <rect key="frame" x="11" y="0.0" width="38.5" height="20.5"/>
+                                                            <rect key="frame" x="9.5" y="0.0" width="38.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -761,6 +765,7 @@
                             <outlet property="delegate" destination="lLy-pm-d47" id="x7F-Rn-UUC"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
                         <outlet property="dateInstructionLabel" destination="HIa-Ga-b0B" id="DDv-D1-oe7"/>
                         <outlet property="dateLabel" destination="tzK-C2-hHk" id="I5F-oE-k7d"/>
@@ -1059,7 +1064,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ku8-Uu-XQU">
-                                                    <rect key="frame" x="40" y="15" width="172" height="30"/>
+                                                    <rect key="frame" x="40" y="15" width="181" height="30"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lF4-DV-5bk">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -1068,8 +1073,8 @@
                                                                 <constraint firstAttribute="height" constant="30" id="pQN-Fa-g16"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOOD HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-La-Fzd">
-                                                            <rect key="frame" x="50" y="0.0" width="122" height="30"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER HISTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-La-Fzd">
+                                                            <rect key="frame" x="50" y="0.0" width="131" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1418,4 +1423,7 @@
         <image name="Logo_Color" width="104" height="84"/>
         <image name="VISA" width="135" height="45"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vYE-hH-yYs"/>
+    </inferredMetricsTieBreakers>
 </document>

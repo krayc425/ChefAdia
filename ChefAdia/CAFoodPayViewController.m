@@ -31,6 +31,7 @@
     
     //price label
     [_priceLabel setText:_price];
+    
     //time label
     NSDate *now = [NSDate date];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
@@ -38,6 +39,7 @@
     fmt.dateFormat = @"yyyy-MM-dd HH:mm";
     NSString *dateString = [fmt stringFromDate:now];
     [_timeLabel setText:dateString];
+    
     //count label
     [_countLabel setText:[NSString stringWithFormat:@"(%d ITEM%s)",_totalNum, _totalNum <= 1 ? "" : "S"]];
     
@@ -56,7 +58,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //TODO
     return [_payFoodArr count];
 }
 

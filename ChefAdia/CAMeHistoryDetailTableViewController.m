@@ -28,11 +28,9 @@
     [self.dateInstructionLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15]];
     [self.priceLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15]];
     [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15]];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
     [self loadOrderDetail];
 }
 
@@ -75,7 +73,6 @@
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"%@",error);
          }];
-
 }
 
 - (void)goodComment:(_Nonnull id)sender{
@@ -92,7 +89,7 @@
 
 - (void)commentWithNum:(int)comment andFoodID:(NSString *)foodID{
     
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     
     NSDictionary *tempDict = @{
                                @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
@@ -113,8 +110,6 @@
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  
 //                 NSLog(@"success");
-                 
-                 [weakSelf.tableView reloadData];
                  
              }else{
                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);

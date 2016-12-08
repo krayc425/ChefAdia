@@ -17,9 +17,9 @@
     
     NSString *fontName = [Utilities getFont];
     
-    [self.nameLabel setFont:[UIFont fontWithName:fontName size:20]];
-    [self.priceLabel setFont:[UIFont fontWithName:fontName size:15]];
-    [self.numLabel setFont:[UIFont fontWithName:fontName size:15]];
+    [self.nameLabel setFont:[UIFont fontWithName:fontName size:25]];
+    [self.priceLabel setFont:[UIFont fontWithName:fontName size:20]];
+    [self.numLabel setFont:[UIFont fontWithName:fontName size:20]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

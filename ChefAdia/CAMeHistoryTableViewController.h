@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CAMeHistoryTableViewCell.h"
 
-@interface CAMeHistoryTableViewController : UITableViewController
+@interface CAMeHistoryTableViewController : UITableViewController <EasyOrderDelegate>
 
 @property (nonatomic, nonnull) NSString *userID;
 

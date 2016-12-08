@@ -12,11 +12,13 @@
 #import "CAFoodMenu.h"
 #import "Utilities.h"
 #import "CAFoodDetailTableViewController.h"
+#import "CAFoodPayViewController.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #define MENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getMenu"
+#define GET_EASY_ORDER_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getEasyOrder"
 
 @interface CAFoodTableViewController (){
     NSString *fontName;
@@ -41,12 +43,58 @@
     _contactLabel.font = [UIFont fontWithName:fontName size:15];
     
     [_easyOrderButton.titleLabel setFont: [UIFont fontWithName:[Utilities getBoldFont] size:15]];
+    [self checkEasyOrder];
     
     _name1Label.text = @"KRAYC'S";
     _name2Label.text = @"CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
     
 //    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self checkEasyOrder];
+}
+
+- (void)checkEasyOrder{
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"easy_order_id"] != NULL){
+        [_easyOrderButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT"] forState:UIControlStateNormal];
+        [_easyOrderButton setUserInteractionEnabled:YES];
+    }else{
+        [_easyOrderButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_GRAY"] forState:UIControlStateNormal];
+        [_easyOrderButton setUserInteractionEnabled:NO];
+    }
+}
+
+- (IBAction)easyOrderAction:(id)sender{
+    if([_easyOrderButton isUserInteractionEnabled]){
+        
+        NSDictionary *tempDict = @{
+                                   @"userid" : [[NSUserDefaults standardUserDefaults] valueForKey:@"user_id"],
+                                   };
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                             @"text/plain",
+                                                             @"text/html",
+                                                             nil];
+        [manager GET:GET_EASY_ORDER_URL
+          parameters:tempDict
+            progress:nil
+             success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                 NSDictionary *resultDict = (NSDictionary *)responseObject;
+                 if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                     
+                     [self performSegueWithIdentifier:@"easyOrderSegue" sender:[resultDict objectForKey:@"data"]];
+                     
+                 }else{
+                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                 }
+             }
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 NSLog(@"%@",error);
+             }];
+    }
 }
 
 - (void)loadMenu{
@@ -150,6 +198,12 @@
         NSIndexPath *path = (NSIndexPath *)sender;
         CAFoodMenu *caFoodMenu = (CAFoodMenu *)_menuArr[path.row];
         [caFoodDetailTableViewController setFoodType:caFoodMenu];
+    }else if([segue.identifier isEqualToString:@"easyOrderSegue"]){
+        NSDictionary *resultDict = (NSDictionary *)sender;
+        CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
+        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f", [[resultDict objectForKey:@"price"] doubleValue]]];
+        [caFoodPayViewController setTime:[resultDict objectForKey:@"time"]];
+        [caFoodPayViewController setPayFoodArr:[resultDict objectForKey:@"food_list"]];
     }
 }
 

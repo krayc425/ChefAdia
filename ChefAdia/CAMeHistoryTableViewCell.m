@@ -20,12 +20,26 @@
     [self.priceLabel setFont:[UIFont fontWithName:fontName size:20]];
     [self.orderIDLabel setFont:[UIFont fontWithName:fontName size:10]];
     
-    _easyOrderButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
+    _easyOrderButton.titleLabel.font = [UIFont fontWithName:[Utilities getBoldFont] size:15];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
+- (IBAction)easyorderAction:(id)sender{
+    [[NSUserDefaults standardUserDefaults] setValue:[self.orderIDLabel text] forKey:@"easy_order_id"];
+    [self.delegate setEasyOrder:self];
+}
+
+- (void)setIsEasyOrder:(Boolean)isEasyOrder{
+    if(isEasyOrder){
+        [self.easyOrderButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_SHORT"] forState:UIControlStateNormal];
+        [self.easyOrderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else{
+        [self.easyOrderButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_GRAY_SHORT"] forState:UIControlStateNormal];
+        [self.easyOrderButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    }
 }
 
 @end

@@ -104,14 +104,12 @@
                               NSDictionary *resultDict = (NSDictionary *)responseObject;
                               if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                                   NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
-                                  
                                   [[CALoginManager shareInstance] setAddress:[dict valueForKey:@"addr"]];
                                   [[CALoginManager shareInstance] setPhone:[dict valueForKey:@"phone"]];
                                   
                                   [[CALoginManager shareInstance] setLoginState:LOGIN];
                                   
                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
-                                  
                                   [self.navigationController popViewControllerAnimated:YES];
                                   
                               }else{

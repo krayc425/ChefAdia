@@ -15,6 +15,7 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *countLabel;
 @property (nonatomic) int totalNum;
 @property (nonnull, nonatomic) IBOutlet UILabel *timeLabel;
+@property (nonnull, nonatomic) NSString *time;
 
 @property (nonnull, nonatomic) IBOutlet UITableView *tableView;
 

@@ -45,11 +45,14 @@ static CALoginManager* _instance = nil;
     
     if(state == LOGOUT){
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setValue:@"" forKey:@"user_id"];
-        [userDefaults setValue:@"" forKey:@"user_name"];
-        [userDefaults setValue:@"" forKey:@"user_addr"];
-        [userDefaults setValue:@"" forKey:@"user_phone"];
-        [userDefaults setValue:@"" forKey:@"user_avatar"];
+        [userDefaults setValue:NULL forKey:@"user_id"];
+        [userDefaults setValue:NULL forKey:@"user_name"];
+        [userDefaults setValue:NULL forKey:@"user_addr"];
+        [userDefaults setValue:NULL forKey:@"user_phone"];
+        [userDefaults setValue:NULL forKey:@"user_avatar"];
+        [userDefaults setValue:NULL forKey:@"easy_order_id"];
+        
+        [self clearAvatar];
     }else if(state == LOGIN){
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setValue:_userID forKey:@"user_id"];
@@ -57,29 +60,6 @@ static CALoginManager* _instance = nil;
         [userDefaults setValue:_avatarURL forKey:@"user_avatar"];
         [userDefaults setValue:_address forKey:@"user_addr"];
         [userDefaults setValue:_phone forKey:@"user_phone"];
-        
-        NSLog(@"AVATAR URL : %@", _avatarURL);
-        
-        if(_avatarURL != NULL){
-            NSURL *imageUrl = [NSURL URLWithString:[_avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
-            
-            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl
-                                                                  options:SDWebImageDownloaderContinueInBackground
-                                                                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                                     
-                                                                 } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                                     [self saveAvatar:image];
-                                                                     
-                                                                     //[[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
-                                                                     
-                                                                 }];
-            
-        }else{
-        
-            [self clearAvatar];
-            
-        }
-
     }
 }
 
@@ -98,7 +78,7 @@ static CALoginManager* _instance = nil;
     
     if (![fileManager fileExistsAtPath:imagePath]) {
         NSLog(@"图片不存在");
-        return nil;
+        return NULL;
     }else {
         return [UIImage imageWithContentsOfFile:imagePath];
     }

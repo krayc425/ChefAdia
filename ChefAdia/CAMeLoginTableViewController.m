@@ -12,6 +12,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "SDWebImageDownloader.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define AVATAR_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modAva"
 
@@ -55,7 +57,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self refreshLabel];
+//    [self refreshLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -66,7 +68,36 @@
     _userNameLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_name"];
     _addressLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_addr"];
     _avatarView.image = [[CALoginManager shareInstance] readAvatar];
-    [self.tableView reloadData];
+    
+    if([[CALoginManager shareInstance] readAvatar] == NULL){
+        
+        NSString *avatarURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_avatar"];
+        NSLog(@"AVATAR URL : %@", avatarURL);
+        if(avatarURL != NULL){
+            NSURL *imageUrl = [NSURL URLWithString:[avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
+            
+            UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            [indicatorView setCenter: CGPointMake(_avatarView.center.x, _avatarView.center.y)]; //TODO
+            
+            [self.avatarView sd_setImageWithURL:imageUrl
+                               placeholderImage:nil
+                                        options:SDWebImageHighPriority
+                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                           [indicatorView startAnimating];
+                                           [indicatorView setHidesWhenStopped:YES];
+                                           [self.tableView addSubview:indicatorView];
+                                       } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                           
+                                           [[CALoginManager shareInstance] saveAvatar:image];
+                                           
+                                           [indicatorView stopAnimating];
+
+                                           [self.tableView reloadData];
+                                       }];
+            
+        }
+    }
+    
 }
 
 - (IBAction)logoutAction:(id)sender{
