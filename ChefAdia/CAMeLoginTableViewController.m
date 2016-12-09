@@ -77,7 +77,7 @@
             NSURL *imageUrl = [NSURL URLWithString:[avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
             
             UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            [indicatorView setCenter: CGPointMake(_avatarView.center.x, _avatarView.center.y)]; //TODO
+            [indicatorView setCenter: CGPointMake(self.view.frame.size.width / 2, 86.5)]; //TODO
             
             [self.avatarView sd_setImageWithURL:imageUrl
                                placeholderImage:nil

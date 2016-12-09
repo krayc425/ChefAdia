@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import "SDWebImageDownloader.h"
+#import "CAFoodCart.h"
 
 @implementation CALoginManager
 
@@ -51,8 +52,10 @@ static CALoginManager* _instance = nil;
         [userDefaults setValue:NULL forKey:@"user_phone"];
         [userDefaults setValue:NULL forKey:@"user_avatar"];
         [userDefaults setValue:NULL forKey:@"easy_order_id"];
-        
+        //清空头像
         [self clearAvatar];
+        //清空购物车
+        [[CAFoodCart shareInstance] clearCart];
     }else if(state == LOGIN){
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setValue:_userID forKey:@"user_id"];

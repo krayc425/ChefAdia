@@ -53,7 +53,7 @@ static CAFoodCart* _instance = nil;
     }
     //原来没有，那么增加一个元素
     if(!foundFlag){
-        [_foodArr addObject:[[CAFoodDetailInCart alloc] initWithID:foodID andName:foodName andPrice:price]];
+        [_foodArr addObject:[[CAFoodDetailInCart alloc] initWithID:foodID andName:foodName andPrice:price andNum:num]];
     }
 }
 
@@ -66,7 +66,7 @@ static CAFoodCart* _instance = nil;
 }
 
 - (int)getTotalNum{
-    int sum = 0.0;
+    int sum = 0;
     for(CAFoodDetailInCart *food in _foodArr){
         sum = sum + food.number;
     }
@@ -75,6 +75,10 @@ static CAFoodCart* _instance = nil;
 
 - (NSArray *)getFoodInCart{
     return _foodArr;
+}
+
+- (void)clearCart{
+    _foodArr = [[NSMutableArray alloc] init];
 }
 
 @end

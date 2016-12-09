@@ -56,6 +56,7 @@
                  
                  for(NSDictionary *dict in (NSArray *)[resultDict objectForKey:@"data"]){
                      [weakSelf.orderArr addObject:dict];
+//                     [weakSelf.orderArr insertObject:dict atIndex:0];
                  }
                  
                  [weakSelf.tableView reloadData];
@@ -91,7 +92,6 @@
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                 
                  NSLog(@"success");
                  
                  [weakSelf.tableView reloadData];

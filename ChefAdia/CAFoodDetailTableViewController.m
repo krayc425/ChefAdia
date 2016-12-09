@@ -126,7 +126,7 @@
     [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
                                                andName:caFoodDetail.name
                                                 andNum:1
-                                            andPrice:[cell.priceLabel.text doubleValue]];
+                                              andPrice:[cell.priceLabel.text doubleValue]];
     //GET TOTAL PRICE FROM FOOD CART
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }
@@ -227,8 +227,8 @@
         }else{
             CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
             [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f",[_foodCart getTotalPrice]]];
+            [caFoodPayViewController setPayFoodArr:(NSMutableArray *)[_foodCart getFoodInCart]];
             [caFoodPayViewController setTotalNum:[_foodCart getTotalNum]];
-            [caFoodPayViewController setPayFoodArr:(NSMutableArray *)[[CAFoodCart shareInstance] getFoodInCart]];
         }
     }
 }

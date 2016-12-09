@@ -22,6 +22,9 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *visaButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *cashButton;
 
-@property (nonnull, nonatomic) NSMutableArray *payFoodArr;
+@property (nonnull, nonatomic) IBOutlet UISwitch *bowlSwitch;
+@property (nonnull, nonatomic) IBOutlet UISwitch *ticketSwitch;
+
+@property (nonnull, nonatomic) NSArray *payFoodArr;
 
 @end

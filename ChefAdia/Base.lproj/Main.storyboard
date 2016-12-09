@@ -310,8 +310,8 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-Oa-81m">
-                                <rect key="frame" x="20" y="259" width="335" height="271"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-Oa-81m">
+                                <rect key="frame" x="20" y="259" width="335" height="294"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -330,67 +330,91 @@
                                     <outlet property="delegate" destination="Mz8-Ga-rK3" id="RyB-pD-a5j"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-yq-E3x">
-                                <rect key="frame" x="20" y="550" width="335" height="77"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="nTp-Ku-7c5" secondAttribute="height" multiplier="10:1" id="zu9-2c-NvV"/>
-                                        </constraints>
-                                        <state key="normal" title="PAY WITH VISA" backgroundImage="BUTTON_BG_VISA">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3z-ji-6p3">
-                                        <rect key="frame" x="0.0" y="43.5" width="335" height="33.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="z3z-ji-6p3" secondAttribute="height" multiplier="10:1" id="PDe-yT-7cq"/>
-                                        </constraints>
-                                        <state key="normal" title="CASH ON DELIVERY" backgroundImage="BUTTON_BG_DEFAULT">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VISA" translatesAutoresizingMaskIntoConstraints="NO" id="rUV-Ox-MK3">
-                                <rect key="frame" x="281" y="558" width="54" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17.5" id="Vqi-dy-UPx"/>
-                                    <constraint firstAttribute="width" secondItem="rUV-Ox-MK3" secondAttribute="height" multiplier="3:1" id="xEc-ni-XzV"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CASH" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-bX-0c0">
-                                <rect key="frame" x="301" y="599.5" width="34" height="21.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="fSg-bX-0c0" secondAttribute="height" multiplier="79:50" id="x9K-2F-APk"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMj-wx-KSk">
                                 <rect key="frame" x="245" y="193.5" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bvp-Dn-IES">
+                                <rect key="frame" x="20" y="568.5" width="335" height="31"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HpM-Sr-5N8">
+                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USE BOWL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xq-oP-Syx">
+                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CQS-wa-0GA">
+                                                <rect key="frame" x="113.5" y="0.0" width="51" height="31"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfm-TS-lTR">
+                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USE TICKET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgw-CF-9be">
+                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vwo-Bl-hH5">
+                                                <rect key="frame" x="113.5" y="0.0" width="51" height="31"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-yq-E3x">
+                                <rect key="frame" x="20" y="614.5" width="335" height="32.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
+                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="32.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="nTp-Ku-7c5" secondAttribute="height" multiplier="5:1" id="zu9-2c-NvV"/>
+                                        </constraints>
+                                        <state key="normal" title="PAY WITH VISA" backgroundImage="BUTTON_BG_VISA_SHORT">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="payAction:" destination="Mz8-Ga-rK3" eventType="touchUpInside" id="OCg-gH-nZV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3z-ji-6p3">
+                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="32.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="z3z-ji-6p3" secondAttribute="height" multiplier="5:1" id="PDe-yT-7cq"/>
+                                        </constraints>
+                                        <state key="normal" title="CASH ON DELIVERY" backgroundImage="BUTTON_BG_DEFAULT_SHORT">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="payAction:" destination="Mz8-Ga-rK3" eventType="touchUpInside" id="leC-PY-Qce"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LMj-wx-KSk" firstAttribute="leading" secondItem="wTl-ag-YFY" secondAttribute="trailing" constant="5" id="49k-F3-Jof"/>
-                            <constraint firstItem="fSg-bX-0c0" firstAttribute="top" secondItem="z3z-ji-6p3" secondAttribute="top" constant="6" id="6aE-LT-dZQ"/>
                             <constraint firstItem="wTl-ag-YFY" firstAttribute="top" secondItem="uKB-aq-wLq" secondAttribute="bottom" constant="40" id="FpJ-om-4Gq"/>
-                            <constraint firstAttribute="trailing" secondItem="fSg-bX-0c0" secondAttribute="trailing" constant="40" id="IAL-L3-2Y9"/>
-                            <constraint firstItem="fSg-bX-0c0" firstAttribute="bottom" secondItem="z3z-ji-6p3" secondAttribute="bottom" constant="-6" id="MBO-Wn-i3x"/>
-                            <constraint firstItem="bm0-yq-E3x" firstAttribute="top" secondItem="xt4-Oa-81m" secondAttribute="bottom" constant="20" id="Mxz-fR-Ye1"/>
                             <constraint firstItem="wTl-ag-YFY" firstAttribute="centerX" secondItem="ZQw-kk-zzb" secondAttribute="centerX" id="RB5-lB-GTd"/>
                             <constraint firstItem="bm0-yq-E3x" firstAttribute="centerX" secondItem="ZQw-kk-zzb" secondAttribute="centerX" id="SqK-9G-n0J"/>
                             <constraint firstItem="LMj-wx-KSk" firstAttribute="centerY" secondItem="S4l-uv-T9z" secondAttribute="centerY" id="Up1-hO-5HC"/>
                             <constraint firstItem="xt4-Oa-81m" firstAttribute="leading" secondItem="ZQw-kk-zzb" secondAttribute="leading" constant="20" id="Ygz-2M-q7V"/>
-                            <constraint firstItem="rOq-pb-mqA" firstAttribute="top" secondItem="bm0-yq-E3x" secondAttribute="bottom" constant="40" id="cqn-Fl-LQj"/>
-                            <constraint firstAttribute="trailing" secondItem="rUV-Ox-MK3" secondAttribute="trailing" constant="40" id="dKI-EZ-9Hr"/>
+                            <constraint firstItem="Bvp-Dn-IES" firstAttribute="leading" secondItem="ZQw-kk-zzb" secondAttribute="leading" constant="20" id="c4c-s6-LNF"/>
+                            <constraint firstItem="rOq-pb-mqA" firstAttribute="top" secondItem="bm0-yq-E3x" secondAttribute="bottom" constant="20" id="cqn-Fl-LQj"/>
+                            <constraint firstAttribute="trailing" secondItem="Bvp-Dn-IES" secondAttribute="trailing" constant="20" id="cuI-jn-Log"/>
                             <constraint firstItem="bm0-yq-E3x" firstAttribute="leading" secondItem="ZQw-kk-zzb" secondAttribute="leading" constant="20" id="ec4-nU-lOj"/>
                             <constraint firstItem="xt4-Oa-81m" firstAttribute="top" secondItem="wTl-ag-YFY" secondAttribute="bottom" constant="20" id="fW0-pA-vWL"/>
                             <constraint firstAttribute="trailing" secondItem="xt4-Oa-81m" secondAttribute="trailing" constant="20" id="gdl-eC-zsm"/>
-                            <constraint firstItem="rUV-Ox-MK3" firstAttribute="centerY" secondItem="nTp-Ku-7c5" secondAttribute="centerY" id="hfI-43-0nj"/>
+                            <constraint firstItem="bm0-yq-E3x" firstAttribute="top" secondItem="Bvp-Dn-IES" secondAttribute="bottom" constant="15" id="ncg-q1-3sR"/>
+                            <constraint firstItem="Bvp-Dn-IES" firstAttribute="top" secondItem="xt4-Oa-81m" secondAttribute="bottom" constant="15" id="rvS-dr-yUo"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
@@ -403,10 +427,12 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bowlSwitch" destination="CQS-wa-0GA" id="Zzd-Rl-qPN"/>
                         <outlet property="cashButton" destination="z3z-ji-6p3" id="Kz6-Re-JJ8"/>
                         <outlet property="countLabel" destination="LMj-wx-KSk" id="e3H-8v-PLJ"/>
                         <outlet property="priceLabel" destination="S4l-uv-T9z" id="LNN-9y-bPf"/>
                         <outlet property="tableView" destination="xt4-Oa-81m" id="UcX-f6-dlP"/>
+                        <outlet property="ticketSwitch" destination="vwo-Bl-hH5" id="Jjy-wF-DoL"/>
                         <outlet property="timeLabel" destination="RR9-T1-zNI" id="mGq-Xi-G42"/>
                         <outlet property="visaButton" destination="nTp-Ku-7c5" id="iZm-8v-fn9"/>
                     </connections>
@@ -1415,9 +1441,10 @@
     <resources>
         <image name="BUTTON_BG_CLEAR" width="1000" height="200"/>
         <image name="BUTTON_BG_DEFAULT" width="2000" height="200"/>
+        <image name="BUTTON_BG_DEFAULT_SHORT" width="500" height="100"/>
         <image name="BUTTON_BG_GRAY" width="2000" height="200"/>
         <image name="BUTTON_BG_VISA" width="2000" height="200"/>
-        <image name="CASH" width="79" height="50"/>
+        <image name="BUTTON_BG_VISA_SHORT" width="1000" height="200"/>
         <image name="Line" width="51" height="1"/>
         <image name="Logo" width="222" height="180"/>
         <image name="Logo_Color" width="104" height="84"/>

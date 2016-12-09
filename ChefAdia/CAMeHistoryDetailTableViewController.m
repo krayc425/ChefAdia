@@ -56,6 +56,7 @@
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  
                  NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
+                 //TODO
                  [weakSelf.priceLabel setText:[NSString stringWithFormat:@"%.2f", [[dict objectForKey:@"price"] doubleValue]]];
                  [weakSelf.dateLabel setText:[dict objectForKey:@"time"]];
                  
@@ -109,7 +110,7 @@
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  
-//                 NSLog(@"success");
+                 NSLog(@"success");
                  
              }else{
                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);

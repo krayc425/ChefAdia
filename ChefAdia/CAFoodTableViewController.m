@@ -13,6 +13,7 @@
 #import "Utilities.h"
 #import "CAFoodDetailTableViewController.h"
 #import "CAFoodPayViewController.h"
+#import "CAFoodDetailInCart.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -48,8 +49,6 @@
     _name1Label.text = @"KRAYC'S";
     _name2Label.text = @"CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
-    
-//    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -199,11 +198,24 @@
         CAFoodMenu *caFoodMenu = (CAFoodMenu *)_menuArr[path.row];
         [caFoodDetailTableViewController setFoodType:caFoodMenu];
     }else if([segue.identifier isEqualToString:@"easyOrderSegue"]){
+        [[CAFoodCart shareInstance] clearCart];
+        
         NSDictionary *resultDict = (NSDictionary *)sender;
         CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
-        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f", [[resultDict objectForKey:@"price"] doubleValue]]];
-        [caFoodPayViewController setTime:[resultDict objectForKey:@"time"]];
-        [caFoodPayViewController setPayFoodArr:[resultDict objectForKey:@"food_list"]];
+        
+        NSArray *resultFoodArr = (NSArray *)[resultDict objectForKey:@"food_list"];
+        for(NSDictionary *dict in resultFoodArr){
+            [[CAFoodCart shareInstance] modifyFoodInCartWithID:[dict objectForKey:@"foodid"]
+                                                       andName:[dict objectForKey:@"name"]
+                                                        andNum:[[dict objectForKey:@"num"] intValue]
+                                                      andPrice:[[dict objectForKey:@"price"] doubleValue]];
+        }
+        [caFoodPayViewController setPayFoodArr:[[CAFoodCart shareInstance] getFoodInCart]];
+        //        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f", [[resultDict objectForKey:@"price"] doubleValue]]];
+        //        [caFoodPayViewController setTime:[resultDict objectForKey:@"time"]];
+        //价格和时间要实时更新，不能用原来的
+        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f", [[CAFoodCart shareInstance] getTotalPrice]]];
+        [caFoodPayViewController setTotalNum:[[CAFoodCart shareInstance] getTotalNum]];
     }
 }
 

@@ -17,6 +17,6 @@
 //当前拥有的数量
 @property (nonatomic) int number;
 
-- (_Nonnull instancetype)initWithID:(NSString *_Nonnull)foodID andName:(NSString *_Nonnull)foodName andPrice:(double)price;
+- (_Nonnull instancetype)initWithID:(NSString *_Nonnull)foodID andName:(NSString *_Nonnull)foodName andPrice:(double)price andNum:(int)num;
 
 @end
