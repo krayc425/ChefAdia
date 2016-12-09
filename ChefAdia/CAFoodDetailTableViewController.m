@@ -113,7 +113,18 @@
 }
 
 - (IBAction)payAction:(id)sender{
-    [self performSegueWithIdentifier:@"paySegue" sender:nil];
+    if([_foodCart getTotalNum] == 0){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"No food in cart"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        [self performSegueWithIdentifier:@"paySegue" sender:nil];
+    }
 }
 
 #pragma mark - Cell Action
@@ -222,14 +233,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"paySegue"]){
-        if([_foodCart getTotalNum] == 0){
-            NSLog(@"NO FOOD IN CART");
-        }else{
-            CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
-            [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f",[_foodCart getTotalPrice]]];
-            [caFoodPayViewController setPayFoodArr:(NSMutableArray *)[_foodCart getFoodInCart]];
-            [caFoodPayViewController setTotalNum:[_foodCart getTotalNum]];
-        }
+        CAFoodPayViewController *caFoodPayViewController = (CAFoodPayViewController *)[segue destinationViewController];
+        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f",[_foodCart getTotalPrice]]];
+        [caFoodPayViewController setPayFoodArr:(NSMutableArray *)[_foodCart getFoodInCart]];
+        [caFoodPayViewController setTotalNum:[_foodCart getTotalNum]];
     }
 }
 

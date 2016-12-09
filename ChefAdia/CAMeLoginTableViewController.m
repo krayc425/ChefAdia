@@ -57,7 +57,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-//    [self refreshLabel];
+    [self refreshLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

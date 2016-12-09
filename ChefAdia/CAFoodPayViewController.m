@@ -30,6 +30,9 @@
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    [_bowlInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
+    [_ticketInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
+    
     [_priceLabel setFont:[UIFont fontWithName:fontName size:40]];
     [_timeLabel setFont:[UIFont fontWithName:fontName size:15]];
     [_countLabel setFont:[UIFont fontWithName:fontName size:15]];

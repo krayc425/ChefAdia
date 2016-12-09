@@ -283,7 +283,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rOq-pb-mqA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZQw-kk-zzb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wTl-ag-YFY">
@@ -311,7 +311,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-Oa-81m">
-                                <rect key="frame" x="20" y="259" width="335" height="294"/>
+                                <rect key="frame" x="20" y="259" width="335" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -337,13 +337,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bvp-Dn-IES">
-                                <rect key="frame" x="20" y="568.5" width="335" height="31"/>
+                                <rect key="frame" x="20" y="524.5" width="335" height="31"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HpM-Sr-5N8">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="HpM-Sr-5N8">
                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USE BOWL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xq-oP-Syx">
-                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -370,7 +370,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-yq-E3x">
-                                <rect key="frame" x="20" y="614.5" width="335" height="32.5"/>
+                                <rect key="frame" x="20" y="570.5" width="335" height="32.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="32.5"/>
@@ -427,11 +427,13 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bowlInstructionLabel" destination="4Xq-oP-Syx" id="cRV-B7-AVh"/>
                         <outlet property="bowlSwitch" destination="CQS-wa-0GA" id="Zzd-Rl-qPN"/>
                         <outlet property="cashButton" destination="z3z-ji-6p3" id="Kz6-Re-JJ8"/>
                         <outlet property="countLabel" destination="LMj-wx-KSk" id="e3H-8v-PLJ"/>
                         <outlet property="priceLabel" destination="S4l-uv-T9z" id="LNN-9y-bPf"/>
                         <outlet property="tableView" destination="xt4-Oa-81m" id="UcX-f6-dlP"/>
+                        <outlet property="ticketInstructionLabel" destination="Kgw-CF-9be" id="KvK-aL-Z6b"/>
                         <outlet property="ticketSwitch" destination="vwo-Bl-hH5" id="Jjy-wF-DoL"/>
                         <outlet property="timeLabel" destination="RR9-T1-zNI" id="mGq-Xi-G42"/>
                         <outlet property="visaButton" destination="nTp-Ku-7c5" id="iZm-8v-fn9"/>
@@ -472,83 +474,12 @@
                     <tabBarItem key="tabBarItem" title="Item" id="ihI-PD-fdf"/>
                     <connections>
                         <segue destination="PCo-ia-DAb" kind="show" identifier="addMenuSegue" id="7Sg-fn-G25"/>
-                        <segue destination="cL0-EU-9nZ" kind="show" identifier="mealTicketSegue" id="Qqp-GK-6xP"/>
+                        <segue destination="g37-dR-H8W" kind="show" identifier="mealTicketSegue" id="dBn-J8-kRu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Elb-y3-B4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1494" y="229"/>
-        </scene>
-        <!--CAFindTicketViewController-->
-        <scene sceneID="Wio-5K-HX8">
-            <objects>
-                <viewController storyboardIdentifier="CAFindTicketViewController" title="MEAL TICKET" id="cL0-EU-9nZ" userLabel="CAFindTicketViewController" customClass="CAFindTicketViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3Zd-rb-aGs"/>
-                        <viewControllerLayoutGuide type="bottom" id="gDp-Gn-dxe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cFm-WW-mev">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IEL-UO-D4Q">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PeK-Gd-S9R">
-                                <rect key="frame" x="20" y="550" width="335" height="77"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8oc-2A-tZ6">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="8oc-2A-tZ6" secondAttribute="height" multiplier="10:1" id="sdl-aa-lSv"/>
-                                        </constraints>
-                                        <state key="normal" title="PAY WITH VISA" backgroundImage="BUTTON_BG_VISA">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGM-6i-95I">
-                                        <rect key="frame" x="0.0" y="43.5" width="335" height="33.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="wGM-6i-95I" secondAttribute="height" multiplier="10:1" id="ird-81-gAU"/>
-                                        </constraints>
-                                        <state key="normal" title="MORE TICKETS COMING SOON..." backgroundImage="BUTTON_BG_DEFAULT">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VISA" translatesAutoresizingMaskIntoConstraints="NO" id="mWb-Hf-4D7">
-                                <rect key="frame" x="284" y="559" width="51" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="mWb-Hf-4D7" secondAttribute="height" multiplier="3:1" id="9Jh-pY-iKz"/>
-                                    <constraint firstAttribute="height" constant="17.5" id="Cv5-cw-uuU"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8oc-2A-tZ6" firstAttribute="centerY" secondItem="mWb-Hf-4D7" secondAttribute="centerY" id="0c8-1a-Iha"/>
-                            <constraint firstItem="PeK-Gd-S9R" firstAttribute="centerX" secondItem="cFm-WW-mev" secondAttribute="centerX" id="5Lh-hf-n5T"/>
-                            <constraint firstItem="mWb-Hf-4D7" firstAttribute="width" secondItem="mWb-Hf-4D7" secondAttribute="height" multiplier="3:1" id="KZ3-QM-EVS"/>
-                            <constraint firstItem="IEL-UO-D4Q" firstAttribute="leading" secondItem="cFm-WW-mev" secondAttribute="leading" id="OQW-fG-5If"/>
-                            <constraint firstAttribute="trailing" secondItem="IEL-UO-D4Q" secondAttribute="trailing" id="TcR-Ih-ir4"/>
-                            <constraint firstItem="PeK-Gd-S9R" firstAttribute="leading" secondItem="cFm-WW-mev" secondAttribute="leading" constant="20" id="crj-1i-cs8"/>
-                            <constraint firstAttribute="bottom" secondItem="PeK-Gd-S9R" secondAttribute="bottom" constant="40" id="dg2-sr-Thu"/>
-                            <constraint firstItem="gDp-Gn-dxe" firstAttribute="top" secondItem="IEL-UO-D4Q" secondAttribute="bottom" id="gCT-Xn-ovg"/>
-                            <constraint firstItem="IEL-UO-D4Q" firstAttribute="top" secondItem="3Zd-rb-aGs" secondAttribute="bottom" id="jGZ-S5-Hap"/>
-                            <constraint firstAttribute="trailing" secondItem="mWb-Hf-4D7" secondAttribute="trailing" constant="40" id="lHN-ER-Sjz"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <connections>
-                        <outlet property="backgroundView" destination="IEL-UO-D4Q" id="c8V-1R-5cU"/>
-                        <outlet property="moreButton" destination="wGM-6i-95I" id="fmP-4g-Sid"/>
-                        <outlet property="visaButton" destination="8oc-2A-tZ6" id="aEz-un-ExU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N4b-a3-MuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3084" y="591"/>
         </scene>
         <!--CAFindMenuViewController-->
         <scene sceneID="MXE-KF-dRt">
@@ -1437,20 +1368,81 @@
             </objects>
             <point key="canvasLocation" x="1495" y="2884"/>
         </scene>
+        <!--CAFindTicketTableViewController-->
+        <scene sceneID="cA9-TT-c32">
+            <objects>
+                <tableViewController storyboardIdentifier="CAFindTicketTableViewController" title="TICKET" id="g37-dR-H8W" userLabel="CAFindTicketTableViewController" customClass="CAFindTicketTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dx0-xT-2ct">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <sections>
+                            <tableViewSection id="o9g-Hh-zcC">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="QmR-EN-ycE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QmR-EN-ycE" id="hCF-uD-J1n">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3QB-gf-4RK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3QB-gf-4RK" firstAttribute="leading" secondItem="hCF-uD-J1n" secondAttribute="leading" id="DRd-sL-5OO"/>
+                                                <constraint firstAttribute="bottom" secondItem="3QB-gf-4RK" secondAttribute="bottom" id="T28-A0-ecb"/>
+                                                <constraint firstAttribute="trailing" secondItem="3QB-gf-4RK" secondAttribute="trailing" id="Ty1-P2-toA"/>
+                                                <constraint firstItem="3QB-gf-4RK" firstAttribute="top" secondItem="hCF-uD-J1n" secondAttribute="top" id="Y5h-Wa-THe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="azW-Fg-ziV">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CAFindTicketTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="CAFindTicketTableViewCell" rowHeight="80" id="PTY-7J-qfy" userLabel="CAFindTicketTableViewCell" customClass="CAFindTicketTableViewCell">
+                                        <rect key="frame" x="0.0" y="250" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PTY-7J-qfy" id="zN4-B9-Xcz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="g37-dR-H8W" id="aFf-QV-E35"/>
+                            <outlet property="delegate" destination="g37-dR-H8W" id="R4z-XR-eJq"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <toolbarItems>
+                        <barButtonItem title="TOTAL BILL : 0" id="pj4-7w-eEG"/>
+                    </toolbarItems>
+                    <connections>
+                        <outlet property="backgroundView" destination="3QB-gf-4RK" id="Yaj-Ld-QwI"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ydV-3O-Rug" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3054" y="589"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BUTTON_BG_CLEAR" width="1000" height="200"/>
         <image name="BUTTON_BG_DEFAULT" width="2000" height="200"/>
         <image name="BUTTON_BG_DEFAULT_SHORT" width="500" height="100"/>
         <image name="BUTTON_BG_GRAY" width="2000" height="200"/>
-        <image name="BUTTON_BG_VISA" width="2000" height="200"/>
         <image name="BUTTON_BG_VISA_SHORT" width="1000" height="200"/>
         <image name="Line" width="51" height="1"/>
         <image name="Logo" width="222" height="180"/>
         <image name="Logo_Color" width="104" height="84"/>
-        <image name="VISA" width="135" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vYE-hH-yYs"/>
+        <segue reference="zOT-QA-eiX"/>
     </inferredMetricsTieBreakers>
 </document>

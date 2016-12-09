@@ -10,6 +10,9 @@
 
 @interface CAFoodPayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonnull, nonatomic) IBOutlet UILabel *bowlInstructionLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *ticketInstructionLabel;
+
 @property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
 @property (nonnull, nonatomic) NSString *price;
 @property (nonnull, nonatomic) IBOutlet UILabel *countLabel;
