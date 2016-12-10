@@ -74,10 +74,10 @@
         NSString *avatarURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_avatar"];
         NSLog(@"AVATAR URL : %@", avatarURL);
         if(avatarURL != NULL){
-            NSURL *imageUrl = [NSURL URLWithString:[avatarURL stringByReplacingOccurrencesOfString:@"/data/wwwroot/default/images/" withString:@"http://139.196.179.145/images/"] ];
+            NSURL *imageUrl = [NSURL URLWithString:avatarURL];
             
             UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            [indicatorView setCenter: CGPointMake(self.view.frame.size.width / 2, 86.5)]; //TODO
+            [indicatorView setCenter: CGPointMake(self.view.frame.size.width / 2, 96.5)]; //TODO
             
             [self.avatarView sd_setImageWithURL:imageUrl
                                placeholderImage:nil

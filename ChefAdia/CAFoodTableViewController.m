@@ -53,6 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self checkEasyOrder];
+    
+    [self loadMenu];
 }
 
 - (void)checkEasyOrder{
