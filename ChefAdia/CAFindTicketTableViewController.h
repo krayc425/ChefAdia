@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CAFindTicketTableViewCell.h"
 
-@interface CAFindTicketTableViewController : UITableViewController
+@interface CAFindTicketTableViewController : UITableViewController <BuyTicketDelegate>
 
-@property (strong, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (nonnull, nonatomic) IBOutlet UIImageView *backgroundView;
+
+@property (nonnull, nonatomic) NSMutableArray *ticketArr;
+@property (nonnull, nonatomic) NSMutableArray *myTicketArr;
+
 
 @end

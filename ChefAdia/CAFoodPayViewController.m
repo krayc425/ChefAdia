@@ -91,10 +91,6 @@
                                @"pay_type" : [NSNumber numberWithInteger:button.tag],
                                };
     
-//    for(NSString *kry in tempDict){
-//        NSLog(@"Key : %@ Value : %@", kry, tempDict[kry]);
-//    }
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
@@ -110,7 +106,7 @@
                  
                  [[CAFoodCart shareInstance] clearCart];
                  
-                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order Success"
+                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
                                                                                  message:nil
                                                                           preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"

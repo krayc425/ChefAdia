@@ -8,10 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BuyTicketDelegate<NSObject>
+
+- (void)buyTicket:(_Nonnull id)sender;
+
+@end
+
 @interface CAFindTicketTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *IDLabel;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
-@property (strong, nonatomic) IBOutlet UIButton *buyButton;
+
+@property (nonatomic, nonnull) id<BuyTicketDelegate> delegate;
+
+@property (nonnull, nonatomic) IBOutlet UILabel *IDLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
+@property (nonnull, nonatomic) IBOutlet UIButton *buyButton;
+@property (nonnull, nonatomic) IBOutlet UILabel *descriptionLabel;
+
+@property (nonnull, nonatomic) IBOutlet UILabel *expireInstructionLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *expireLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *dailyAmountInstructionLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *dailyAmountLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *currentInstructionLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *currentLabel;
 
 @end
