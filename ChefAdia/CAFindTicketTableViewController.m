@@ -132,9 +132,7 @@
                                                                           preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                                     style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction *action){
-                                                                      [self.navigationController popToRootViewControllerAnimated:YES];
-                                                                  }];
+                                                                  handler:nil];
                  [alertC addAction:okAction];
                  [self presentViewController:alertC animated:YES completion:nil];
                  

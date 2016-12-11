@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CAFoodDetailTableViewCell.h"
+#import "CAFoodDetailExtraView.h"
 #import "CAFoodCart.h"
 #import "CAFoodMenu.h"
 
-@interface CAFoodDetailTableViewController : UITableViewController <DetailDelegate>
+@interface CAFoodDetailTableViewController : UITableViewController <DetailDelegate, ExtraDelegate>
 
 @property (nonnull, nonatomic) UIView *containerView;
 

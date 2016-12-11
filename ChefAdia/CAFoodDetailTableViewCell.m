@@ -22,6 +22,8 @@
     [self.goodLabel setFont:[UIFont fontWithName:fontName size:12]];
     [self.badLabel setFont:[UIFont fontWithName:fontName size:12]];
     
+    [self.extraButton.titleLabel setFont:[UIFont fontWithName:fontName size:15]];
+    
     [self.currNumLabel setTextColor:color];
     [self.goodLabel setTextColor:color];
 }
@@ -44,6 +46,10 @@
         [self.currNumLabel setText:[NSString stringWithFormat:@"%d",i]];
         [self.delegate minusNum:self];
     }
+}
+
+- (IBAction)selectExtra:(id)sender{
+    [self.delegate selectExtra:self];
 }
 
 @end

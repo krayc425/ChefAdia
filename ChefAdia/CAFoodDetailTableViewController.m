@@ -18,6 +18,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CAFoodDetailExtraView.h"
 
 #define LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getList"
 
@@ -71,12 +72,15 @@
                  
                  for(NSDictionary *Dict in (NSArray *)[subResultDict objectForKey:@"list"]){
                      
+                     NSLog(@"%@", [Dict description]);
+                     
                      CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[Dict objectForKey:@"name"]
                                                                              andID:[Dict objectForKey:@"foodid"]
                                                                             andPrice:[[Dict objectForKey:@"price"] doubleValue]
                                                                               andPic:[Dict objectForKey:@"pic"]
                                                                             andLikes:[[Dict objectForKey:@"good_num"] intValue]
-                                                                         andDislikes:[[Dict objectForKey:@"bad_num"] intValue]];
+                                                                         andDislikes:[[Dict objectForKey:@"bad_num"] intValue]
+                                                                           andExtras:[Dict objectForKey:@"extraFood"]];
                      [_foodArr addObject:caFoodDetail];
                  }
                  
@@ -97,7 +101,6 @@
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"%@",error);
          }];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -138,8 +141,7 @@
                                                andName:caFoodDetail.name
                                                 andNum:1
                                               andPrice:[cell.priceLabel.text doubleValue]];
-    //GET TOTAL PRICE FROM FOOD CART
-    [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
+    [self updatePrice];
 }
 
 - (void)minusNum:(id)sender{
@@ -151,6 +153,39 @@
                                                andName:caFoodDetail.name
                                                 andNum:-1
                                               andPrice:[cell.priceLabel.text doubleValue]];
+    [self updatePrice];
+}
+
+- (void)selectExtra:(id)sender{
+    NSLog(@"extra");
+    CAFoodDetailTableViewCell *cell = (CAFoodDetailTableViewCell *)sender;
+    if([cell.currNumLabel.text intValue] == 0){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You haven't chosen this food."
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        CAFoodDetail *caFoodDetail = [_foodArr objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
+    
+        NSLog(@"%@", [caFoodDetail.extras description]);
+        
+        CAFoodDetailExtraView *extraView =
+        [[CAFoodDetailExtraView alloc] initWithFrame:CGRectMake(0,
+                                                                self.view.center.y - ([caFoodDetail.extras count] * 80) / 2,
+                                                                self.view.frame.size.width,
+                                                                [caFoodDetail.extras count] * 80)
+                                           withExtra:caFoodDetail.extras];
+        extraView.delegate = self;
+        [extraView showInView:self.view];
+        
+    }
+}
+
+- (void)updatePrice{
     //GET TOTAL PRICE FROM FOOD CART
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
 }
@@ -186,6 +221,15 @@
         [cell.badLabel setText:[NSString stringWithFormat:@"%d", food.dislikes]];
         [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
         
+        //NSArray *arr = food.extras;
+        if([food.extras count] == 0){
+            [cell.extraButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_GRAY_EXTRA"] forState:UIControlStateNormal];
+            [cell.extraButton setUserInteractionEnabled:NO];
+        }else{
+            [cell.extraButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_EXTRA"] forState:UIControlStateNormal];
+            [cell.extraButton setUserInteractionEnabled:YES];
+        }
+        
         NSURL *imageUrl = [NSURL URLWithString:food.pic];
         [cell.picView sd_setImageWithURL:imageUrl];
         
@@ -202,7 +246,7 @@
         if(!foundFlag){
             [cell.currNumLabel setText:@"0"];
         }
-    
+
         cell.tag = (int)indexPath.row;
     
         cell.delegate = self;

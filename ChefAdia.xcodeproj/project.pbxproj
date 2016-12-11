@@ -47,6 +47,7 @@
 		24C7C7C71DD2BFAB008D89F5 /* CAFoodPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7C7C61DD2BFAB008D89F5 /* CAFoodPayViewController.m */; };
 		24C7C7CB1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7C7C91DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m */; };
 		24C7C7CC1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */; };
+		24DE3EA51DFD260700F050C2 /* CAFoodDetailExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */; };
 		24EC03E11DD8AE58000588EB /* CAFindMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EC03E01DD8AE58000588EB /* CAFindMenuViewController.m */; };
 		24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6A1DD1F34400EDB919 /* CAFoodDetailTableViewController.m */; };
 		24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6D1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m */; };
@@ -125,6 +126,8 @@
 		24C7C7C81DD2C0AF008D89F5 /* CAFoodPayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodPayTableViewCell.h; sourceTree = "<group>"; };
 		24C7C7C91DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodPayTableViewCell.m; sourceTree = "<group>"; };
 		24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFoodPayTableViewCell.xib; sourceTree = "<group>"; };
+		24DE3EA31DFD260700F050C2 /* CAFoodDetailExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailExtraView.h; sourceTree = "<group>"; };
+		24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodDetailExtraView.m; sourceTree = "<group>"; };
 		24EC03DF1DD8AE58000588EB /* CAFindMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindMenuViewController.h; sourceTree = "<group>"; };
 		24EC03E01DD8AE58000588EB /* CAFindMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindMenuViewController.m; sourceTree = "<group>"; };
 		24EF4F691DD1F34400EDB919 /* CAFoodDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailTableViewController.h; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 				24EF4F6C1DD1F35400EDB919 /* CAFoodDetailTableViewCell.h */,
 				24EF4F6D1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m */,
 				24EF4F6E1DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib */,
+				24DE3EA31DFD260700F050C2 /* CAFoodDetailExtraView.h */,
+				24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */,
 			);
 			name = FoodDetailPage;
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 				249491F61DD1B8C400B99320 /* CAFoodMenu.m in Sources */,
 				2450AA881DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.m in Sources */,
 				24C0834E1DCE1DD100E1214E /* CAFindTableViewController.m in Sources */,
+				24DE3EA51DFD260700F050C2 /* CAFoodDetailExtraView.m in Sources */,
 				24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */,
 				249491F31DD1B74B00B99320 /* CAFoodManager.m in Sources */,
 				2450040B1DDD93A200FEB517 /* CANetworkManager.m in Sources */,

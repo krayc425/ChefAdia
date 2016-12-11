@@ -12,6 +12,7 @@
 
 - (void)addNum:(_Nonnull id)sender;
 - (void)minusNum:(_Nonnull id)sender;
+- (void)selectExtra:(_Nonnull id)sender;
 
 @end
 
@@ -29,5 +30,7 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *minusButton;
 @property (nonnull, nonatomic) IBOutlet UILabel *currNumLabel;
 @property (nonnull, nonatomic) IBOutlet UIButton *addButton;
+
+@property (nonnull, nonatomic) IBOutlet UIButton *extraButton;
 
 @end

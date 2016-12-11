@@ -14,6 +14,7 @@
 #import "AFHTTPSessionManager.h"
 #import "SDWebImageDownloader.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "MBProgressHUD.h"
 
 #define AVATAR_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modAva"
 
@@ -47,7 +48,6 @@
     _settingsLabel.font = [UIFont fontWithName:fontName size:15];
     
     _logoutButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
-    [_logoutButton setTitleColor:color forState:UIControlStateNormal];
     
     [self refreshLabel];
 }
@@ -216,6 +216,10 @@
     
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
 //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeDeterminateHorizontalBar];
+    [hud.label setText: @"Uploading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -231,9 +235,11 @@
 constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     [formData appendPartWithFileData:imageData name:@"avatar" fileName:@"avatar.jpeg" mimeType:@"image/jpeg"];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-
+        [hud setProgressObject:uploadProgress];
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"SUCCESS");
+        
+        [hud hideAnimated:YES];
+        
         //存到本地
         if([[CALoginManager shareInstance] saveAvatar:image]){
             

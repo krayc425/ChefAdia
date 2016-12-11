@@ -18,7 +18,7 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name andID:(NSString *)foodid andPrice:(double)price andPic:(NSString *)pic andLikes:(int)likes andDislikes:(int)dislikes{
+- (id)initWithName:(NSString *)name andID:(NSString *)foodid andPrice:(double)price andPic:(NSString *)pic andLikes:(int)likes andDislikes:(int)dislikes andExtras:(NSArray * _Nonnull)extras{
     self = [super init];
     if(self){
         _name = name;
@@ -27,6 +27,7 @@
         _price = price;
         _pic = pic;
         _foodid = foodid;
+        _extras = extras;
     }
     return self;
 }
@@ -39,6 +40,7 @@
     caFoodDetail.likes = self.likes;
     caFoodDetail.dislikes = self.dislikes;
     caFoodDetail.pic = self.pic;
+    caFoodDetail.extras = self.extras;
     return caFoodDetail;
 }
 
