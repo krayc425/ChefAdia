@@ -110,7 +110,14 @@
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  
-                 NSLog(@"success");
+                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Comment success"
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:nil];
+                 [alertC addAction:okAction];
+                 [self presentViewController:alertC animated:YES completion:nil];
                  
              }else{
                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);

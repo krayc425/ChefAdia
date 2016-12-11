@@ -213,8 +213,6 @@
                                                       andPrice:[[dict objectForKey:@"price"] doubleValue]];
         }
         [caFoodPayViewController setPayFoodArr:[[CAFoodCart shareInstance] getFoodInCart]];
-        //        [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f", [[resultDict objectForKey:@"price"] doubleValue]]];
-        //        [caFoodPayViewController setTime:[resultDict objectForKey:@"time"]];
         //价格和时间要实时更新，不能用原来的
         [caFoodPayViewController setPrice:[NSString stringWithFormat:@"$%.2f", [[CAFoodCart shareInstance] getTotalPrice]]];
         [caFoodPayViewController setTotalNum:[[CAFoodCart shareInstance] getTotalNum]];

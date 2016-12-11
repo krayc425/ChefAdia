@@ -15,11 +15,10 @@
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#define RGBA(a, b, c, d) [UIColor colorWithRed:(a / 255.0f) green:(b / 255.0f) blue:(c / 255.0f) alpha:d]
 #define ZERO                    0.0f
 #define ONE                     1.0f
 #define ANIMATION_DURATION      0.5f
-#define CONTAINER_BG_COLOR      RGBA(0, 0, 0, 0.1f)
+#define CONTAINER_BG_COLOR      [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1f]
 
 @implementation CAFoodDetailExtraView
 
@@ -49,7 +48,6 @@
         
         self.extraNum = (int)[self.extraArr count];
         
-        // Adding menu Items table
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         
         self.tableView.dataSource = self;

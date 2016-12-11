@@ -20,6 +20,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CAFoodDetailExtraView.h"
 
+#define MARGIN 20
+
 #define LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getList"
 
 @interface CAFoodDetailTableViewController (){
@@ -160,7 +162,7 @@
     NSLog(@"extra");
     CAFoodDetailTableViewCell *cell = (CAFoodDetailTableViewCell *)sender;
     if([cell.currNumLabel.text intValue] == 0){
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You haven't chosen this food."
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You didn't choose this food"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
@@ -170,18 +172,15 @@
         [self presentViewController:alertC animated:YES completion:nil];
     }else{
         CAFoodDetail *caFoodDetail = [_foodArr objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
-    
-        NSLog(@"%@", [caFoodDetail.extras description]);
         
         CAFoodDetailExtraView *extraView =
-        [[CAFoodDetailExtraView alloc] initWithFrame:CGRectMake(0,
-                                                                self.view.center.y - ([caFoodDetail.extras count] * 80) / 2,
-                                                                self.view.frame.size.width,
+        [[CAFoodDetailExtraView alloc] initWithFrame:CGRectMake(MARGIN,
+                                                                self.view.center.y + 22 - ([caFoodDetail.extras count] * 80) / 2,
+                                                                self.view.frame.size.width - 2 * MARGIN,
                                                                 [caFoodDetail.extras count] * 80)
                                            withExtra:caFoodDetail.extras];
         extraView.delegate = self;
         [extraView showInView:self.view];
-        
     }
 }
 

@@ -90,6 +90,8 @@
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  NSLog(@"%@", [subResultDict description]);
                  [self.myTicketArr addObject:subResultDict];
+                 
+                 [weakSelf.tableView reloadData];
              }else{
                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
              }
@@ -190,10 +192,18 @@
         
         [cell.IDLabel setText:[NSString stringWithFormat:@"TICKET ID : %@", [self.ticketArr[indexPath.row] objectForKey:@"id"]]];
         [cell.nameLabel setText:[self.ticketArr[indexPath.row] objectForKey:@"name"]];
-        //[cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.ticketArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
+        [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.ticketArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
         [cell.descriptionLabel setText:[self.ticketArr[indexPath.row] objectForKey:@"description"]];
         [cell.expireLabel setText:[NSString stringWithFormat:@"%d DAYS", [[self.ticketArr[indexPath.row] objectForKey:@"expire_day"] intValue]]];
         [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[self.ticketArr[indexPath.row] objectForKey:@"daily_upper"] doubleValue]]];
+        
+        /*
+        for(NSDictionary *dict in self.myTicketArr){
+            if([[self.ticketArr[indexPath.row] objectForKey:@"id"] isEqualToString:[dict objectForKey:@"id"]]){
+                
+            }
+        }
+         */
         
         cell.delegate = self;
         
