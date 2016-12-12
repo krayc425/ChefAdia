@@ -142,10 +142,10 @@
     UINib *nib = [UINib nibWithNibName:@"CAFoodPayTableViewCell" bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     CAFoodPayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    //配置 cell
+    
     CAFoodDetailInCart *food = _payFoodArr[indexPath.row];
     cell.nameLabel.text = food.foodName;
-    cell.priceLabel.text = [NSString stringWithFormat:@"%.2f",food.price];
+    cell.priceLabel.text = [NSString stringWithFormat:@"$%.2f",food.price];
     cell.numLabel.text = [NSString stringWithFormat:@"%d",food.number];
     
     return cell;

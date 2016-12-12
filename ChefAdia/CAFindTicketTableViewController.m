@@ -88,7 +88,7 @@
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
-                 NSLog(@"%@", [subResultDict description]);
+                 //NSLog(@"%@", [subResultDict description]);
                  [self.myTicketArr addObject:subResultDict];
                  
                  [weakSelf.tableView reloadData];
@@ -197,13 +197,13 @@
         [cell.expireLabel setText:[NSString stringWithFormat:@"%d DAYS", [[self.ticketArr[indexPath.row] objectForKey:@"expire_day"] intValue]]];
         [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[self.ticketArr[indexPath.row] objectForKey:@"daily_upper"] doubleValue]]];
         
-        /*
         for(NSDictionary *dict in self.myTicketArr){
-            if([[self.ticketArr[indexPath.row] objectForKey:@"id"] isEqualToString:[dict objectForKey:@"id"]]){
-                
+            if([[[self.ticketArr[indexPath.row] objectForKey:@"id"] description]
+                isEqualToString:[dict objectForKey:@"id"]]){
+                [cell.currentLabel setText:[dict objectForKey:@"expire"]];
             }
         }
-         */
+        
         
         cell.delegate = self;
         

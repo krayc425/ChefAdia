@@ -18,7 +18,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="LmS-Iz-gRZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="LmS-Iz-gRZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -675,29 +675,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="465-2w-6hj">
-                                                    <rect key="frame" x="317" y="11.5" width="48" height="20.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4f-GM-IQc">
-                                                            <rect key="frame" x="0.0" y="0.0" width="9.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSP-lm-UDc">
-                                                            <rect key="frame" x="9.5" y="0.0" width="38.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSP-lm-UDc">
+                                                    <rect key="frame" x="326.5" y="11" width="38.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="OGv-U8-2K4" firstAttribute="centerY" secondItem="LnP-db-Dcb" secondAttribute="centerY" id="JIy-bZ-wFm"/>
                                                 <constraint firstItem="OGv-U8-2K4" firstAttribute="leading" secondItem="LnP-db-Dcb" secondAttribute="leading" constant="10" id="Uaz-SZ-aiF"/>
-                                                <constraint firstItem="465-2w-6hj" firstAttribute="centerY" secondItem="LnP-db-Dcb" secondAttribute="centerY" id="XGh-fo-nC1"/>
-                                                <constraint firstAttribute="trailing" secondItem="465-2w-6hj" secondAttribute="trailing" constant="10" id="fK2-l1-p1L"/>
+                                                <constraint firstAttribute="trailing" secondItem="YSP-lm-UDc" secondAttribute="trailing" constant="10" id="a3v-tB-g5h"/>
+                                                <constraint firstItem="YSP-lm-UDc" firstAttribute="centerY" secondItem="LnP-db-Dcb" secondAttribute="centerY" id="iok-1W-Icl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

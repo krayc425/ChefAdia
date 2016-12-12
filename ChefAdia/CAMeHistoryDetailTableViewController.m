@@ -57,7 +57,7 @@
                  
                  NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  //TODO
-                 [weakSelf.priceLabel setText:[NSString stringWithFormat:@"%.2f", [[dict objectForKey:@"price"] doubleValue]]];
+                 [weakSelf.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[dict objectForKey:@"price"] doubleValue]]];
                  [weakSelf.dateLabel setText:[dict objectForKey:@"time"]];
                  
                  for(NSDictionary *foodDict in (NSArray *)[dict objectForKey:@"food_list"]){
@@ -165,16 +165,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 1){
-        //注册 nib 的方法，来使用.xib 的cell
         static NSString *CellIdentifier = @"CAMeHistoryDetailTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"CAMeHistoryDetailTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
         CAMeHistoryDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        //配置 cell 细节
         [cell.nameLabel setText:[self.foodArr[indexPath.row] objectForKey:@"name"]];
         [cell.numLabel setText:[NSString stringWithFormat:@"%d", [[self.foodArr[indexPath.row] objectForKey:@"num"] intValue]]];
-        [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", [[self.foodArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
+        [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.foodArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
         
         cell.delegate = self;
         
