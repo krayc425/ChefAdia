@@ -20,6 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[CANetworkManager shareInstance] checkNetwork];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"] == NULL){
+        [[CALoginManager shareInstance] setLoginState:LOGOUT];
+    }
     return YES;
 }
 

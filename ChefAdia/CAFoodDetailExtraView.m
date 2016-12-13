@@ -96,7 +96,7 @@
     [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
                                                andName:caFoodDetail.name
                                                 andNum:1
-                                              andPrice:[cell.priceLabel.text doubleValue]];
+                                              andPrice:[[cell.priceLabel.text substringFromIndex:1] doubleValue]];
     [self.delegate updatePrice];
 }
 
@@ -108,7 +108,7 @@
     [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
                                                andName:caFoodDetail.name
                                                 andNum:-1
-                                              andPrice:[cell.priceLabel.text doubleValue]];
+                                              andPrice:[[cell.priceLabel.text substringFromIndex:1] doubleValue]];
     [self.delegate updatePrice];
 }
 
@@ -138,7 +138,7 @@
     [cell.nameLabel setText:[NSString stringWithFormat:@"%@", food.name]];
     [cell.goodLabel setText:[NSString stringWithFormat:@"%d", food.likes]];
     [cell.badLabel setText:[NSString stringWithFormat:@"%d", food.dislikes]];
-    [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
+    [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", food.price]];
     
     //NSArray *arr = food.extras;
     [cell.extraButton setHidden:YES];
@@ -171,6 +171,5 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
-
 
 @end

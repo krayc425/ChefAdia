@@ -8,6 +8,7 @@
 
 #import "CAFindTableViewController.h"
 #import "CAFindItemTableViewCell.h"
+#import "CALoginManager.h"
 
 @interface CAFindTableViewController ()
 
@@ -63,15 +64,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
-        case 0:
-            [self performSegueWithIdentifier:@"addMenuSegue" sender:nil];
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"mealTicketSegue" sender:nil];
-            break;
-        default:
-            break;
+    if([[CALoginManager shareInstance] getLoginState] == LOGOUT){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Please login first"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        switch (indexPath.row) {
+            case 0:
+                [self performSegueWithIdentifier:@"menuSegue" sender:nil];
+                break;
+            case 1:
+                [self performSegueWithIdentifier:@"mealTicketSegue" sender:nil];
+                break;
+            default:
+                break;
+        }
     }
 }
 

@@ -25,12 +25,11 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     _backgroundView.image = [UIImage imageNamed:@"FIND_TITLE"];
-    [self loadTickets];
-    [self loadMyTicket];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [self loadTickets];
+    [self loadMyTicket];
 }
 
 - (void)loadTickets{
@@ -203,7 +202,6 @@
                 [cell.currentLabel setText:[dict objectForKey:@"expire"]];
             }
         }
-        
         
         cell.delegate = self;
         

@@ -118,7 +118,9 @@
 - (void)setColor{
     self.navigationController.navigationBar.barTintColor = color;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                                      NSForegroundColorAttributeName : [UIColor whiteColor]
+                                                                      }];
     self.tabBar.barTintColor = color;
     self.tabBar.tintColor = [UIColor whiteColor];
 }

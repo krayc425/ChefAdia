@@ -19,6 +19,7 @@
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CAFoodDetailExtraView.h"
+#import "CALoginManager.h"
 
 #define MARGIN 20
 
@@ -118,17 +119,30 @@
 }
 
 - (IBAction)payAction:(id)sender{
-    if([_foodCart getTotalNum] == 0){
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"No food in cart"
+    if([[CALoginManager shareInstance] getLoginState] == LOGOUT){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Please login first"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                            style:UIAlertActionStyleDefault
-                                                         handler:nil];
+                                                         handler:^(UIAlertAction *action){
+                                                             [self.navigationController popToRootViewControllerAnimated:YES];
+                                                         }];
         [alertC addAction:okAction];
         [self presentViewController:alertC animated:YES completion:nil];
     }else{
-        [self performSegueWithIdentifier:@"paySegue" sender:nil];
+        if([_foodCart getTotalNum] == 0){
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"No food in cart"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:nil];
+            [alertC addAction:okAction];
+            [self presentViewController:alertC animated:YES completion:nil];
+        }else{
+            [self performSegueWithIdentifier:@"paySegue" sender:nil];
+        }
     }
 }
 
@@ -142,7 +156,7 @@
     [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
                                                andName:caFoodDetail.name
                                                 andNum:1
-                                              andPrice:[cell.priceLabel.text doubleValue]];
+                                              andPrice:[[cell.priceLabel.text substringFromIndex:1] doubleValue]];
     [self updatePrice];
 }
 
@@ -154,7 +168,7 @@
     [[CAFoodCart shareInstance] modifyFoodInCartWithID:caFoodDetail.foodid
                                                andName:caFoodDetail.name
                                                 andNum:-1
-                                              andPrice:[cell.priceLabel.text doubleValue]];
+                                              andPrice:[[cell.priceLabel.text substringFromIndex:1] doubleValue]];
     [self updatePrice];
 }
 
@@ -218,7 +232,7 @@
         [cell.nameLabel setText:[NSString stringWithFormat:@"%@", food.name]];
         [cell.goodLabel setText:[NSString stringWithFormat:@"%d", food.likes]];
         [cell.badLabel setText:[NSString stringWithFormat:@"%d", food.dislikes]];
-        [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f", food.price]];
+        [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", food.price]];
         
         //NSArray *arr = food.extras;
         if([food.extras count] == 0){

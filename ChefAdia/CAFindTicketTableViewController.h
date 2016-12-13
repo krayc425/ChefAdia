@@ -16,5 +16,4 @@
 @property (nonnull, nonatomic) NSMutableArray *ticketArr;
 @property (nonnull, nonatomic) NSMutableArray *myTicketArr;
 
-
 @end

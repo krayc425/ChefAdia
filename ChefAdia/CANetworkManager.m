@@ -69,28 +69,4 @@ static CANetworkManager* _instance = nil;
     }
 }
 
-- (void)postToHost:(NSString *)URL withParams:(NSDictionary *)params{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                         @"text/plain",
-                                                         @"application/json",
-                                                         @"text/html",
-                                                         @"text/json",
-                                                         nil];
-    [manager POST:URL
-       parameters:params
-         progress:nil
-          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-              NSLog(@"SUCCESS");
-              NSLog(@"JSON POST: %@", responseObject);
-          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              NSLog(@"FAILED");
-              NSLog(@"Error: %@", error);
-          }];
-}
-
 @end
