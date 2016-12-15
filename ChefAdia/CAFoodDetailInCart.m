@@ -7,7 +7,6 @@
 //
 
 #import "CAFoodDetailInCart.h"
-#import "CAFoodManager.h"
 
 @implementation CAFoodDetailInCart
 

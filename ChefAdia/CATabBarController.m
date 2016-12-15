@@ -10,7 +10,6 @@
 #import "Utilities.h"
 #import "CALoginManager.h"
 #import "CANetworkManager.h"
-#import "CAFoodManager.h"
 
 @interface CATabBarController (){
     NSString *fontName;

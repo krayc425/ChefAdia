@@ -10,4 +10,7 @@
 
 @interface CAFindMenuTableViewCell : UITableViewCell
 
+@property (nonnull, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
+
 @end

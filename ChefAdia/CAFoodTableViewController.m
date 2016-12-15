@@ -8,7 +8,6 @@
 
 #import "CAFoodTableViewController.h"
 #import "CAFoodTableViewCell.h"
-#import "CAFoodManager.h"
 #import "CAFoodMenu.h"
 #import "Utilities.h"
 #import "CAFoodDetailTableViewController.h"

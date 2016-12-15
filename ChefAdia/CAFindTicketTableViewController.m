@@ -193,13 +193,21 @@
         [cell.nameLabel setText:[self.ticketArr[indexPath.row] objectForKey:@"name"]];
         [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.ticketArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
         [cell.descriptionLabel setText:[self.ticketArr[indexPath.row] objectForKey:@"description"]];
-        [cell.expireLabel setText:[NSString stringWithFormat:@"%d DAYS", [[self.ticketArr[indexPath.row] objectForKey:@"expire_day"] intValue]]];
-        [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[self.ticketArr[indexPath.row] objectForKey:@"daily_upper"] doubleValue]]];
         
         for(NSDictionary *dict in self.myTicketArr){
             if([[[self.ticketArr[indexPath.row] objectForKey:@"id"] description]
                 isEqualToString:[dict objectForKey:@"id"]]){
                 [cell.currentLabel setText:[dict objectForKey:@"expire"]];
+                
+                [cell.expireInstructionLabel setText:@"EXPIRE ON"];
+                [cell.expireLabel setText:[dict objectForKey:@"expire"]];
+                [cell.dailyAmountInstructionLabel setText:@"BALANCE"];
+                [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[dict objectForKey:@"remain_money"] doubleValue]]];
+            }else{
+                [cell.expireInstructionLabel setText:@"VALIDATION PERIOD"];
+                [cell.expireLabel setText:[NSString stringWithFormat:@"%d DAYS", [[self.ticketArr[indexPath.row] objectForKey:@"expire_day"] intValue]]];
+                [cell.dailyAmountInstructionLabel setText:@"DAILY AMOUNT"];
+                [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[self.ticketArr[indexPath.row] objectForKey:@"daily_upper"] doubleValue]]];
             }
         }
         

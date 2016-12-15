@@ -1,0 +1,306 @@
+//
+//  CAFindMenuAddViewController.m
+//  ChefAdia
+//
+//  Created by 宋 奎熹 on 2016/12/15.
+//  Copyright © 2016年 宋 奎熹. All rights reserved.
+//
+
+#import "CAFindMenuAddViewController.h"
+#import "CAFindMenuAddTableViewCell.h"
+#import "AFNetworking.h"
+#import "Utilities.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+#define MMENU_FOOD_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getMMenuInfo"
+#define UPLOAD_MMENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/addMMenu"
+
+@interface CAFindMenuAddViewController ()
+
+@end
+
+@implementation CAFindMenuAddViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    NSString *fontName = [Utilities getFont];
+    UIColor *color = [Utilities getColor];
+    
+    [self.stepLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:30]];
+    [self.stepLabel setTextColor:color];
+    
+    [self.priceInstructionLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:15]];
+    [self.priceInstructionLabel setTextColor:color];
+    [self.totalPriceLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:20]];
+    [self.totalPriceLabel setTextColor:color];
+    
+    [self.prevButton.titleLabel setFont:[UIFont fontWithName:fontName size:20]];
+    [self.nextButton.titleLabel setFont:[UIFont fontWithName:fontName size:20]];
+    
+    [self.prevButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [self.nextButton.titleLabel setTextColor:[UIColor whiteColor]];
+    
+    [self.priceLabel setFont:[UIFont fontWithName:fontName size:20]];
+    [self.descriptionLabel setFont:[UIFont fontWithName:fontName size:20]];
+    [self.numLabel setFont:[UIFont fontWithName:fontName size:20]];
+    
+    //对应的编号是 index+1(1~6)，tag 是 index (0~5)
+    self.currentStep = 1;
+    self.typeArr = @[@"MEAL",
+                     @"MEAT",
+                     @"VEG",
+                     @"SNACK",
+                     @"SAUCE",
+                     @"FLAVOR"];
+    for(UIButton *button in self.menuStackView.subviews){
+        [button setTitle:self.typeArr[button.tag] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont fontWithName:fontName size:15]];
+    }
+    
+    self.chosenFoodArr = [[NSMutableArray alloc] init];
+    self.chosenNumArr = [[NSMutableArray alloc] init];
+    for(int i = 0; i < [self.typeArr count]; i++){
+        [self.chosenFoodArr addObject:@{@"foodid" : @""}];
+        [self.chosenNumArr addObject:[NSNumber numberWithInt:0]];
+    }
+    
+    self.menuTableView.delegate = self;
+    self.menuTableView.dataSource = self;
+    self.menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [self loadMFood];
+}
+
+- (void)refreshView{
+    [self.stepLabel setText:[NSString stringWithFormat:@"STEP %d/%lu", self.currentStep, [self.typeArr count]]];
+    if(self.currentStep == 1){
+        //[self.prevButton setOpaque:YES];
+    }else{
+        //[self.prevButton setOpaque:NO];
+    }
+    
+    
+    if(self.currentStep == [self.typeArr count]){
+        [self.nextButton setTitle:@"DONE" forState:UIControlStateNormal];
+        [self.nextButton.titleLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:20]];
+        
+    }else{
+        [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
+        [self.nextButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20]];
+    }
+    
+    if([self isChosenFinished:self.currentStep - 1]){
+        [self.nextButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_SHORT"] forState:UIControlStateNormal];
+        [self.nextButton setUserInteractionEnabled:YES];
+    }else{
+        [self.nextButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_GRAY_SHORT"] forState:UIControlStateNormal];
+        [self.nextButton setUserInteractionEnabled:NO];
+    }
+    
+    for(UIButton *button in self.menuStackView.subviews){
+        if(button.tag == self.currentStep - 1){
+            [button setBackgroundColor: [Utilities getColor]];
+            [button.titleLabel setTextColor:[UIColor whiteColor]];
+        }else{
+            [button setBackgroundColor: [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0]];
+            [button.titleLabel setTextColor:[Utilities getColor]];
+        }
+    }
+    
+    [self.numLabel setText:[self.chosenNumArr[self.currentStep-1] description]];
+    
+    [self.filteredFoodArr removeAllObjects];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"SELF['type'] == %d", self.currentStep];
+    self.filteredFoodArr = [[self.typeFoodArr filteredArrayUsingPredicate:searchPredicate] mutableCopy];
+    
+    [self.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.filteredFoodArr[0] objectForKey:@"price"] doubleValue]]];
+    
+    [self.menuTableView reloadData];
+}
+
+- (Boolean)isChosenFinished:(int)i{
+    if([[self.chosenFoodArr[i] objectForKey:@"foodid"] isEqualToString:@""]
+       || [self.chosenNumArr[i] intValue] == 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+- (double)calTotalPrice{
+    double sum = 0.0;
+    for(int i = 0; i < [self.typeArr count]; i++){
+        sum += ([self.chosenNumArr[i] intValue]) * [[self.chosenFoodArr[0] objectForKey:@"price"] doubleValue];
+    }
+    return sum;
+}
+
+- (void)loadMFood{
+    self.typeFoodArr = [[NSMutableArray alloc] init];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager GET:MMENU_FOOD_URL
+      parameters:nil
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+             NSDictionary *resultDict = (NSDictionary *)responseObject;
+             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
+                 for(NSDictionary *dict in resultArr){
+                     [self.typeFoodArr addObject:dict];
+                 }
+                 [self refreshView];
+                 
+             }else{
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+             }
+             
+         }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"%@",error);
+         }];
+}
+
+- (IBAction)prevAction:(id)sender{
+    if(self.currentStep > 1){
+        self.currentStep--;
+        [self refreshView];
+    }
+}
+
+- (IBAction)nextAction:(id)sender{
+    if(self.currentStep < [self.typeArr count]){
+        self.currentStep++;
+        [self refreshView];
+    }else if(self.currentStep == [self.typeArr count]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sure to submit?"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Submit"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action){
+                                                             [self uploadMMenu];
+                                                         }];
+        [alertC addAction:cancelAction];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }
+}
+
+- (IBAction)modifyStepAction:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    self.currentStep = (int)button.tag+1;
+    [self refreshView];
+}
+
+- (IBAction)addAction:(id)sender{
+    int i = [self.chosenNumArr[self.currentStep-1] intValue];
+    i++;
+    self.chosenNumArr[self.currentStep-1] = [NSNumber numberWithInt:i];
+    [self.totalPriceLabel setText:[NSString stringWithFormat:@"$%.2f", self.calTotalPrice]];
+    [self refreshView];
+}
+
+- (IBAction)minusAction:(id)sender{
+    int i = [self.chosenNumArr[self.currentStep-1] intValue];
+    if(i > 0){
+        i--;
+        self.chosenNumArr[self.currentStep-1] = [NSNumber numberWithInt:i];
+    }
+    [self.totalPriceLabel setText:[NSString stringWithFormat:@"$%.2f", self.calTotalPrice]];
+    [self refreshView];
+}
+
+- (void)uploadMMenu{
+    
+    NSDictionary *dict = @{
+                           @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
+                           @"name" : @"testname",
+                           @"mealid" : [self.chosenFoodArr[0] objectForKey:@"foodid"],
+                           @"meal_num" : self.chosenNumArr[0],
+                           @"meatid" : [self.chosenFoodArr[1] objectForKey:@"foodid"],
+                           @"meat_num" : self.chosenNumArr[1],
+                           @"vegetableid" : [self.chosenFoodArr[2] objectForKey:@"foodid"],
+                           @"vegetable_num" : self.chosenNumArr[2],
+                           @"snackid" : [self.chosenFoodArr[3] objectForKey:@"foodid"],
+                           @"snack_num" : self.chosenNumArr[3],
+                           @"sauceid" : [self.chosenFoodArr[4] objectForKey:@"foodid"],
+                           @"sauce_num" : self.chosenNumArr[4],
+                           @"flavorid" : [self.chosenFoodArr[5] objectForKey:@"foodid"],
+                           };
+    
+    NSLog(@"%@", [dict description]);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                         @"text/plain",
+                                                         @"text/html",
+                                                         nil];
+    [manager POST:UPLOAD_MMENU_URL
+       parameters:dict
+         progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+              NSDictionary *resultDict = (NSDictionary *)responseObject;
+              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                  NSLog(@"ADD MMENU SUCCESS");
+              }else{
+                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              NSLog(@"%@",error);
+          }];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.filteredFoodArr count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"CAFindMenuAddTableViewCell";
+    UINib *nib = [UINib nibWithNibName:@"CAFindMenuAddTableViewCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    CAFindMenuAddTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    [cell.nameLabel setText:[self.filteredFoodArr[indexPath.row] objectForKey:@"name"]];
+    NSURL *imageUrl = [NSURL URLWithString:[self.filteredFoodArr[indexPath.row] objectForKey:@"pic"]];
+    [cell.picView sd_setImageWithURL:imageUrl];
+    
+    if([self.chosenFoodArr containsObject:self.filteredFoodArr[indexPath.row]]){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.chosenFoodArr replaceObjectAtIndex:self.currentStep-1
+                                  withObject:self.filteredFoodArr[indexPath.row]];
+    [self refreshView];
+}
+
+@end

@@ -12,7 +12,6 @@
 #import "CAFoodCart.h"
 #import "CAFoodMenu.h"
 #import "CAFoodDetailInCart.h"
-#import "CAFoodManager.h"
 #import "Utilities.h"
 #import "CAFoodDetail.h"
 #import "AFNetworking.h"
@@ -74,8 +73,6 @@
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  
                  for(NSDictionary *Dict in (NSArray *)[subResultDict objectForKey:@"list"]){
-                     
-                     NSLog(@"%@", [Dict description]);
                      
                      CAFoodDetail *caFoodDetail = [[CAFoodDetail alloc] initWithName:[Dict objectForKey:@"name"]
                                                                              andID:[Dict objectForKey:@"foodid"]
@@ -225,8 +222,6 @@
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         CAFoodDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        //配置 cell 细节
-        //TODO:从服务器获取
         CAFoodDetail *food = [_foodArr objectAtIndex:indexPath.row];
         
         [cell.nameLabel setText:[NSString stringWithFormat:@"%@", food.name]];

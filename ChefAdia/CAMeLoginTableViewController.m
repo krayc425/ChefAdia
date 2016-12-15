@@ -60,10 +60,6 @@
     [self refreshLabel];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-//    [self refreshLabel];
-}
-
 - (void)refreshLabel{
     _userNameLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_name"];
     _addressLabel.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user_addr"];
@@ -273,25 +269,10 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [self presentViewController:alertC animated:YES completion:nil];
     }];
     
-    
-    // 创建保存图像时需要传入的选择器对象（回调方法格式固定）
-//    SEL selectorToCall = @selector(image:didFinishSavingWithError:contextInfo:);
-    // 将图像保存到相册（第三个参数需要传入上面格式的选择器对象）
-//    UIImageWriteToSavedPhotosAlbum(image, self, selectorToCall, NULL);
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-// 保存图片后到相册后，回调的相关方法，查看是否保存成功
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    if (error == nil){
-        NSLog(@"Image was saved successfully.");
-    } else {
-        NSLog(@"An error happened while saving the image.");
-        NSLog(@"Error = %@", error);
-    }
 }
 
 @end

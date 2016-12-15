@@ -33,9 +33,11 @@
     [_bowlInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
     [_ticketInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
     
-    [_priceLabel setFont:[UIFont fontWithName:fontName size:40]];
+    [_priceLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:40]];
     [_timeLabel setFont:[UIFont fontWithName:fontName size:15]];
     [_countLabel setFont:[UIFont fontWithName:fontName size:15]];
+    
+    [_priceLabel setTextColor:[Utilities getColor]];
     
     //price label
     [_priceLabel setText:_price];

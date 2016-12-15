@@ -7,18 +7,16 @@
 //
 
 #import "CAFindMenuTableViewCell.h"
+#import "Utilities.h"
 
 @implementation CAFindMenuTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20]];
+    [self.priceLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:30]];
+    [self.priceLabel setTextColor:[Utilities getColor]];
 }
 
 @end

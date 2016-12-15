@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -101,16 +101,10 @@
                                 <rect key="frame" x="0.0" y="135" width="300" height="25"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SyN-SF-NCN">
-                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="25"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I HAVE : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFI-d9-ifm">
-                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="25"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAW-FJ-Bhp">
-                                                <rect key="frame" x="65.5" y="0.0" width="42" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="See-k1-TnD">
+                                                <rect key="frame" x="0.0" y="0.0" width="175" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -164,8 +158,6 @@
             <connections>
                 <outlet property="IDLabel" destination="sxi-KY-Jse" id="tII-m6-zJr"/>
                 <outlet property="buyButton" destination="aDz-R9-RRW" id="pYX-i8-zsg"/>
-                <outlet property="currentInstructionLabel" destination="CFI-d9-ifm" id="by1-Xt-4TS"/>
-                <outlet property="currentLabel" destination="rAW-FJ-Bhp" id="Uug-G1-S10"/>
                 <outlet property="dailyAmountInstructionLabel" destination="ULG-2p-Cdd" id="i1r-Uw-mUc"/>
                 <outlet property="dailyAmountLabel" destination="FNb-Yl-l41" id="EBF-dV-Aj8"/>
                 <outlet property="descriptionLabel" destination="RRL-Ki-XsY" id="YdM-AT-iHI"/>

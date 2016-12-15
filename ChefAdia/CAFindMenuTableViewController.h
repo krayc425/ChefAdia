@@ -12,7 +12,6 @@
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *backgroundView;
 
-//@property (nonnull, nonatomic) IBOutlet UINavigationItem *naviItem;
 @property (nonnull, nonatomic) NSMutableArray *menuArr;
 
 @end
