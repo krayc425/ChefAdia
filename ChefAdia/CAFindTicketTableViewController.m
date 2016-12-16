@@ -87,7 +87,7 @@
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
-                 //NSLog(@"%@", [subResultDict description]);
+                 
                  [self.myTicketArr addObject:subResultDict];
                  
                  [weakSelf.tableView reloadData];
@@ -139,6 +139,7 @@
                  
                  NSLog(@"buy ticket success");
                  
+                 [self loadMyTicket];
                  [weakSelf.tableView reloadData];
                  
              }else{
@@ -194,20 +195,22 @@
         [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.ticketArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
         [cell.descriptionLabel setText:[self.ticketArr[indexPath.row] objectForKey:@"description"]];
         
+        [cell.expireInstructionLabel setText:@"VALIDATION PERIOD"];
+        [cell.expireLabel setText:[NSString stringWithFormat:@"%d DAYS", [[self.ticketArr[indexPath.row] objectForKey:@"expire_day"] intValue]]];
+        [cell.dailyAmountInstructionLabel setText:@"DAILY AMOUNT"];
+        [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[self.ticketArr[indexPath.row] objectForKey:@"daily_upper"] doubleValue]]];
+        [cell.buyButton setHidden:NO];
+        
+        //如果找到，那设置为找到
         for(NSDictionary *dict in self.myTicketArr){
             if([[[self.ticketArr[indexPath.row] objectForKey:@"id"] description]
                 isEqualToString:[dict objectForKey:@"id"]]){
-                [cell.currentLabel setText:[dict objectForKey:@"expire"]];
                 
                 [cell.expireInstructionLabel setText:@"EXPIRE ON"];
                 [cell.expireLabel setText:[dict objectForKey:@"expire"]];
-                [cell.dailyAmountInstructionLabel setText:@"BALANCE"];
+                [cell.dailyAmountInstructionLabel setText:@"TODAY'S BALANCE"];
                 [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[dict objectForKey:@"remain_money"] doubleValue]]];
-            }else{
-                [cell.expireInstructionLabel setText:@"VALIDATION PERIOD"];
-                [cell.expireLabel setText:[NSString stringWithFormat:@"%d DAYS", [[self.ticketArr[indexPath.row] objectForKey:@"expire_day"] intValue]]];
-                [cell.dailyAmountInstructionLabel setText:@"DAILY AMOUNT"];
-                [cell.dailyAmountLabel setText:[NSString stringWithFormat:@"$%.2f",[[self.ticketArr[indexPath.row] objectForKey:@"daily_upper"] doubleValue]]];
+                [cell.buyButton setHidden:YES];
             }
         }
         

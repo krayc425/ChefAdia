@@ -52,6 +52,9 @@
 		24C7C7C71DD2BFAB008D89F5 /* CAFoodPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7C7C61DD2BFAB008D89F5 /* CAFoodPayViewController.m */; };
 		24C7C7CB1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C7C7C91DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m */; };
 		24C7C7CC1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */; };
+		24C9CD201E03868F00472AA1 /* CAFindMenuListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C9CD1F1E03868F00472AA1 /* CAFindMenuListViewController.m */; };
+		24C9CD241E038AA300472AA1 /* CAFindMenuListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C9CD221E038AA300472AA1 /* CAFindMenuListTableViewCell.m */; };
+		24C9CD251E038AA300472AA1 /* CAFindMenuListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C9CD231E038AA300472AA1 /* CAFindMenuListTableViewCell.xib */; };
 		24DE3EA51DFD260700F050C2 /* CAFoodDetailExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */; };
 		24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6A1DD1F34400EDB919 /* CAFoodDetailTableViewController.m */; };
 		24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6D1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m */; };
@@ -138,6 +141,11 @@
 		24C7C7C81DD2C0AF008D89F5 /* CAFoodPayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodPayTableViewCell.h; sourceTree = "<group>"; };
 		24C7C7C91DD2C0AF008D89F5 /* CAFoodPayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodPayTableViewCell.m; sourceTree = "<group>"; };
 		24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFoodPayTableViewCell.xib; sourceTree = "<group>"; };
+		24C9CD1E1E03868F00472AA1 /* CAFindMenuListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindMenuListViewController.h; sourceTree = "<group>"; };
+		24C9CD1F1E03868F00472AA1 /* CAFindMenuListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindMenuListViewController.m; sourceTree = "<group>"; };
+		24C9CD211E038AA300472AA1 /* CAFindMenuListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindMenuListTableViewCell.h; sourceTree = "<group>"; };
+		24C9CD221E038AA300472AA1 /* CAFindMenuListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindMenuListTableViewCell.m; sourceTree = "<group>"; };
+		24C9CD231E038AA300472AA1 /* CAFindMenuListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFindMenuListTableViewCell.xib; sourceTree = "<group>"; };
 		24DE3EA31DFD260700F050C2 /* CAFoodDetailExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailExtraView.h; sourceTree = "<group>"; };
 		24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodDetailExtraView.m; sourceTree = "<group>"; };
 		24EF4F691DD1F34400EDB919 /* CAFoodDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailTableViewController.h; sourceTree = "<group>"; };
@@ -285,11 +293,8 @@
 				24830F691DFFDDEF008E2BE3 /* CAFindMenuTableViewCell.h */,
 				24830F6A1DFFDDEF008E2BE3 /* CAFindMenuTableViewCell.m */,
 				24830F6B1DFFDDEF008E2BE3 /* CAFindMenuTableViewCell.xib */,
-				24BD8E9F1E025C1C00616B48 /* CAFindMenuAddViewController.h */,
-				24BD8EA01E025C1C00616B48 /* CAFindMenuAddViewController.m */,
-				24BD8EA21E02770800616B48 /* CAFindMenuAddTableViewCell.h */,
-				24BD8EA31E02770800616B48 /* CAFindMenuAddTableViewCell.m */,
-				24BD8EA41E02770800616B48 /* CAFindMenuAddTableViewCell.xib */,
+				24C9CD1A1E03864700472AA1 /* Add */,
+				24C9CD261E038AA600472AA1 /* List */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -358,6 +363,30 @@
 				24C7C7CA1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib */,
 			);
 			name = FoodPayPage;
+			sourceTree = "<group>";
+		};
+		24C9CD1A1E03864700472AA1 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				24BD8E9F1E025C1C00616B48 /* CAFindMenuAddViewController.h */,
+				24BD8EA01E025C1C00616B48 /* CAFindMenuAddViewController.m */,
+				24BD8EA21E02770800616B48 /* CAFindMenuAddTableViewCell.h */,
+				24BD8EA31E02770800616B48 /* CAFindMenuAddTableViewCell.m */,
+				24BD8EA41E02770800616B48 /* CAFindMenuAddTableViewCell.xib */,
+			);
+			name = Add;
+			sourceTree = "<group>";
+		};
+		24C9CD261E038AA600472AA1 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				24C9CD1E1E03868F00472AA1 /* CAFindMenuListViewController.h */,
+				24C9CD1F1E03868F00472AA1 /* CAFindMenuListViewController.m */,
+				24C9CD211E038AA300472AA1 /* CAFindMenuListTableViewCell.h */,
+				24C9CD221E038AA300472AA1 /* CAFindMenuListTableViewCell.m */,
+				24C9CD231E038AA300472AA1 /* CAFindMenuListTableViewCell.xib */,
+			);
+			name = List;
 			sourceTree = "<group>";
 		};
 		24EF4F711DD1F35A00EDB919 /* FoodDetailPage */ = {
@@ -461,6 +490,7 @@
 				24EF4F701DD1F35400EDB919 /* CAFoodDetailTableViewCell.xib in Resources */,
 				246BE4391DCB4CC90055FB97 /* Main.storyboard in Resources */,
 				249491F01DD1AF0C00B99320 /* CAFoodTableViewCell.xib in Resources */,
+				24C9CD251E038AA300472AA1 /* CAFindMenuListTableViewCell.xib in Resources */,
 				24BD8EA61E02770800616B48 /* CAFindMenuAddTableViewCell.xib in Resources */,
 				24218B521DCDB3220017B0DC /* Assets.xcassets in Resources */,
 				24C7C7CC1DD2C0AF008D89F5 /* CAFoodPayTableViewCell.xib in Resources */,
@@ -540,7 +570,9 @@
 				24A80B661DD54574008C0998 /* CAMeHistoryDetailTableViewController.m in Sources */,
 				24644A011DD19EFA009806FE /* CAMeConfigureTableViewController.m in Sources */,
 				246449FD1DD0EB6E009806FE /* CAFoodTableViewController.m in Sources */,
+				24C9CD201E03868F00472AA1 /* CAFindMenuListViewController.m in Sources */,
 				246BE4331DCB4CC90055FB97 /* AppDelegate.m in Sources */,
+				24C9CD241E038AA300472AA1 /* CAFindMenuListTableViewCell.m in Sources */,
 				24000B1F1DD2EAFB00F7FA59 /* CAMeHistoryTableViewCell.m in Sources */,
 				246BE43C1DCB4CC90055FB97 /* ChefAdia.xcdatamodeld in Sources */,
 				24C7C7C31DD2BACF008D89F5 /* CAFoodCart.m in Sources */,

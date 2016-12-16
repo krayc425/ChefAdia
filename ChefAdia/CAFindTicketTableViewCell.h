@@ -28,7 +28,5 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *expireLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *dailyAmountInstructionLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *dailyAmountLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *currentInstructionLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *currentLabel;
 
 @end

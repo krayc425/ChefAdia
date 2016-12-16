@@ -21,16 +21,14 @@
     [self.priceLabel setTextColor:[Utilities getColor]];
     [self.IDLabel setFont:[UIFont fontWithName:fontName size:13]];
     [self.descriptionLabel setFont:[UIFont fontWithName:fontName size:13]];
+    [self.buyButton.titleLabel setFont:[UIFont fontWithName:fontName size:15]];
     
     [self.expireInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
     [self.expireInstructionLabel setTextColor:[Utilities getColor]];
     [self.dailyAmountInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
     [self.dailyAmountInstructionLabel setTextColor:[Utilities getColor]];
-    [self.currentInstructionLabel setFont:[UIFont fontWithName:fontName size:15]];
-    [self.currentLabel setTextColor:[Utilities getColor]];
     [self.expireLabel setFont:[UIFont fontWithName:fontName size:20]];
     [self.dailyAmountLabel setFont:[UIFont fontWithName:fontName size:20]];
-    [self.currentLabel setFont:[UIFont fontWithName:fontName size:20]];
 }
 
 - (IBAction)buyTicket:(id)sender{

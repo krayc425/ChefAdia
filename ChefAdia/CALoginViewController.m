@@ -46,8 +46,6 @@
     _loginButton.titleLabel.font = [UIFont fontWithName:fontName size:20];
     _loginButton.backgroundColor = [UIColor clearColor];
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"Login" object:nil];
 }
 
 - (IBAction)loginAction:(id)sender{
