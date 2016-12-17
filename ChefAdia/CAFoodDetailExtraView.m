@@ -30,20 +30,16 @@
         
         self.containerButton = [[UIButton alloc] init];
         [self.containerButton setBackgroundColor:CONTAINER_BG_COLOR];
-        
-        [self.containerButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
-        [self.containerButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin];
+//
+//        [self.containerButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
+//        [self.containerButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin];
         
         self.okButton = [[UIButton alloc] init];
         [self.okButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_SHORT"] forState:UIControlStateNormal];
         [self.okButton setTitle:@"OK" forState:UIControlStateNormal];
         [self.okButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20]];
         [self.okButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
-        [self.okButton setFrame:CGRectMake(frame.size.width / 2 - 55,
-                                           frame.origin.y + frame.size.height / 2 + 30,
-                                           150,
-                                           30)];
-    
+        
         self.extraArr = [[NSMutableArray alloc] init];
         
         for(NSDictionary *Dict in extraArr){
@@ -68,6 +64,7 @@
         self.tableView.backgroundColor = [UIColor whiteColor];
         
         [self addSubview:self.tableView];
+        [self addSubview:self.okButton];
         [self.containerButton addSubview:self];
     }
     
@@ -91,7 +88,11 @@
     self.okButton.alpha = ZERO;
     self.containerButton.frame = view.bounds;
     [view addSubview:self.containerButton];
-    [view addSubview:self.okButton];
+    [self.okButton setFrame:CGRectMake(self.containerButton.bounds.size.width / 2 - 65,
+                                       self.containerButton.bounds.size.height / 2 + (self.extraNum * 80 / 2) + 40,
+                                       150,
+                                       30)];
+    [self.containerButton addSubview:self.okButton];
     
     [UIView animateWithDuration:ANIMATION_DURATION
                      animations:^{
