@@ -18,6 +18,7 @@
 		2450040B1DDD93A200FEB517 /* CANetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2450040A1DDD93A200FEB517 /* CANetworkManager.m */; };
 		2450AA881DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2450AA861DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.m */; };
 		2450AA891DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2450AA871DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.xib */; };
+		245453141E05458D006C22FC /* CAMenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = 245453131E05458D006C22FC /* CAMenuData.m */; };
 		24630F1D1DCF260500835521 /* CAMeNotLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24630F1C1DCF260500835521 /* CAMeNotLoginViewController.m */; };
 		24630F1F1DCF2BBE00835521 /* century-gothic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24630F1E1DCF2BBE00835521 /* century-gothic-bold.ttf */; };
 		24630F221DCF319F00835521 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24630F211DCF319F00835521 /* QuartzCore.framework */; };
@@ -83,6 +84,8 @@
 		2450AA851DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMeHistoryDetailTableViewCell.h; sourceTree = "<group>"; };
 		2450AA861DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMeHistoryDetailTableViewCell.m; sourceTree = "<group>"; };
 		2450AA871DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAMeHistoryDetailTableViewCell.xib; sourceTree = "<group>"; };
+		245453121E05458D006C22FC /* CAMenuData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMenuData.h; sourceTree = "<group>"; };
+		245453131E05458D006C22FC /* CAMenuData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMenuData.m; sourceTree = "<group>"; };
 		24630F1B1DCF260500835521 /* CAMeNotLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMeNotLoginViewController.h; sourceTree = "<group>"; };
 		24630F1C1DCF260500835521 /* CAMeNotLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMeNotLoginViewController.m; sourceTree = "<group>"; };
 		24630F1E1DCF2BBE00835521 /* century-gothic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "century-gothic-bold.ttf"; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 		24830F6E1DFFDDF4008E2BE3 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				245453121E05458D006C22FC /* CAMenuData.h */,
+				245453131E05458D006C22FC /* CAMenuData.m */,
 				24830F661DFFDD84008E2BE3 /* CAFindMenuTableViewController.h */,
 				24830F671DFFDD84008E2BE3 /* CAFindMenuTableViewController.m */,
 				24830F691DFFDDEF008E2BE3 /* CAFindMenuTableViewCell.h */,
@@ -590,6 +595,7 @@
 				2450AA881DF93315000DFA0F /* CAMeHistoryDetailTableViewCell.m in Sources */,
 				24C0834E1DCE1DD100E1214E /* CAFindTableViewController.m in Sources */,
 				24DE3EA51DFD260700F050C2 /* CAFoodDetailExtraView.m in Sources */,
+				245453141E05458D006C22FC /* CAMenuData.m in Sources */,
 				24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */,
 				24830F681DFFDD84008E2BE3 /* CAFindMenuTableViewController.m in Sources */,
 				2450040B1DDD93A200FEB517 /* CANetworkManager.m in Sources */,

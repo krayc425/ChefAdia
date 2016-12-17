@@ -94,7 +94,7 @@
                  
                  [weakSelf.tableView reloadData];
              }else{
-                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
              }
              
          }

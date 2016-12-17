@@ -1315,7 +1315,7 @@
         <scene sceneID="msi-wt-6RI">
             <objects>
                 <tableViewController storyboardIdentifier="CAFindMenuTableViewController" title="MY MENU" id="dWa-rV-H8G" userLabel="CAFindMenuTableViewController" customClass="CAFindMenuTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VVC-eb-70p">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VVC-eb-70p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1377,7 +1377,6 @@
         <!--CAFindMenuAddViewController-->
         <scene sceneID="1oB-2p-SaB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SwT-4R-ARP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CAFindMenuAddViewController" title="NEW MENU" id="Pbt-QJ-DrF" userLabel="CAFindMenuAddViewController" customClass="CAFindMenuAddViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iuv-yR-wMN"/>
@@ -1631,13 +1630,13 @@
                         <segue destination="7Ge-le-f0k" kind="show" identifier="submitMenuSegue" id="SU5-bX-Ycl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SwT-4R-ARP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4423" y="37"/>
         </scene>
         <!--CAFindMenuListViewController-->
         <scene sceneID="JUI-X2-cAf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gNV-AL-ScZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CAFindMenuListViewController" title="NEW MENU" id="7Ge-le-f0k" userLabel="CAFindMenuListViewController" customClass="CAFindMenuListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FeA-zl-shn"/>
@@ -1738,13 +1737,13 @@
                         <outlet property="totalPriceLabel" destination="xZW-0i-LZP" id="Ipg-gn-Ne0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNV-AL-ScZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5284" y="36"/>
         </scene>
         <!--CAFindMenuOrderViewController-->
         <scene sceneID="VIi-GS-LES">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kqg-Gx-Fnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CAFindMenuOrderViewController" title="ORDER MY MENU" id="yxi-nD-etR" userLabel="CAFindMenuOrderViewController" customClass="CAFindMenuOrderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Uf-zY-EYi"/>
@@ -1806,12 +1805,14 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderAction:" destination="yxi-nD-etR" eventType="touchUpInside" id="yQ1-Ve-XGI"/>
-                                    <action selector="submitAction:" destination="yxi-nD-etR" eventType="touchUpInside" id="lsd-NH-elc"/>
+                                    <action selector="orderAction:" destination="yxi-nD-etR" eventType="touchUpInside" id="Rfp-DC-54M"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="DPK-XD-6K4" firstAttribute="centerX" secondItem="Rqf-ki-Yb7" secondAttribute="centerX" id="23W-7d-PjW"/>
                             <constraint firstItem="OTR-50-su2" firstAttribute="leading" secondItem="Rqf-ki-Yb7" secondAttribute="leading" id="6lO-96-bn2"/>
@@ -1824,6 +1825,7 @@
                             <constraint firstItem="OTR-50-su2" firstAttribute="top" secondItem="3Uf-zY-EYi" secondAttribute="bottom" constant="10" id="eiL-xZ-S1I"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
                         <outlet property="menuTableView" destination="JCP-I2-gEu" id="7ry-CG-YZe"/>
                         <outlet property="nameLabel" destination="E4c-qS-2JJ" id="JzS-9u-lmY"/>
@@ -1832,6 +1834,7 @@
                         <outlet property="totalPriceLabel" destination="ahs-Kx-wTM" id="eqq-u2-Whu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kqg-Gx-Fnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4425" y="-696"/>
         </scene>

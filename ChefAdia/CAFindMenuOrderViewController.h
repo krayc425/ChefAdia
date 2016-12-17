@@ -19,10 +19,11 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *orderButton;
 
 @property (nonnull, nonatomic) NSString *menuid;
+@property (nonnull, nonatomic) NSString *menuName;
+@property (nonatomic) double menuPrice;
 
 @property (nonnull, nonatomic) NSMutableArray *typeArr;
 @property (nonnull, nonatomic) NSMutableArray *numArr;
 @property (nonnull, nonatomic) NSMutableArray *foodArr;
-@property (nonatomic) double totalPrice;
 
 @end

@@ -64,7 +64,7 @@
                  }
                  [weakSelf.tableView reloadData];
              }else{
-                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
              }
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -109,6 +109,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 1){
         [self performSegueWithIdentifier:@"detailMenuSegue" sender:indexPath];
     }
@@ -170,7 +171,7 @@
                                                                           
                                                                           [weakSelf.tableView reloadData];
                                                                       }else{
-                                                                          NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                                                                          NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
                                                                       }
                                                                   }
                                                                   failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -191,10 +192,8 @@
         CAFindMenuOrderViewController *caFindMenuOrderViewController = [segue destinationViewController];
         NSIndexPath *path = (NSIndexPath *)sender;
         [caFindMenuOrderViewController setMenuid:[self.menuArr[path.row] objectForKey:@"mmenuid"]];
-        
-        
-        
-        
+        [caFindMenuOrderViewController setMenuName:[self.menuArr[path.row] objectForKey:@"name"]];
+        [caFindMenuOrderViewController setMenuPrice:[[self.menuArr[path.row] objectForKey:@"price"] doubleValue]];
     }else if([segue.identifier isEqualToString:@"addMenuSegue"]){
         
     }

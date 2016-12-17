@@ -88,7 +88,7 @@
                      [self performSegueWithIdentifier:@"easyOrderSegue" sender:[resultDict objectForKey:@"data"]];
                      
                  }else{
-                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
                  }
              }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -123,7 +123,7 @@
                  }
                  [weakSelf.tableView reloadData];
              }else{
-                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
              }
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

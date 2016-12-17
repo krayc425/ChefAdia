@@ -10,6 +10,7 @@
 #import "CAFindMenuAddTableViewCell.h"
 #import "AFNetworking.h"
 #import "Utilities.h"
+#import "CAMenuData.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CAFindMenuListViewController.h"
 
@@ -48,12 +49,7 @@
     
     //对应的编号是 index+1(1~6)，tag 是 index (0~5)
     self.currentStep = 1;
-    self.typeArr = @[@"MEAL",
-                     @"MEAT",
-                     @"VEG",
-                     @"SNACK",
-                     @"SAUCE",
-                     @"FLAVOR"];
+    self.typeArr = [CAMenuData getShortNameList];
     for(UIButton *button in self.menuStackView.subviews){
         [button setTitle:self.typeArr[button.tag] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont fontWithName:fontName size:15]];
@@ -90,12 +86,19 @@
         [self.nextButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20]];
     }
     
+    for(int i = 1; i <= self.currentStep; i++){
+        [self.menuStackView.subviews[i-1] setUserInteractionEnabled:YES];
+    }
     if([self isChosenFinished:self.currentStep - 1]){
         [self.nextButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_SHORT"] forState:UIControlStateNormal];
         [self.nextButton setUserInteractionEnabled:YES];
     }else{
         [self.nextButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_GRAY_SHORT"] forState:UIControlStateNormal];
         [self.nextButton setUserInteractionEnabled:NO];
+        
+        for(int i = self.currentStep+1; i <= self.typeArr.count; i++){
+            [self.menuStackView.subviews[i-1] setUserInteractionEnabled:NO];
+        }
     }
     
     for(UIButton *button in self.menuStackView.subviews){
@@ -158,7 +161,7 @@
                  [self refreshView];
                  
              }else{
-                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
              }
              
          }

@@ -43,7 +43,6 @@
     self.menuTableView.dataSource = self;
     self.menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.nameText.delegate = self;
 //    self.nameText.layer.cornerRadius = 20.0;
     self.nameText.font = [UIFont fontWithName:fontName size:20];
     [self.nameText addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
@@ -87,13 +86,8 @@
                            @"flavorid" : [self.foodArr[5] objectForKey:@"foodid"],
                            };
     
-    NSLog(@"%@", [self.numArr[0] class]);
-    
-    NSLog(@"%@", [dict description]);
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
                                                          @"text/html",
@@ -105,8 +99,20 @@
               NSDictionary *resultDict = (NSDictionary *)responseObject;
               if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                   NSLog(@"ADD MMENU SUCCESS");
+                  
+                  UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Add new menu success"
+                                                                                  message:nil
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                     style:UIAlertActionStyleDefault
+                                                                   handler:^(UIAlertAction *action){
+                                                                       [self.navigationController popToRootViewControllerAnimated:YES];
+                                                                   }];
+                  [alertC addAction:okAction];
+                  [self presentViewController:alertC animated:YES completion:nil];
+
               }else{
-                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
               }
           }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

@@ -111,7 +111,7 @@
                                   [self.navigationController popViewControllerAnimated:YES];
                                   
                               }else{
-                                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
                               }
                               
                           }
@@ -119,7 +119,7 @@
                               NSLog(@"%@",error);
                           }];
                  }else{
-                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"msg"]);
+                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
                      
                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Login Failed"
                                                                                      message:@"Wrong email and password combination"
