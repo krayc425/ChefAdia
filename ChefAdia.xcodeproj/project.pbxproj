@@ -55,6 +55,7 @@
 		24C9CD201E03868F00472AA1 /* CAFindMenuListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C9CD1F1E03868F00472AA1 /* CAFindMenuListViewController.m */; };
 		24C9CD241E038AA300472AA1 /* CAFindMenuListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C9CD221E038AA300472AA1 /* CAFindMenuListTableViewCell.m */; };
 		24C9CD251E038AA300472AA1 /* CAFindMenuListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C9CD231E038AA300472AA1 /* CAFindMenuListTableViewCell.xib */; };
+		24C9CD291E039C5200472AA1 /* CAFindMenuOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C9CD281E039C5200472AA1 /* CAFindMenuOrderViewController.m */; };
 		24DE3EA51DFD260700F050C2 /* CAFoodDetailExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */; };
 		24EF4F6B1DD1F34400EDB919 /* CAFoodDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6A1DD1F34400EDB919 /* CAFoodDetailTableViewController.m */; };
 		24EF4F6F1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF4F6D1DD1F35400EDB919 /* CAFoodDetailTableViewCell.m */; };
@@ -146,6 +147,8 @@
 		24C9CD211E038AA300472AA1 /* CAFindMenuListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindMenuListTableViewCell.h; sourceTree = "<group>"; };
 		24C9CD221E038AA300472AA1 /* CAFindMenuListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindMenuListTableViewCell.m; sourceTree = "<group>"; };
 		24C9CD231E038AA300472AA1 /* CAFindMenuListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CAFindMenuListTableViewCell.xib; sourceTree = "<group>"; };
+		24C9CD271E039C5200472AA1 /* CAFindMenuOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFindMenuOrderViewController.h; sourceTree = "<group>"; };
+		24C9CD281E039C5200472AA1 /* CAFindMenuOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFindMenuOrderViewController.m; sourceTree = "<group>"; };
 		24DE3EA31DFD260700F050C2 /* CAFoodDetailExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailExtraView.h; sourceTree = "<group>"; };
 		24DE3EA41DFD260700F050C2 /* CAFoodDetailExtraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAFoodDetailExtraView.m; sourceTree = "<group>"; };
 		24EF4F691DD1F34400EDB919 /* CAFoodDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAFoodDetailTableViewController.h; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				24C9CD211E038AA300472AA1 /* CAFindMenuListTableViewCell.h */,
 				24C9CD221E038AA300472AA1 /* CAFindMenuListTableViewCell.m */,
 				24C9CD231E038AA300472AA1 /* CAFindMenuListTableViewCell.xib */,
+				24C9CD271E039C5200472AA1 /* CAFindMenuOrderViewController.h */,
+				24C9CD281E039C5200472AA1 /* CAFindMenuOrderViewController.m */,
 			);
 			name = List;
 			sourceTree = "<group>";
@@ -596,6 +601,7 @@
 				249491EF1DD1AF0C00B99320 /* CAFoodTableViewCell.m in Sources */,
 				24C7C7C71DD2BFAB008D89F5 /* CAFoodPayViewController.m in Sources */,
 				24EF4F741DD20E9E00EDB919 /* CAFoodDetailInCart.m in Sources */,
+				24C9CD291E039C5200472AA1 /* CAFindMenuOrderViewController.m in Sources */,
 				2418678F1DFAAF290047C911 /* CAFindTicketTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

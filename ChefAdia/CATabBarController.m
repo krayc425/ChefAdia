@@ -110,10 +110,6 @@
     [[self.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"TAB_ME"]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)setColor{
     self.navigationController.navigationBar.barTintColor = color;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

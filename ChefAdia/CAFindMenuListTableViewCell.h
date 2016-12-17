@@ -15,4 +15,6 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *numLabel;
 
+@property (nonnull, nonatomic) IBOutlet UIImageView *picView;
+
 @end

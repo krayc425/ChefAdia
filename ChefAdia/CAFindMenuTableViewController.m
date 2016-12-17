@@ -10,6 +10,8 @@
 #import "CAFindMenuTableViewCell.h"
 #import "Utilities.h"
 #import "AFNetworking.h"
+#import "CAFindMenuOrderViewController.h"
+#import "CAFindMenuListViewController.h"
 
 #define MMENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getMList"
 #define MMENU_DELETE_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/deleteMMenu"
@@ -72,7 +74,6 @@
 }
 
 - (void)addAction:(id)sender{
-    NSLog(@"add menu");
     [self performSegueWithIdentifier:@"addMenuSegue" sender:nil];
 }
 
@@ -104,6 +105,12 @@
         return 10;
     }else{
         return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 1){
+        [self performSegueWithIdentifier:@"detailMenuSegue" sender:indexPath];
     }
 }
 
@@ -180,7 +187,15 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"addMenuSegue"]){
+    if([segue.identifier isEqualToString:@"detailMenuSegue"]){
+        CAFindMenuOrderViewController *caFindMenuOrderViewController = [segue destinationViewController];
+        NSIndexPath *path = (NSIndexPath *)sender;
+        [caFindMenuOrderViewController setMenuid:[self.menuArr[path.row] objectForKey:@"mmenuid"]];
+        
+        
+        
+        
+    }else if([segue.identifier isEqualToString:@"addMenuSegue"]){
         
     }
 }

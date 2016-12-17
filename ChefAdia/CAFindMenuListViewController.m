@@ -10,6 +10,7 @@
 #import "CAFindMenuListTableViewCell.h"
 #import "Utilities.h"
 #import "AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define UPLOAD_MMENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/addMMenu"
 
@@ -86,11 +87,13 @@
                            @"flavorid" : [self.foodArr[5] objectForKey:@"foodid"],
                            };
     
+    NSLog(@"%@", [self.numArr[0] class]);
+    
     NSLog(@"%@", [dict description]);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
                                                          @"text/html",
@@ -123,7 +126,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return 80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -140,13 +143,14 @@
     [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.foodArr[indexPath.row] objectForKey:@"price"] doubleValue]]];
     [cell.typeLabel setText:self.typeArr[indexPath.row]];
     [cell.nameLabel setText:[self.foodArr[indexPath.row] objectForKey:@"name"]];
+
+    NSURL *imageUrl = [NSURL URLWithString:[self.foodArr[indexPath.row] objectForKey:@"pic"]];
+    [cell.picView sd_setImageWithURL:imageUrl];
     
     return cell;
 }
 
-#pragma mark - UITextField Delegate
-
--(void)textFieldTextChange:(UITextField *)textField{
+- (void)textFieldTextChange:(UITextField *)textField{
     if([textField.text isEqualToString:@""]){
         [self.submitButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_GRAY_SHORT"] forState:UIControlStateNormal];
         [self.submitButton setUserInteractionEnabled:NO];

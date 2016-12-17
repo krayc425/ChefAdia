@@ -12,6 +12,7 @@
 #import "CAFoodDetail.h"
 #import "CAFoodDetailInCart.h"
 #import "AFNetworking.h"
+#import "Utilities.h"
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -33,6 +34,16 @@
         [self.containerButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
         [self.containerButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin];
         
+        self.okButton = [[UIButton alloc] init];
+        [self.okButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_SHORT"] forState:UIControlStateNormal];
+        [self.okButton setTitle:@"OK" forState:UIControlStateNormal];
+        [self.okButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20]];
+        [self.okButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
+        [self.okButton setFrame:CGRectMake(frame.size.width / 2 - 55,
+                                           frame.origin.y + frame.size.height / 2 + 30,
+                                           150,
+                                           30)];
+    
         self.extraArr = [[NSMutableArray alloc] init];
         
         for(NSDictionary *Dict in extraArr){
@@ -67,20 +78,25 @@
     [UIView animateWithDuration:ANIMATION_DURATION
                      animations:^{
                          self.containerButton.alpha = ZERO;
+                         self.okButton.alpha = ZERO;
                      }
                      completion:^(BOOL finished) {
                          [self.containerButton removeFromSuperview];
+                         [self.okButton removeFromSuperview];
                      }];
 }
 
 - (void)showInView:(UIView *)view{
     self.containerButton.alpha = ZERO;
+    self.okButton.alpha = ZERO;
     self.containerButton.frame = view.bounds;
     [view addSubview:self.containerButton];
+    [view addSubview:self.okButton];
     
     [UIView animateWithDuration:ANIMATION_DURATION
                      animations:^{
                          self.containerButton.alpha = ONE;
+                         self.okButton.alpha = ONE;
                      }
                      completion:^(BOOL finished) {
                      }];
@@ -132,7 +148,6 @@
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     CAFoodDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    //配置 cell 细节
     CAFoodDetail *food = [self.extraArr objectAtIndex:indexPath.row];
     
     [cell.nameLabel setText:[NSString stringWithFormat:@"%@", food.name]];
@@ -165,7 +180,6 @@
     cell.delegate = self;
     
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

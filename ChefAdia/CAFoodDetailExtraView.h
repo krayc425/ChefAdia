@@ -20,6 +20,8 @@
 @property (nonatomic, nonnull) id<ExtraDelegate> delegate;
 
 @property (nonnull, nonatomic) UIButton *containerButton;
+@property (nonnull, nonatomic) UIButton *okButton;
+
 @property (nonnull, nonatomic) UITableView *tableView;
 
 @property (nonatomic) int extraNum;
