@@ -122,6 +122,13 @@
     [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
     CAMeHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    //是自定义菜单，不能点进去
+    if([[self.orderArr[indexPath.row] objectForKey:@"iscust"] intValue] == 1){
+        [cell setUserInteractionEnabled:NO];
+    }else{
+        [cell setUserInteractionEnabled:YES];
+    }
+    
     [cell.orderIDLabel setText:[NSString stringWithFormat:@"Order ID : %@", [self.orderArr[indexPath.row] objectForKey:@"orderid"]]];
     [cell.timeLabel setText:[self.orderArr[indexPath.row] objectForKey:@"time"]];
     [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", [[self.orderArr[indexPath.row] objectForKey:@"price"] doubleValue]]];

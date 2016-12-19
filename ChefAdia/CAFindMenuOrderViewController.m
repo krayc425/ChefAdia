@@ -77,7 +77,6 @@
               if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                   
                   NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
-                  NSLog(@"%@", [subResultDict description]);
                   
                   for(NSString *str in subResultDict){
                       NSString *tmpStr = [str uppercaseString];
@@ -105,8 +104,6 @@
                            @"mmenuid" : self.menuid,
                            };
     
-    NSLog(@"%@", [dict description]);
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -127,7 +124,9 @@
                                                                           preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                                     style:UIAlertActionStyleDefault
-                                                                  handler:nil];
+                                                                  handler:^(UIAlertAction *action){
+                                                                      [self.navigationController popViewControllerAnimated:YES];
+                                                                  }];
                  [alertC addAction:okAction];
                  [self presentViewController:alertC animated:YES completion:nil];
 
