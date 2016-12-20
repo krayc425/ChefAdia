@@ -21,6 +21,9 @@
     [self.priceLabel setFont:[UIFont fontWithName:fontName size:25]];
     [self.goodLabel setFont:[UIFont fontWithName:fontName size:12]];
     [self.badLabel setFont:[UIFont fontWithName:fontName size:12]];
+    [self.descriptionLabel setFont:[UIFont fontWithName:fontName size:12]];
+    
+    [self.descriptionLabel setTextColor:[UIColor grayColor]];
     
     [self.extraButton.titleLabel setFont:[UIFont fontWithName:fontName size:15]];
     

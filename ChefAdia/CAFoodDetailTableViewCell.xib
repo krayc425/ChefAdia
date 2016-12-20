@@ -79,7 +79,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7uc-5E-xbn">
-                        <rect key="frame" x="210" y="10" width="100" height="59.5"/>
+                        <rect key="frame" x="210" y="20" width="100" height="54.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="evy-dp-H89">
                                 <rect key="frame" x="2.5" y="0.0" width="95.5" height="25.5"/>
@@ -119,7 +119,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afR-C0-6Td">
-                                <rect key="frame" x="0.0" y="34.5" width="100" height="25"/>
+                                <rect key="frame" x="2" y="30.5" width="96" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="afR-C0-6Td" secondAttribute="height" multiplier="4:1" id="ZGp-xx-Cos"/>
                                 </constraints>
@@ -136,17 +136,24 @@
                             <constraint firstAttribute="width" constant="100" id="Ikk-bs-661"/>
                         </constraints>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc0-Iv-Mjb">
+                        <rect key="frame" x="153.5" y="9.5" width="26.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="7uc-5E-xbn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3oC-Li-BA9"/>
-                    <constraint firstAttribute="bottom" secondItem="7uc-5E-xbn" secondAttribute="bottom" constant="10" id="Ah5-pB-XSv"/>
+                    <constraint firstItem="7uc-5E-xbn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="3oC-Li-BA9"/>
+                    <constraint firstItem="xc0-Iv-Mjb" firstAttribute="leading" secondItem="LbP-eb-Gvb" secondAttribute="trailing" constant="5" id="7KW-H5-BDA"/>
+                    <constraint firstAttribute="bottom" secondItem="7uc-5E-xbn" secondAttribute="bottom" constant="5" id="Ah5-pB-XSv"/>
                     <constraint firstItem="86m-TK-ZrJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="GLc-a6-zt2"/>
                     <constraint firstItem="LbP-eb-Gvb" firstAttribute="leading" secondItem="86m-TK-ZrJ" secondAttribute="trailing" constant="5" id="PCl-O6-CuW"/>
                     <constraint firstItem="86m-TK-ZrJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="YOZ-SB-JKt"/>
                     <constraint firstItem="LbP-eb-Gvb" firstAttribute="top" secondItem="86m-TK-ZrJ" secondAttribute="top" id="h8P-dk-8U6"/>
                     <constraint firstAttribute="trailing" secondItem="7uc-5E-xbn" secondAttribute="trailing" constant="10" id="moY-Xz-K4g"/>
-                    <constraint firstItem="7uc-5E-xbn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nHH-8E-jd2"/>
                     <constraint firstAttribute="bottom" secondItem="86m-TK-ZrJ" secondAttribute="bottom" constant="5" id="vS7-6o-FBY"/>
+                    <constraint firstItem="xc0-Iv-Mjb" firstAttribute="centerY" secondItem="Wnx-C0-D1j" secondAttribute="centerY" id="wgW-WP-obm"/>
                     <constraint firstItem="LbP-eb-Gvb" firstAttribute="bottom" secondItem="86m-TK-ZrJ" secondAttribute="bottom" id="xlq-2c-FhW"/>
                 </constraints>
             </tableViewCellContentView>
@@ -154,6 +161,7 @@
                 <outlet property="addButton" destination="8aK-Cm-lv9" id="GhL-X1-Jkn"/>
                 <outlet property="badLabel" destination="JFY-ED-50j" id="wvy-IO-Bkc"/>
                 <outlet property="currNumLabel" destination="BWR-GU-tHk" id="TgY-G1-Wjw"/>
+                <outlet property="descriptionLabel" destination="xc0-Iv-Mjb" id="j9Q-x0-dWa"/>
                 <outlet property="extraButton" destination="afR-C0-6Td" id="TE0-0i-jDw"/>
                 <outlet property="goodLabel" destination="qPx-Nw-eJx" id="3WL-Gw-sGf"/>
                 <outlet property="minusButton" destination="54h-pY-tls" id="Rf3-oS-uBK"/>
@@ -161,6 +169,7 @@
                 <outlet property="picView" destination="86m-TK-ZrJ" id="xIF-r9-Y5S"/>
                 <outlet property="priceLabel" destination="d4Q-Jz-JPn" id="lhe-qX-tRj"/>
             </connections>
+            <point key="canvasLocation" x="38" y="100"/>
         </tableViewCell>
     </objects>
     <resources>

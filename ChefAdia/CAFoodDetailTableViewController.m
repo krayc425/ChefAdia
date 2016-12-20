@@ -80,7 +80,8 @@
                                                                               andPic:[Dict objectForKey:@"pic"]
                                                                             andLikes:[[Dict objectForKey:@"good_num"] intValue]
                                                                          andDislikes:[[Dict objectForKey:@"bad_num"] intValue]
-                                                                           andExtras:[Dict objectForKey:@"extraFood"]];
+                                                                           andExtras:[Dict objectForKey:@"extraFood"]
+                                                                      andDescription:[Dict objectForKey:@"description"]];
                      [_foodArr addObject:caFoodDetail];
                  }
                  
@@ -228,6 +229,7 @@
         [cell.goodLabel setText:[NSString stringWithFormat:@"%d", food.likes]];
         [cell.badLabel setText:[NSString stringWithFormat:@"%d", food.dislikes]];
         [cell.priceLabel setText:[NSString stringWithFormat:@"$%.2f", food.price]];
+        [cell.descriptionLabel setText:[NSString stringWithFormat:@"%@", food.foodDescription]];
         
         //NSArray *arr = food.extras;
         if([food.extras count] == 0){

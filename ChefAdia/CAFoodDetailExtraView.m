@@ -49,7 +49,8 @@
                                                                      andPic:[Dict objectForKey:@"pic"]
                                                                    andLikes:[[Dict objectForKey:@"good_num"] intValue]
                                                                 andDislikes:[[Dict objectForKey:@"bad_num"] intValue]
-                                                                  andExtras:[Dict objectForKey:@"extraFood"]];
+                                                                  andExtras:[Dict objectForKey:@"extraFood"]
+                                                             andDescription:[Dict objectForKey:@"description"]];
             [self.extraArr addObject:caFoodDetail];
         }
         

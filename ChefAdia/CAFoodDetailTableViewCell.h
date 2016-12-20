@@ -26,6 +26,7 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *goodLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *badLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (nonnull, nonatomic) IBOutlet UIButton *minusButton;
 @property (nonnull, nonatomic) IBOutlet UILabel *currNumLabel;

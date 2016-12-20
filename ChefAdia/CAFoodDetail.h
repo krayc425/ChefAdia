@@ -18,7 +18,8 @@
 @property (nonatomic) int likes;
 @property (nonatomic) int dislikes;
 @property (nonnull, nonatomic) NSArray *extras;
+@property (nonnull, nonatomic) NSString *foodDescription;
 
-- (_Nonnull instancetype)initWithName:(NSString *_Nonnull)name andID:(NSString *_Nonnull)foodid andPrice:(double)price andPic:(NSString *_Nonnull)pic andLikes:(int)likes andDislikes:(int)dislikes andExtras:(NSArray *_Nonnull)extras;
+- (_Nonnull instancetype)initWithName:(NSString *_Nonnull)name andID:(NSString *_Nonnull)foodid andPrice:(double)price andPic:(NSString *_Nonnull)pic andLikes:(int)likes andDislikes:(int)dislikes andExtras:(NSArray *_Nonnull)extras andDescription:(NSString *_Nonnull)des;
 
 @end
