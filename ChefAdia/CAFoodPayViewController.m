@@ -69,64 +69,77 @@
     //CASH : TAG = 0
     //VISA : TAG = 1
     
-    int ticket_info = [self.ticketSwitch isOn];
-    int bowl_info = [self.bowlSwitch isOn];
-    
-    UIButton *button = (UIButton *)sender;
-    
-    NSMutableArray *foodArr = [[NSMutableArray alloc] init];
-    for(CAFoodDetailInCart *food in self.payFoodArr){
-        NSDictionary *foodDict = @{
-                                   @"foodid" : food.foodID,
-                                   @"num" : [NSNumber numberWithInt:food.number],
-                                   };
-        [foodArr addObject:foodDict];
-    }
-    
-    NSDictionary *tempDict = @{
-                               @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
-                               @"time" : [self.timeLabel text],
-                               @"food_list" : foodArr,
-                               @"price" : [NSNumber numberWithDouble:[[[self.priceLabel text] substringFromIndex:1] doubleValue]],
-                               @"ticket_info" : [NSNumber numberWithInt:ticket_info],
-                               @"bowl_info" : [NSNumber numberWithInt:bowl_info],
-                               @"pay_type" : [NSNumber numberWithInteger:button.tag],
-                               };
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                         @"text/plain",
-                                                         @"text/html",
-                                                         nil];
-    [manager POST:PAY_URL
-       parameters:tempDict
-         progress:nil
-          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             NSDictionary *resultDict = (NSDictionary *)responseObject;
-             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                 
-                 [[CAFoodCart shareInstance] clearCart];
-                 
-                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
-                                                                                 message:nil
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                    style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction *action){
-                                                                      [self.navigationController popToRootViewControllerAnimated:YES];
-                                                                  }];
-                 [alertC addAction:okAction];
-                 [self presentViewController:alertC animated:YES completion:nil];
-                 
-             }else{
-                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
-             }
-             
-         }
-          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"%@",error);
-         }];
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sure to order?"
+                                                                    message:nil
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                       style:UIAlertActionStyleCancel
+                                                     handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Order"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action){
+                                                         int ticket_info = [self.ticketSwitch isOn];
+                                                         int bowl_info = [self.bowlSwitch isOn];
+                                                         
+                                                         UIButton *button = (UIButton *)sender;
+                                                         
+                                                         NSMutableArray *foodArr = [[NSMutableArray alloc] init];
+                                                         for(CAFoodDetailInCart *food in self.payFoodArr){
+                                                             NSDictionary *foodDict = @{
+                                                                                        @"foodid" : food.foodID,
+                                                                                        @"num" : [NSNumber numberWithInt:food.number],
+                                                                                        };
+                                                             [foodArr addObject:foodDict];
+                                                         }
+                                                         
+                                                         NSDictionary *tempDict = @{
+                                                                                    @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
+                                                                                    @"time" : [self.timeLabel text],
+                                                                                    @"food_list" : foodArr,
+                                                                                    @"price" : [NSNumber numberWithDouble:[[[self.priceLabel text] substringFromIndex:1] doubleValue]],
+                                                                                    @"ticket_info" : [NSNumber numberWithInt:ticket_info],
+                                                                                    @"bowl_info" : [NSNumber numberWithInt:bowl_info],
+                                                                                    @"pay_type" : [NSNumber numberWithInteger:button.tag],
+                                                                                    };
+                                                         
+                                                         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                                                         manager.requestSerializer = [AFJSONRequestSerializer serializer];
+                                                         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                                                                              @"text/plain",
+                                                                                                              @"text/html",
+                                                                                                              nil];
+                                                         [manager POST:PAY_URL
+                                                            parameters:tempDict
+                                                              progress:nil
+                                                               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
+                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                                                                       
+                                                                       [[CAFoodCart shareInstance] clearCart];
+                                                                       
+                                                                       UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
+                                                                                                                                       message:nil
+                                                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                                                       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault
+                                                                                                                        handler:^(UIAlertAction *action){
+                                                                                                                            [self.navigationController popToRootViewControllerAnimated:YES];
+                                                                                                                        }];
+                                                                       [alertC addAction:okAction];
+                                                                       [self presentViewController:alertC animated:YES completion:nil];
+                                                                       
+                                                                   }else{
+                                                                       NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
+                                                                   }
+                                                                   
+                                                               }
+                                                               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                                                   NSLog(@"%@",error);
+                                                               }];
+                                                     }];
+    [alertC addAction:cancelAction];
+    [alertC addAction:okAction];
+    [self presentViewController:alertC animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

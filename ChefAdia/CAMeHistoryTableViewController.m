@@ -125,8 +125,10 @@
     //是自定义菜单，不能点进去
     if([[self.orderArr[indexPath.row] objectForKey:@"iscust"] intValue] == 1){
         [cell setUserInteractionEnabled:NO];
+        [cell.custLabel setText:@"MY MENU"];
     }else{
         [cell setUserInteractionEnabled:YES];
+        [cell.custLabel setText:@""];
     }
     
     [cell.orderIDLabel setText:[NSString stringWithFormat:@"Order ID : %@", [self.orderArr[indexPath.row] objectForKey:@"orderid"]]];

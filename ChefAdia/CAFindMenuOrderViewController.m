@@ -99,47 +99,62 @@
 }
 
 - (IBAction)orderAction:(id)sender{
-    UIButton *button = (UIButton *)sender;
-    NSDictionary *dict = @{
-                           @"pay_type" : [NSNumber numberWithInteger:button.tag],
-                           @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
-                           @"mmenuid" : self.menuid,
-                           };
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
-                                                         @"text/plain",
-                                                         @"text/html",
-                                                         nil];
-    [manager GET:ORDER_MMENU_URL
-      parameters:dict
-        progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-             NSDictionary *resultDict = (NSDictionary *)responseObject;
-             if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
-                 NSLog(@"ORDER MMENU SUCCESS");
-                 
-                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
-                                                                                 message:nil
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                    style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction *action){
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sure to order?"
+                                                                    message:nil
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Order"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action){
+                                                         UIButton *button = (UIButton *)sender;
+                                                         NSDictionary *dict = @{
+                                                                                @"pay_type" : [NSNumber numberWithInteger:button.tag],
+                                                                                @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
+                                                                                @"mmenuid" : self.menuid,
+                                                                                };
+                                                         
+                                                         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+                                                         manager.requestSerializer = [AFJSONRequestSerializer serializer];
+                                                         manager.responseSerializer = [AFJSONResponseSerializer serializer];
+                                                         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                                                                              @"text/plain",
+                                                                                                              @"text/html",
+                                                                                                              nil];
+                                                         [manager GET:ORDER_MMENU_URL
+                                                           parameters:dict
+                                                             progress:nil
+                                                              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                                                                  NSDictionary *resultDict = (NSDictionary *)responseObject;
+                                                                  if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                                                                      NSLog(@"ORDER MMENU SUCCESS");
+                                                                      
+                                                                      UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
+                                                                                                                                      message:nil
+                                                                                                                               preferredStyle:UIAlertControllerStyleAlert];
+                                                                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                         style:UIAlertActionStyleDefault
+                                                                                                                       handler:^(UIAlertAction *action){
+                                                                                                                           [self.navigationController popViewControllerAnimated:YES];
+                                                                                                                       }];
+                                                                      [alertC addAction:okAction];
+                                                                      [self presentViewController:alertC animated:YES completion:nil];
+                                                                      
                                                                       [self.navigationController popViewControllerAnimated:YES];
-                                                                  }];
-                 [alertC addAction:okAction];
-                 [self presentViewController:alertC animated:YES completion:nil];
-
-                 [self.navigationController popViewControllerAnimated:YES];
-             }else{
-                 NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
-             }
-         }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"%@",error);
-         }];
+                                                                  }else{
+                                                                      NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
+                                                                  }
+                                                              }
+                                                              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                                                  NSLog(@"%@",error);
+                                                              }];
+                                                     }];
+    [alertC addAction:cancelAction];
+    [alertC addAction:okAction];
+    [self presentViewController:alertC animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -168,8 +183,8 @@
     
     [cell.numLabel setText:[self.numArr[indexPath.row] description]];
     
-    [cell.typeLabel setText:self.typeArr[indexPath.row]];
-    [cell.nameLabel setText:self.foodArr[indexPath.row]];
+    [cell.typeLabel setText:[NSString stringWithFormat:@"  %@", self.typeArr[indexPath.row]]];
+    [cell.nameLabel setText:[NSString stringWithFormat:@"  %@", self.foodArr[indexPath.row]]];
 
     [cell.picView setHidden:YES];
     [cell.priceLabel setHidden:YES];

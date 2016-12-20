@@ -42,7 +42,7 @@
     switch (indexPath.row) {
         case 0:
             img = [UIImage imageNamed:@"FIND_1"];
-            mainText = @"ADD MY MENU";
+            mainText = @"MY MENU";
             subText = @"MAKE YOUR OWN EXCLUSIVE MENU";
             break;
         case 1:

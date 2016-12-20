@@ -21,6 +21,7 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *timeLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *priceLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *orderIDLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *custLabel;
 
 @property (nonnull, nonatomic) IBOutlet UIButton *easyOrderButton;
 
