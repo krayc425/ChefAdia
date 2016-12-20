@@ -125,7 +125,7 @@
     // 是否允许编辑（默认为NO）
     imagePickerController.allowsEditing = YES;
     // 创建一个警告控制器
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pick a Photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pick a photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     // 设置警告响应事件
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera"
                                                            style:UIAlertActionStyleDefault
@@ -138,7 +138,7 @@
                                                             [self presentViewController:imagePickerController animated:YES completion:nil];
     }];
     
-    UIAlertAction *photosAction = [UIAlertAction actionWithTitle:@"Choose from Photo Library"
+    UIAlertAction *photosAction = [UIAlertAction actionWithTitle:@"Choose from photo library"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                             imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -241,7 +241,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
             //刷新头像
             
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Successfully!"
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload successfully!"
                                                                                                                                  message:nil
                                                                                                                           preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
@@ -259,7 +259,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"FAILED");
         NSLog(@"%@", [error description]);
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload Failed!"
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Upload failed!"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"

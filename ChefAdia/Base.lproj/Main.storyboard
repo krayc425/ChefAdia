@@ -372,7 +372,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-yq-E3x">
                                 <rect key="frame" x="20" y="570.5" width="335" height="32.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="32.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nTp-Ku-7c5" secondAttribute="height" multiplier="5:1" id="zu9-2c-NvV"/>
@@ -384,7 +384,7 @@
                                             <action selector="payAction:" destination="Mz8-Ga-rK3" eventType="touchUpInside" id="OCg-gH-nZV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3z-ji-6p3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3z-ji-6p3">
                                         <rect key="frame" x="172.5" y="0.0" width="162.5" height="32.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="z3z-ji-6p3" secondAttribute="height" multiplier="5:1" id="PDe-yT-7cq"/>
@@ -1791,36 +1791,57 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JCP-I2-gEu">
-                                <rect key="frame" x="0.0" y="98" width="375" height="499"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="496.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPK-XD-6K4">
-                                <rect key="frame" x="113" y="617" width="150" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UFw-qF-tKe">
+                                <rect key="frame" x="20" y="614.5" width="335" height="32.5"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laP-15-oWC">
+                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="32.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="laP-15-oWC" secondAttribute="height" multiplier="5:1" id="Lqa-Af-Ul2"/>
+                                        </constraints>
+                                        <state key="normal" title="PAY WITH VISA" backgroundImage="BUTTON_BG_VISA_SHORT">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="orderAction:" destination="yxi-nD-etR" eventType="touchUpInside" id="BNT-S8-WKm"/>
+                                            <action selector="payAction:" destination="Mz8-Ga-rK3" eventType="touchUpInside" id="wFN-ud-N62"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuE-XC-a5K">
+                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="32.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="CuE-XC-a5K" secondAttribute="height" multiplier="5:1" id="Lke-lX-oiU"/>
+                                        </constraints>
+                                        <state key="normal" title="CASH ON DELIVERY" backgroundImage="BUTTON_BG_DEFAULT_SHORT">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="orderAction:" destination="yxi-nD-etR" eventType="touchUpInside" id="3N5-K5-YDZ"/>
+                                            <action selector="payAction:" destination="Mz8-Ga-rK3" eventType="touchUpInside" id="tEL-gi-Y6f"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Btc-Pg-cqm"/>
-                                    <constraint firstAttribute="width" secondItem="DPK-XD-6K4" secondAttribute="height" multiplier="5:1" id="XnX-dT-4mi"/>
+                                    <constraint firstAttribute="height" constant="32.5" id="fyb-kE-3Rt"/>
                                 </constraints>
-                                <state key="normal" title="ORDER" backgroundImage="BUTTON_BG_DEFAULT_SHORT">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="orderAction:" destination="yxi-nD-etR" eventType="touchUpInside" id="Rfp-DC-54M"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="DPK-XD-6K4" firstAttribute="centerX" secondItem="Rqf-ki-Yb7" secondAttribute="centerX" id="23W-7d-PjW"/>
                             <constraint firstItem="OTR-50-su2" firstAttribute="leading" secondItem="Rqf-ki-Yb7" secondAttribute="leading" id="6lO-96-bn2"/>
+                            <constraint firstItem="UFw-qF-tKe" firstAttribute="centerX" secondItem="Rqf-ki-Yb7" secondAttribute="centerX" id="De0-m4-HBC"/>
+                            <constraint firstItem="UFw-qF-tKe" firstAttribute="top" secondItem="JCP-I2-gEu" secondAttribute="bottom" constant="20" id="GHY-RD-U9i"/>
                             <constraint firstAttribute="trailing" secondItem="JCP-I2-gEu" secondAttribute="trailing" id="JjZ-f7-qpU"/>
                             <constraint firstAttribute="trailing" secondItem="OTR-50-su2" secondAttribute="trailing" id="KcH-ZO-uvI"/>
-                            <constraint firstItem="BLd-Bt-wCq" firstAttribute="top" secondItem="DPK-XD-6K4" secondAttribute="bottom" constant="20" id="NO9-SV-h15"/>
-                            <constraint firstItem="DPK-XD-6K4" firstAttribute="top" secondItem="JCP-I2-gEu" secondAttribute="bottom" constant="20" id="OGr-tR-N7J"/>
                             <constraint firstItem="JCP-I2-gEu" firstAttribute="leading" secondItem="Rqf-ki-Yb7" secondAttribute="leading" id="UCe-nD-5mZ"/>
+                            <constraint firstAttribute="bottom" secondItem="UFw-qF-tKe" secondAttribute="bottom" constant="20" id="Y7g-u1-fxk"/>
                             <constraint firstItem="JCP-I2-gEu" firstAttribute="top" secondItem="OTR-50-su2" secondAttribute="bottom" constant="20" id="e36-SL-8Ov"/>
                             <constraint firstItem="OTR-50-su2" firstAttribute="top" secondItem="3Uf-zY-EYi" secondAttribute="bottom" constant="10" id="eiL-xZ-S1I"/>
                         </constraints>
@@ -1829,7 +1850,6 @@
                     <connections>
                         <outlet property="menuTableView" destination="JCP-I2-gEu" id="7ry-CG-YZe"/>
                         <outlet property="nameLabel" destination="E4c-qS-2JJ" id="JzS-9u-lmY"/>
-                        <outlet property="orderButton" destination="DPK-XD-6K4" id="oRC-Te-xy5"/>
                         <outlet property="priceInstructionLabel" destination="6pe-E4-s95" id="Y4S-yW-atv"/>
                         <outlet property="totalPriceLabel" destination="ahs-Kx-wTM" id="eqq-u2-Whu"/>
                     </connections>

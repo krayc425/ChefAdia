@@ -64,6 +64,8 @@
                      [self.foodArr addObject:foodDict];
                  }
                  
+                 self.commentArr = [[NSMutableArray alloc] initWithCapacity:self.foodArr.count];
+
                  [weakSelf.tableView reloadData];
                  
              }else{
@@ -79,13 +81,41 @@
 - (void)goodComment:(_Nonnull id)sender{
     NSLog(@"good");
     CAMeHistoryDetailTableViewCell *cell = (CAMeHistoryDetailTableViewCell *)sender;
-    [self commentWithNum:1 andFoodID:[self.foodArr[[[self.tableView indexPathForCell:cell] row]] objectForKey:@"foodid"]];
+    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    
+    if([self.commentArr containsObject:path]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You have already commented this food"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        [self commentWithNum:1 andFoodID:[self.foodArr[path.row] objectForKey:@"foodid"]];
+        [self.commentArr addObject:path];
+    }
 }
 
 - (void)badComment:(_Nonnull id)sender{
     NSLog(@"bad");
     CAMeHistoryDetailTableViewCell *cell = (CAMeHistoryDetailTableViewCell *)sender;
-    [self commentWithNum:0 andFoodID:[self.foodArr[[[self.tableView indexPathForCell:cell] row]] objectForKey:@"foodid"]];
+    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    
+    if([self.commentArr containsObject:path]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You have already commented this food"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        [self commentWithNum:0 andFoodID:[self.foodArr[path.row] objectForKey:@"foodid"]];
+        [self.commentArr addObject:path];
+    }
 }
 
 - (void)commentWithNum:(int)comment andFoodID:(NSString *)foodID{

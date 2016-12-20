@@ -20,4 +20,6 @@
 
 @property (nonatomic, nonnull) NSMutableArray *foodArr;
 
+@property (nonatomic, nonnull) NSMutableArray *commentArr;
+
 @end

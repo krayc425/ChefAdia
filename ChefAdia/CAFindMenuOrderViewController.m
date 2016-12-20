@@ -99,7 +99,9 @@
 }
 
 - (IBAction)orderAction:(id)sender{
+    UIButton *button = (UIButton *)sender;
     NSDictionary *dict = @{
+                           @"pay_type" : [NSNumber numberWithInteger:button.tag],
                            @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
                            @"mmenuid" : self.menuid,
                            };

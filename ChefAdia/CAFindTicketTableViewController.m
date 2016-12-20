@@ -65,7 +65,6 @@
 }
 
 - (void)loadMyTicket{
-    
     __weak typeof(self) weakSelf = self;
     
     self.myTicketArr = [[NSMutableArray alloc] init];
@@ -98,7 +97,6 @@
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"%@",error);
          }];
-
 }
 
 #pragma mark - Buy Ticket Delegate
