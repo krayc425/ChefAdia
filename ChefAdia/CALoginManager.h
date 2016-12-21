@@ -30,4 +30,6 @@ enum LoginState{
 - (BOOL)saveAvatar:(UIImage *_Nonnull)avatarImg;
 - (UIImage *_Nonnull)readAvatar;
 
+- (BOOL)checkInfo;
+
 @end

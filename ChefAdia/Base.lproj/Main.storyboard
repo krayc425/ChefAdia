@@ -437,6 +437,7 @@
                         <outlet property="ticketSwitch" destination="vwo-Bl-hH5" id="Jjy-wF-DoL"/>
                         <outlet property="timeLabel" destination="RR9-T1-zNI" id="mGq-Xi-G42"/>
                         <outlet property="visaButton" destination="nTp-Ku-7c5" id="iZm-8v-fn9"/>
+                        <segue destination="Nzr-mc-az8" kind="show" identifier="infoSegue" id="ngg-pF-WOd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hK6-x3-bMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -713,7 +714,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Uj-9U-26t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3402" y="2106"/>
+            <point key="canvasLocation" x="5231" y="2167"/>
         </scene>
         <!--CALoginViewController-->
         <scene sceneID="LDK-HL-krx">
@@ -1632,7 +1633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SwT-4R-ARP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4423" y="37"/>
+            <point key="canvasLocation" x="4452" y="-744"/>
         </scene>
         <!--CAFindMenuListViewController-->
         <scene sceneID="JUI-X2-cAf">
@@ -1739,7 +1740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNV-AL-ScZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5284" y="36"/>
+            <point key="canvasLocation" x="5314" y="-739"/>
         </scene>
         <!--CAFindMenuOrderViewController-->
         <scene sceneID="VIi-GS-LES">
@@ -1852,11 +1853,12 @@
                         <outlet property="priceInstructionLabel" destination="6pe-E4-s95" id="Y4S-yW-atv"/>
                         <outlet property="totalPriceLabel" destination="ahs-Kx-wTM" id="eqq-u2-Whu"/>
                         <outlet property="visaButton" destination="laP-15-oWC" id="K0o-tX-tC1"/>
+                        <segue destination="Nzr-mc-az8" kind="show" identifier="infoSegue" id="2Bj-IJ-b47"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqg-Gx-Fnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4425" y="-696"/>
+            <point key="canvasLocation" x="4457" y="-9"/>
         </scene>
     </scenes>
     <resources>
@@ -1873,5 +1875,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zOT-QA-eiX"/>
+        <segue reference="2Bj-IJ-b47"/>
     </inferredMetricsTieBreakers>
 </document>

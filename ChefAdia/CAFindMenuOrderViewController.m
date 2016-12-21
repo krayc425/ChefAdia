@@ -12,6 +12,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AFNetworking.h"
 #import "CAMenuData.h"
+#import "CALoginManager.h"
 
 #define GET_MMENU_DETAIL_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getMMenu"
 #define ORDER_MMENU_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/addMOrder"
@@ -99,6 +100,22 @@
 
 - (IBAction)orderAction:(id)sender{
     
+    if(![[CALoginManager shareInstance] checkInfo]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info not complete"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"My info"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action){
+                                                             [self performSegueWithIdentifier:@"infoSegue" sender:nil];
+                                                         }];
+        [alertC addAction:cancelAction];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sure to order?"
                                                                     message:nil

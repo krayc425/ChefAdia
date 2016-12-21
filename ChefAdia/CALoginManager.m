@@ -66,6 +66,15 @@ static CALoginManager* _instance = nil;
     }
 }
 
+- (BOOL)checkInfo{
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"user_addr"]
+       && [[NSUserDefaults standardUserDefaults] objectForKey:@"user_phone"]){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 #pragma mark - Avatar
 
 - (BOOL)saveAvatar:(UIImage *)avatarImg{

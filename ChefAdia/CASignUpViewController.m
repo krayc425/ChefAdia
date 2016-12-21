@@ -105,7 +105,7 @@
                       [[CALoginManager shareInstance] setAvatarURL:[dict valueForKey:@"avatar"]];
                       [[CALoginManager shareInstance] setLoginState:LOGIN];
                       
-//                      [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
+                      [[NSNotificationCenter defaultCenter] postNotificationName:@"Login" object:nil];
                       [self.navigationController popViewControllerAnimated:YES];
                   }else{
                       NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"code"]);

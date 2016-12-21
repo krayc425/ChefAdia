@@ -13,6 +13,7 @@
 #import "CAFoodCart.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "CALoginManager.h"
 
 #define PAY_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/addOrder"
 
@@ -68,6 +69,23 @@
 - (IBAction)payAction:(id)sender{
     //CASH : TAG = 0
     //VISA : TAG = 1
+
+    if(![[CALoginManager shareInstance] checkInfo]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Info not complete"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"My info"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action){
+                                                             [self performSegueWithIdentifier:@"infoSegue" sender:nil];
+                                                         }];
+        [alertC addAction:cancelAction];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Sure to order?"
                                                                     message:nil
