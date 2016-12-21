@@ -35,14 +35,13 @@
     [self.priceInstructionLabel setTextColor:color];
     [self.totalPriceLabel setFont:[UIFont fontWithName:[Utilities getBoldFont] size:20]];
     [self.totalPriceLabel setTextColor:color];
-    
-    [self.orderButton.titleLabel setFont:[UIFont fontWithName:fontName size:20]];
-    [self.orderButton.titleLabel setTextColor:[UIColor whiteColor]];
-    [self.orderButton setBackgroundImage:[UIImage imageNamed:@"BUTTON_BG_DEFAULT_SHORT"] forState:UIControlStateNormal];
-    
+        
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
     self.menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    _cashButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
+    _visaButton.titleLabel.font = [UIFont fontWithName:fontName size:15];
     
     //set view
     [self.nameLabel setText:self.menuName];

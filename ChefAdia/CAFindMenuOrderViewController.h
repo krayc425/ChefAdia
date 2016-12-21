@@ -16,7 +16,6 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
 @property (nonnull, nonatomic) IBOutlet UITableView *menuTableView;
-@property (nonnull, nonatomic) IBOutlet UIButton *orderButton;
 
 @property (nonnull, nonatomic) NSString *menuid;
 @property (nonnull, nonatomic) NSString *menuName;
@@ -25,5 +24,8 @@
 @property (nonnull, nonatomic) NSMutableArray *typeArr;
 @property (nonnull, nonatomic) NSMutableArray *numArr;
 @property (nonnull, nonatomic) NSMutableArray *foodArr;
+
+@property (nonnull, nonatomic) IBOutlet UIButton *visaButton;
+@property (nonnull, nonatomic) IBOutlet UIButton *cashButton;
 
 @end
