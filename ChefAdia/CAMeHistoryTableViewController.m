@@ -11,11 +11,13 @@
 #import "CAMeHistoryDetailTableViewController.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "Utilities.h"
 
 #define ORDER_LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getOrderList"
 #define EASY_ORDER_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modEasyOrder"
 
-@interface CAMeHistoryTableViewController ()
+@interface CAMeHistoryTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @end
 
@@ -25,6 +27,9 @@
     [super viewDidLoad];
     
     self.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"];
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -109,7 +114,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    if([self.orderArr count] > 0){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -164,6 +173,32 @@
     NSIndexPath *indexPath = (NSIndexPath *)sender;
     CAMeHistoryDetailTableViewController *caMeHistoryDetailTableViewController = (CAMeHistoryDetailTableViewController *)[segue destinationViewController];
     [caMeHistoryDetailTableViewController setOrderID:[self.orderArr[indexPath.row] objectForKey:@"orderid"]];
+}
+
+#pragma mark - Empty Set Delegate
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"NO ORDER YET";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:[Utilities getBoldFont] size:20.0f],
+                                 NSForegroundColorAttributeName: [Utilities getColor]
+                                 };
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView{
+    NSString *text = @"GO AND ORDER SOME FOOD NOW!";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:[Utilities getFont] size:15.0f],
+                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 @end

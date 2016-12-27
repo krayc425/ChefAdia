@@ -10,8 +10,8 @@ target 'ChefAdia' do
   # Pods for ChefAdia
   pod 'JSONKit'
   pod 'Reachability'
-  pod 'ASIHTTPRequest'
   pod 'AFNetworking'
   pod 'SDWebImage'
   pod 'MBProgressHUD'
+  pod 'DZNEmptyDataSet'
 end

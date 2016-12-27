@@ -26,7 +26,9 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    _backgroundView.image = [UIImage imageNamed:@"FIND_TITLE"];
+    _backgroundView.image = [UIImage imageNamed:@"FIND_MENU"];
+    _titleLabel.font = [UIFont fontWithName:[Utilities getBoldFont] size:30];
+    [_titleLabel setText:@"EXCLUSIVE MENUS"];
     
     UIBarButtonItem *R1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                         target:self

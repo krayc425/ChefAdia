@@ -283,7 +283,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rOq-pb-mqA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZQw-kk-zzb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wTl-ag-YFY">
@@ -311,7 +311,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-Oa-81m">
-                                <rect key="frame" x="20" y="259" width="335" height="250"/>
+                                <rect key="frame" x="20" y="259" width="335" height="294"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -337,7 +337,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bvp-Dn-IES">
-                                <rect key="frame" x="20" y="524.5" width="335" height="31"/>
+                                <rect key="frame" x="20" y="568.5" width="335" height="31"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="HpM-Sr-5N8">
                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="31"/>
@@ -370,7 +370,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-yq-E3x">
-                                <rect key="frame" x="20" y="570.5" width="335" height="32.5"/>
+                                <rect key="frame" x="20" y="614.5" width="335" height="32.5"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-Ku-7c5">
                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="32.5"/>
@@ -1273,12 +1273,20 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3QB-gf-4RK">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQU-pE-vYH">
+                                                    <rect key="frame" x="166" y="114" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="3QB-gf-4RK" firstAttribute="leading" secondItem="hCF-uD-J1n" secondAttribute="leading" id="DRd-sL-5OO"/>
                                                 <constraint firstAttribute="bottom" secondItem="3QB-gf-4RK" secondAttribute="bottom" id="T28-A0-ecb"/>
                                                 <constraint firstAttribute="trailing" secondItem="3QB-gf-4RK" secondAttribute="trailing" id="Ty1-P2-toA"/>
+                                                <constraint firstItem="EQU-pE-vYH" firstAttribute="centerY" secondItem="hCF-uD-J1n" secondAttribute="centerY" id="Vfz-m3-bpR"/>
                                                 <constraint firstItem="3QB-gf-4RK" firstAttribute="top" secondItem="hCF-uD-J1n" secondAttribute="top" id="Y5h-Wa-THe"/>
+                                                <constraint firstItem="EQU-pE-vYH" firstAttribute="centerX" secondItem="hCF-uD-J1n" secondAttribute="centerX" id="iCh-gM-7nO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1306,6 +1314,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="backgroundView" destination="3QB-gf-4RK" id="Yaj-Ld-QwI"/>
+                        <outlet property="titleLabel" destination="EQU-pE-vYH" id="qsy-FQ-hcb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydV-3O-Rug" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1334,11 +1343,21 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Y3-QX-QUe">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yW-0D-ddv">
+                                                    <rect key="frame" x="166.5" y="114.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="3Y3-QX-QUe" firstAttribute="leading" secondItem="yjW-Pa-nlq" secondAttribute="leading" id="3X1-xg-yfg"/>
                                                 <constraint firstItem="3Y3-QX-QUe" firstAttribute="top" secondItem="yjW-Pa-nlq" secondAttribute="top" id="A9W-YN-ze9"/>
+                                                <constraint firstItem="3Y3-QX-QUe" firstAttribute="centerX" secondItem="yjW-Pa-nlq" secondAttribute="centerX" id="Fnl-xb-jmh"/>
                                                 <constraint firstAttribute="bottom" secondItem="3Y3-QX-QUe" secondAttribute="bottom" id="VWa-8q-ubI"/>
+                                                <constraint firstItem="3Y3-QX-QUe" firstAttribute="centerY" secondItem="yjW-Pa-nlq" secondAttribute="centerY" id="jkD-tn-1wo"/>
+                                                <constraint firstItem="4yW-0D-ddv" firstAttribute="centerY" secondItem="yjW-Pa-nlq" secondAttribute="centerY" id="o92-rq-GPG"/>
+                                                <constraint firstItem="4yW-0D-ddv" firstAttribute="centerX" secondItem="yjW-Pa-nlq" secondAttribute="centerX" id="vA4-il-YiC"/>
                                                 <constraint firstAttribute="trailing" secondItem="3Y3-QX-QUe" secondAttribute="trailing" id="wbW-qX-lrX"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1367,6 +1386,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="backgroundView" destination="3Y3-QX-QUe" id="WdA-oA-s51"/>
+                        <outlet property="titleLabel" destination="4yW-0D-ddv" id="94I-TM-WFe"/>
                         <segue destination="Pbt-QJ-DrF" kind="show" identifier="addMenuSegue" id="1ko-HR-Ugt"/>
                         <segue destination="yxi-nD-etR" kind="show" identifier="detailMenuSegue" id="NNx-lC-GxV"/>
                     </connections>
@@ -1874,7 +1894,7 @@
         <image name="MINUS" width="76" height="76"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zOT-QA-eiX"/>
         <segue reference="2Bj-IJ-b47"/>
+        <segue reference="vYE-hH-yYs"/>
     </inferredMetricsTieBreakers>
 </document>

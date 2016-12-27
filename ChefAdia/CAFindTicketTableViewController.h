@@ -12,6 +12,7 @@
 @interface CAFindTicketTableViewController : UITableViewController <BuyTicketDelegate>
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (nonnull, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (nonnull, nonatomic) NSMutableArray *ticketArr;
 @property (nonnull, nonatomic) NSMutableArray *myTicketArr;

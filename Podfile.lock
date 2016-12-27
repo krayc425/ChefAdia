@@ -14,19 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - ASIHTTPRequest (1.8.2):
-    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
-    - ASIHTTPRequest/CloudFiles (= 1.8.2)
-    - ASIHTTPRequest/Core (= 1.8.2)
-    - ASIHTTPRequest/S3 (= 1.8.2)
-  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
-    - ASIHTTPRequest/Core
-  - ASIHTTPRequest/CloudFiles (1.8.2):
-    - ASIHTTPRequest/Core
-  - ASIHTTPRequest/Core (1.8.2):
-    - Reachability
-  - ASIHTTPRequest/S3 (1.8.2):
-    - ASIHTTPRequest/Core
+  - DZNEmptyDataSet (1.8.1)
   - JSONKit (1.4)
   - MBProgressHUD (1.0.0)
   - Reachability (3.2)
@@ -36,7 +24,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - ASIHTTPRequest
+  - DZNEmptyDataSet
   - JSONKit
   - MBProgressHUD
   - Reachability
@@ -44,12 +32,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 67eda0b335b24ce4ac371f1ac8d42d7fed4bd282
+PODFILE CHECKSUM: dd058fb61ded2ba790e6da5a44e399dcd760c4a9
 
 COCOAPODS: 1.1.1

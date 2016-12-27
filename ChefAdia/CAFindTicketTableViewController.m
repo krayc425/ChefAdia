@@ -9,6 +9,7 @@
 #import "CAFindTicketTableViewController.h"
 #import "CAFindTicketTableViewCell.h"
 #import "AFNetworking.h"
+#import "Utilities.h"
 
 #define ALL_TICKET_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getAllTicket"
 #define BUY_TICKET_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/buyTick"
@@ -24,7 +25,9 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    _backgroundView.image = [UIImage imageNamed:@"FIND_TITLE"];
+    _backgroundView.image = [UIImage imageNamed:@"FIND_TICKET"];
+    _titleLabel.font = [UIFont fontWithName:[Utilities getBoldFont] size:30];
+    [_titleLabel setText:@"VALUABLE TICKETS"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

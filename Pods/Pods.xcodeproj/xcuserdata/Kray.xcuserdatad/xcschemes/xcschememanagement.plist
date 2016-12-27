@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ASIHTTPRequest.xcscheme</key>
+		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,7 +42,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3715A5160C2B1E539B4D0B8CBD0978CA</key>
+		<key>46E98C369DA2FA958F89E9C8D04E5772</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>50D979E04FBBB41AB7422E0B9D1DB3A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5437890023F30CA85DFCA260CA914D48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C623D1AF8229419BA603B3C66BE24B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9E033EDB5EC0819481B0546434FA577B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B256FB8AAF30175A4BE322A3CCA3C452</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0EA78F8F3362DEBC9840500226DA5E7</key>
+		<key>B05D7A961B1AC28CF68CB1C2402DB61C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
