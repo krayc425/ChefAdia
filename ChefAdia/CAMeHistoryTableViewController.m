@@ -14,8 +14,8 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "Utilities.h"
 
-#define ORDER_LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getOrderList"
-#define EASY_ORDER_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/modEasyOrder"
+#define ORDER_LIST_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getOrderList"
+#define EASY_ORDER_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/modEasyOrder"
 
 @interface CAMeHistoryTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 

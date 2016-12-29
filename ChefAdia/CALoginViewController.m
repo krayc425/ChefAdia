@@ -14,8 +14,8 @@
 #import "AFHTTPSessionManager.h"
 #import "MBProgressHUD.h"
 
-#define LOGIN_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/login"
-#define INFO_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getInfo"
+#define LOGIN_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/login"
+#define INFO_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/getInfo"
 
 @interface CALoginViewController (){
     NSString *fontName;

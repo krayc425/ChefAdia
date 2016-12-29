@@ -15,7 +15,7 @@
 #import "AFHTTPSessionManager.h"
 #import "CALoginManager.h"
 
-#define PAY_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/addOrder"
+#define PAY_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/addOrder"
 
 @interface CAFoodPayViewController (){
     NSString *fontName;

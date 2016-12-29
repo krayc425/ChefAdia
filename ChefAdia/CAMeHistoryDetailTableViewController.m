@@ -12,8 +12,8 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
-#define ORDER_DETAIL_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getOrder"
-#define COMMENT_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/comment"
+#define ORDER_DETAIL_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getOrder"
+#define COMMENT_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/comment"
 
 @interface CAMeHistoryDetailTableViewController ()
 

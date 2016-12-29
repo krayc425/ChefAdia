@@ -11,9 +11,9 @@
 #import "AFNetworking.h"
 #import "Utilities.h"
 
-#define ALL_TICKET_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getAllTicket"
-#define BUY_TICKET_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/buyTick"
-#define GET_TICKET_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getTickInfo"
+#define ALL_TICKET_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getAllTicket"
+#define BUY_TICKET_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/buyTick"
+#define GET_TICKET_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getTickInfo"
 
 @interface CAFindTicketTableViewController ()
 

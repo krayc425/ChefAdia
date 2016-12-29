@@ -22,7 +22,7 @@
 
 #define MARGIN 20
 
-#define LIST_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/menu/getList"
+#define LIST_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getList"
 
 @interface CAFoodDetailTableViewController (){
     NSString *fontName;

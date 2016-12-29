@@ -14,7 +14,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CAFindMenuListViewController.h"
 
-#define MMENU_FOOD_URL @"http://139.196.179.145/ChefAdia-1.0-SNAPSHOT/user/getMMenuInfo"
+#define MMENU_FOOD_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/getMMenuInfo"
 
 @interface CAFindMenuAddViewController ()
 
