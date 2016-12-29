@@ -10,6 +10,7 @@
 #import "CAFindTicketTableViewCell.h"
 #import "AFNetworking.h"
 #import "Utilities.h"
+#import "MBProgressHUD.h"
 
 #define ALL_TICKET_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getAllTicket"
 #define BUY_TICKET_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/buyTick"
@@ -32,12 +33,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadTickets];
-    [self loadMyTicket];
 }
 
 - (void)loadTickets{
-    
-    __weak typeof(self) weakSelf = self;
     
     self.ticketArr = [[NSMutableArray alloc] init];
     
@@ -57,7 +55,7 @@
                  for(NSDictionary *dict in array){
                      [self.ticketArr addObject:dict];
                  }
-                 [weakSelf.tableView reloadData];
+                 [self loadMyTicket];
              }else{
                  NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
              }
@@ -76,6 +74,11 @@
                            @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
                            };
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
@@ -84,10 +87,15 @@
                                                          nil];
     [manager GET:GET_TICKET_URL
       parameters:dict
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 [hud hideAnimated:YES];
+                 
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  
                  [self.myTicketArr addObject:subResultDict];

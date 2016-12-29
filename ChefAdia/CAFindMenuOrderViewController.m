@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "CAMenuData.h"
 #import "CALoginManager.h"
+#import "MBProgressHUD.h"
 
 #define GET_MMENU_DETAIL_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/getMMenu"
 #define ORDER_MMENU_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/addMOrder"
@@ -64,6 +65,11 @@
                            @"mmenuid" : self.menuid,
                            };
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -71,10 +77,14 @@
                                                          nil];
     [manager GET:GET_MMENU_DETAIL_URL
       parameters:dict
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
               NSDictionary *resultDict = (NSDictionary *)responseObject;
               if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                  
+                  [hud hideAnimated:YES];
                   
                   NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
                   
@@ -133,6 +143,11 @@
                                                                                 @"mmenuid" : self.menuid,
                                                                                 };
                                                          
+                                                         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                                         [hud setMode:MBProgressHUDModeText];
+                                                         [hud.label setText: @"Ordering"];
+                                                         [hud setRemoveFromSuperViewOnHide:YES];
+                                                         
                                                          AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
                                                          manager.requestSerializer = [AFJSONRequestSerializer serializer];
                                                          manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -142,11 +157,15 @@
                                                                                                               nil];
                                                          [manager GET:ORDER_MMENU_URL
                                                            parameters:dict
-                                                             progress:nil
+                                                             progress:^(NSProgress * _Nonnull uploadProgress) {
+                                                                 [hud setProgressObject:uploadProgress];
+                                                             }
                                                               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                                                                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                                                                       NSLog(@"ORDER MMENU SUCCESS");
+                                                                      
+                                                                      [hud hideAnimated:YES];
                                                                       
                                                                       UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
                                                                                                                                       message:nil

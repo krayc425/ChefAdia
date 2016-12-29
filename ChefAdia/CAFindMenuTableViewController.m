@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "CAFindMenuOrderViewController.h"
 #import "CAFindMenuListViewController.h"
+#import "MBProgressHUD.h"
 
 #define MMENU_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/getMList"
 #define MMENU_DELETE_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/deleteMMenu"
@@ -45,6 +46,11 @@
     
     __weak typeof(self) weakSelf = self;
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     NSDictionary *requestDict = @{
                                   @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
                                   };
@@ -56,10 +62,15 @@
                                                          nil];
     [manager GET:MMENU_URL
       parameters:requestDict
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 [hud hideAnimated:YES];
+                 
                  NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
                  for(NSDictionary *dict in resultArr){
                      [self.menuArr addObject:dict];

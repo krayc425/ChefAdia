@@ -16,6 +16,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "MBProgressHUD.h"
 
 #define MENU_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getMenu"
 #define GET_EASY_ORDER_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/getEasyOrder"
@@ -52,8 +53,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self checkEasyOrder];
-    
-    [self loadMenu];
+//    [self loadMenu];
 }
 
 - (void)checkEasyOrder{
@@ -102,6 +102,11 @@
 
     __weak typeof(self) weakSelf = self;
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -109,10 +114,15 @@
                                                          nil];
     [manager GET:MENU_URL
       parameters:nil
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 [hud hideAnimated:YES];
+                 
                  NSArray *resultArr = (NSArray *)[resultDict objectForKey:@"data"];
                  for(NSDictionary *dict in resultArr){
                      CAFoodMenu *tmpMenu = [[CAFoodMenu alloc] initWithID:[[dict valueForKey:@"menuid"] intValue]

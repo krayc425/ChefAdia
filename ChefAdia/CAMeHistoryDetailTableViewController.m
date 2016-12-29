@@ -11,6 +11,7 @@
 #import "CAMeHistoryDetailTableViewCell.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "MBProgressHUD.h"
 
 #define ORDER_DETAIL_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getOrder"
 #define COMMENT_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/comment"
@@ -43,6 +44,11 @@
                                @"orderid" : self.orderID,
                                };
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -50,10 +56,14 @@
                                                          nil];
     [manager GET:ORDER_DETAIL_URL
       parameters:tempDict
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 [hud hideAnimated:YES];
                  
                  NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  //TODO

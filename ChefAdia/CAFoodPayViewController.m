@@ -14,8 +14,10 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import "CALoginManager.h"
+#import "MBProgressHUD.h"
 
 #define PAY_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/addOrder"
+#define GET_TICKET_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getTickInfo"
 
 @interface CAFoodPayViewController (){
     NSString *fontName;
@@ -60,10 +62,78 @@
     [_ticketSwitch setOnTintColor:[Utilities getColor]];
     [_bowlSwitch setOn:NO];
     [_ticketSwitch setOn:NO];
+    
+    [_ticketSwitch addTarget:self action:@selector(checkHasTicket:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (IBAction)backAction:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//temp
+- (BOOL)checkHasTicket:(id)sender{
+    
+    UISwitch *ticketSwitch = (UISwitch *)sender;
+    if([ticketSwitch isOn]){
+        [ticketSwitch setOn:NO];
+        
+        return NO;
+    }else{
+
+        NSMutableArray *myTicketArr = [[NSMutableArray alloc] init];
+        
+        NSDictionary *dict = @{
+                               @"userid" : [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"],
+                               };
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+                                                             @"text/plain",
+                                                             @"text/html",
+                                                             nil];
+        [manager GET:GET_TICKET_URL
+          parameters:dict
+            progress:nil
+             success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                 NSDictionary *resultDict = (NSDictionary *)responseObject;
+                 if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                     NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
+                     
+                     if([subResultDict[@"remain_money"] doubleValue] > 0){
+                         [myTicketArr addObject:subResultDict];
+                     }
+                     
+                 }else{
+                     NSLog(@"Error, MSG: %@", [resultDict objectForKey:@"message"]);
+                 }
+             }
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                 NSLog(@"%@",error);
+             }];
+        
+        if([myTicketArr count] > 0){
+            [ticketSwitch setOn:YES];
+            
+            return YES;
+        }else{
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You don't have any available ticket"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:nil];
+            [alertC addAction:cancelAction];
+            [alertC addAction:okAction];
+            [self presentViewController:alertC animated:YES completion:nil];
+            
+            return NO;
+        }
+        
+    }
 }
 
 - (IBAction)payAction:(id)sender{
@@ -96,6 +166,7 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Order"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action){
+                                                         
                                                          int ticket_info = [self.ticketSwitch isOn];
                                                          int bowl_info = [self.bowlSwitch isOn];
                                                          
@@ -126,14 +197,24 @@
                                                                                                               @"text/plain",
                                                                                                               @"text/html",
                                                                                                               nil];
+                                                         
+                                                         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                                         [hud setMode:MBProgressHUDModeText];
+                                                         [hud.label setText: @"Ordering"];
+                                                         [hud setRemoveFromSuperViewOnHide:YES];
+
                                                          [manager POST:PAY_URL
                                                             parameters:tempDict
-                                                              progress:nil
+                                                              progress:^(NSProgress * _Nonnull uploadProgress) {
+                                                                  [hud setProgressObject:uploadProgress];
+                                                              }
                                                                success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                                                                    NSDictionary *resultDict = (NSDictionary *)responseObject;
                                                                    if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                                                                        
                                                                        [[CAFoodCart shareInstance] clearCart];
+                                                                       
+                                                                       [hud hideAnimated:YES];
                                                                        
                                                                        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order success"
                                                                                                                                        message:nil
@@ -144,6 +225,7 @@
                                                                                                                             [self.navigationController popToRootViewControllerAnimated:YES];
                                                                                                                         }];
                                                                        [alertC addAction:okAction];
+                                                                       
                                                                        [self presentViewController:alertC animated:YES completion:nil];
                                                                        
                                                                    }else{
@@ -152,6 +234,19 @@
                                                                    
                                                                }
                                                                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                                                   
+                                                                   UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Order failed"
+                                                                                                                                   message:nil
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                   UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                      style:UIAlertActionStyleDefault
+                                                                                                                    handler:^(UIAlertAction *action){
+                                                                                                                        [self.navigationController popToRootViewControllerAnimated:YES];
+                                                                                                                    }];
+                                                                   [alertC addAction:okAction];
+                                                                   
+                                                                   [self presentViewController:alertC animated:YES completion:nil];
+                                                                   
                                                                    NSLog(@"%@",error);
                                                                }];
                                                      }];

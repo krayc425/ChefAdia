@@ -13,6 +13,7 @@
 #import "AFHTTPSessionManager.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "Utilities.h"
+#import "MBProgressHUD.h"
 
 #define ORDER_LIST_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/menu/getOrderList"
 #define EASY_ORDER_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/modEasyOrder"
@@ -32,13 +33,15 @@
     self.tableView.emptyDataSetDelegate = self;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
+    
     [self loadOrder];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+}
+
 - (void)loadOrder{
+    
     self.orderArr = [[NSMutableArray alloc] init];
     
     __weak typeof(self) weakSelf = self;
@@ -47,6 +50,11 @@
                                @"userid" : self.userID,
                                };
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -54,14 +62,17 @@
                                                          nil];
     [manager GET:ORDER_LIST_URL
       parameters:tempDict
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
                  
+                 [hud hideAnimated:YES];
+                 
                  for(NSDictionary *dict in (NSArray *)[resultDict objectForKey:@"data"]){
                      [weakSelf.orderArr addObject:dict];
-//                     [weakSelf.orderArr insertObject:dict atIndex:0];
                  }
                  
                  [weakSelf.tableView reloadData];
@@ -86,6 +97,11 @@
                                @"orderid" : [self.orderArr[[[self.tableView indexPathForCell:cell] row]] objectForKey:@"orderid"],
                                };
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Setting"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -93,10 +109,15 @@
                                                          nil];
     [manager POST:EASY_ORDER_URL
       parameters:tempDict
-        progress:nil
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             [hud setProgressObject:uploadProgress];
+         }
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 [hud hideAnimated:YES];
+                 
                  NSLog(@"success");
                  
                  [weakSelf.tableView reloadData];

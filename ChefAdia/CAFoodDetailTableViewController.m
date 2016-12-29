@@ -19,6 +19,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CAFoodDetailExtraView.h"
 #import "CALoginManager.h"
+#import "MBProgressHUD.h"
 
 #define MARGIN 20
 
@@ -58,6 +59,11 @@
                               @"menuid" : [NSString stringWithFormat:@"%d",_foodType.ID],
                               };
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeText];
+    [hud.label setText: @"Loading"];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                          @"text/plain",
@@ -65,10 +71,15 @@
                                                          nil];
     [manager GET:LIST_URL
       parameters:tempDict
-        progress:nil
+        progress:^(NSProgress * _Nonnull uploadProgress) {
+            [hud setProgressObject:uploadProgress];
+        }
+
          success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
              NSDictionary *resultDict = (NSDictionary *)responseObject;
              if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                 
+                 [hud hideAnimated:YES];
                  
                  NSDictionary *subResultDict = (NSDictionary *)[resultDict objectForKey:@"data"];
                  

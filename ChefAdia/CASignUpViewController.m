@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import "CALoginManager.h"
+#import "MBProgressHUD.h"
 
 #define SIGNUP_URL @"http://47.89.194.197:8081/ChefAdia-1.0-SNAPSHOT/user/register"
 
@@ -85,6 +86,11 @@
                                    @"password" : _passwordText.text,
                                    };
         
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        [hud.label setText: @"Sign up"];
+        [hud setRemoveFromSuperViewOnHide:YES];
+        
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
                                                              @"text/plain",
@@ -92,12 +98,17 @@
                                                              nil];
         [manager POST:SIGNUP_URL
            parameters:tempDict
-             progress:nil
+             progress:^(NSProgress * _Nonnull uploadProgress) {
+                 [hud setProgressObject:uploadProgress];
+             }
               success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                   NSLog(@"SUCCESS");
                   NSDictionary *resultDict = (NSDictionary *)responseObject;
                   
                   if([[resultDict objectForKey:@"condition"] isEqualToString:@"success"]){
+                      
+                      [hud hideAnimated:YES];
+                      
                       NSDictionary *dict = (NSDictionary *)[resultDict objectForKey:@"data"];
                       
                       [[CALoginManager shareInstance] setUserID:[dict valueForKey:@"userid"]];
