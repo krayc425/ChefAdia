@@ -120,13 +120,9 @@
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"You don't have any available ticket"
                                                                             message:nil
                                                                      preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:nil];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                                style:UIAlertActionStyleDefault
                                                              handler:nil];
-            [alertC addAction:cancelAction];
             [alertC addAction:okAction];
             [self presentViewController:alertC animated:YES completion:nil];
             

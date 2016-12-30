@@ -28,11 +28,13 @@
     
     _backgroundView.image = [UIImage imageNamed:@"FIND_TICKET"];
     _titleLabel.font = [UIFont fontWithName:[Utilities getBoldFont] size:30];
-    [_titleLabel setText:@"VALUABLE TICKETS"];
+    [_titleLabel setText:@"MEAL TICKETS"];
+    
+    [self loadTickets];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self loadTickets];
+//    [self loadTickets];
 }
 
 - (void)loadTickets{

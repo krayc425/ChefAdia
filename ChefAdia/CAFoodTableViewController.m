@@ -46,14 +46,14 @@
     [_easyOrderButton.titleLabel setFont: [UIFont fontWithName:[Utilities getBoldFont] size:15]];
     [self checkEasyOrder];
     
-    _name1Label.text = @"KRAYC'S";
-    _name2Label.text = @"CHINESE FOOD";
+    _name1Label.text = @"CHEFADIA'S";
+    _name2Label.text = @"DELICIOUS CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self checkEasyOrder];
-//    [self loadMenu];
+    [self loadMenu];
 }
 
 - (void)checkEasyOrder{
