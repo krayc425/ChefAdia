@@ -36,10 +36,12 @@
     
     self.delegate = self;
     [self.naviItem setTitle:@"FOOD"];
-    UIBarButtonItem *R1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                        target:self
-                                                                        action:nil];
-    self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:R1,nil];
+    
+//    UIBarButtonItem *R1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+//                                                                        target:self
+//                                                                        action:nil];
+//    self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:R1,nil];
+    self.naviItem.rightBarButtonItems = nil;
     
     //注册观察者
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVCs) name:@"Login" object:nil];
@@ -54,8 +56,6 @@
     
     //刷新 VC
     [self refreshVCs];
-    
-    [self.caFoodTableViewController.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -75,6 +75,7 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
     self.caFoodTableViewController = (CAFoodTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CAFoodTableViewController"];
+    [self.caFoodTableViewController loadMenu];
     
     self.caFindTableViewController = (CAFindTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CAFindTableViewController"];
     
@@ -127,10 +128,11 @@
         case 0:
         {
             [self.naviItem setTitle:@"FOOD"];
-            UIBarButtonItem *R1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                                target:self
-                                                                                action:nil];
-            self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:R1,nil];
+//            UIBarButtonItem *R1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+//                                                                                target:self
+//                                                                                action:nil];
+            //            self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:R1,nil];
+            self.naviItem.rightBarButtonItems = nil;
         }
             break;
         case 1:

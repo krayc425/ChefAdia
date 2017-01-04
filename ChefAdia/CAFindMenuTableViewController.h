@@ -15,4 +15,6 @@
 
 @property (nonnull, nonatomic) NSMutableArray *menuArr;
 
+- (void)loadMMenu;
+
 @end

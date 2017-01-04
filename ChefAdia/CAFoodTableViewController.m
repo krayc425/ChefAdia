@@ -35,7 +35,7 @@
     fontName = [Utilities getFont];
     
     //加载食物大类
-    [self loadMenu];
+//    [self loadMenu];
     
     _backgroundView.image = [UIImage imageNamed:@"FOOD_TITLE"];
     _menuLabel.font = [UIFont fontWithName:fontName size:15];
@@ -49,11 +49,13 @@
     _name1Label.text = @"CHEFADIA'S";
     _name2Label.text = @"DELICIOUS CHINESE FOOD";
     _contactLabel.text = @"XIANLIN AVENUE\n10:00 A.M. ~ 22:00 P.M.";
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self checkEasyOrder];
-    [self loadMenu];
+//    [self loadMenu];
 }
 
 - (void)checkEasyOrder{
@@ -208,6 +210,9 @@
         NSIndexPath *path = (NSIndexPath *)sender;
         CAFoodMenu *caFoodMenu = (CAFoodMenu *)_menuArr[path.row];
         [caFoodDetailTableViewController setFoodType:caFoodMenu];
+        
+        [caFoodDetailTableViewController loadFood];
+        
     }else if([segue.identifier isEqualToString:@"easyOrderSegue"]){
         [[CAFoodCart shareInstance] clearCart];
         

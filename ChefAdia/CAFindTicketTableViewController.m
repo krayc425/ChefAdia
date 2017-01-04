@@ -33,10 +33,6 @@
     [self loadTickets];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-//    [self loadTickets];
-}
-
 - (void)loadTickets{
     
     self.ticketArr = [[NSMutableArray alloc] init];

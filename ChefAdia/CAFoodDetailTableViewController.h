@@ -31,4 +31,6 @@
 
 @property (nonnull, nonatomic) CAFoodCart *foodCart;
 
+- (void)loadFood;
+
 @end

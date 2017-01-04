@@ -48,6 +48,8 @@
     _foodCart = [CAFoodCart shareInstance];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [self.tableView reloadData];
 }
 
 - (void)loadFood{
@@ -117,7 +119,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     //加载所有食物数组
-    [self loadFood];
+//    [self loadFood];
     
     [self.navigationController setToolbarHidden:NO];
     [self.billCountItem setTitle:[NSString stringWithFormat:@"TOTAL BILL : $%.2f", [_foodCart getTotalPrice]]];
